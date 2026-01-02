@@ -4,13 +4,16 @@ on:
   pull_request:
     branches:
       - main
-
+permissions: 
+  pull-requests: write 
 
 jobs:
   convert_via_pandoc:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+      - name: change dir
+        run: cd 2026
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
@@ -29,11 +32,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         id: artifact
         with:
-          name: output
-          path: output
+          name: result.pdf
+          path: 2026/output/result.pdf
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v3
         id: message-pdf
         with:
           message: |
             Hello! [Here's your application in pdf](${{ steps.artifact.outputs.artifact-url}})
+          github-token: ${{ secrets.comments}}
