@@ -1,0 +1,39 @@
+name: Generate PDF
+
+on:
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get all changed markdown files
+        id: changed-markdown-files
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+            **.md
+      - name: List all changed files markdown files
+        id: files_list
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+        uses: docker://pandoc/latex:3.8
+        with:
+          args: --output=output/result.pdf ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+      - uses: actions/upload-artifact@v4
+        id: artifact
+        with:
+          name: output
+          path: output
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v3
+        id: message-pdf
+        with:
+          message: |
+            Hello! [Here's your application in pdf](${{ steps.artifact.outputs.artifact-url}})
