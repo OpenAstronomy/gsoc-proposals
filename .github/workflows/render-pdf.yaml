@@ -26,12 +26,13 @@ jobs:
           ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         uses: docker://pandoc/latex:3.8
         with:
-          args: -f markdown+rebase_relative_paths --output=output/result.pdf ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+          args: -f markdown+rebase_relative_paths --output=output/proposal.pdf ${{ steps.changed-markdown-files.outputs.all_changed_files }}
       - uses: actions/upload-artifact@v4
         id: artifact
         with:
-          name: result.pdf
-          path: output/result.pdf
+          name: proposal
+          path: output/proposal.pdf
+          if-no-files-found: error 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v3
         id: message-pdf
