@@ -19,7 +19,7 @@ Welcome to the repository to submit your applications and discuss them with the 
    - Add content to your proposal and commit regularly,
    - Open a **draft** pull request to this repository and continue editing your proposal,
    - When you think it's ready, mark the PR as "Ready for review".
-4. If the PR is ready for review at least one week before Google's submission deadline we will add comments to it.
+4. If the PR is ready for review at least one week before Google's submission deadline we may add comments to it to help you to improve it.
 5. Create the submission on the GSoC platform and upload the PDF exported provided as a comment on your PR.
 
 ## Acknowledgements
