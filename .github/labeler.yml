@@ -1,0 +1,21 @@
+astropy:
+- changed-files:
+  - any-glob-to-any-file: '**/astropy/**'
+juliaastro:
+- changed-files:
+  - any-glob-to-any-file: '**juliaastro/**'
+lincc-fw:
+- changed-files:
+  - any-glob-to-any-file: '**/lincc-fw/**'
+radis:
+- changed-files:
+  - any-glob-to-any-file: '**/radis/**'
+reltrans:
+- changed-files:
+  - any-glob-to-any-file: '**/reltrans/**'
+stingray:
+- changed-files:
+  - any-glob-to-any-file: '**/stingray/**'
+sunpy:
+- changed-files:
+  - any-glob-to-any-file: '**/sunpy/**'
