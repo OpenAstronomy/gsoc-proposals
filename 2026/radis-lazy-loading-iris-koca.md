@@ -6,7 +6,7 @@ Modernizing Spectroscopic Data Processing in RADIS With High-Performance Lazy-Lo
 * **Time-zone: UTC+3 (Istanbul, Turkey)**
 * **Matrix/slack/IRC Handle: İris (Slack)**
 * **Github/forge username: archiristo**
-* **Blog: mathcs.online** 
+* **Blog: archiristo.github.io** 
 * **PR link(s):**
   * https://github.com/radis/radis/pull/935
 
