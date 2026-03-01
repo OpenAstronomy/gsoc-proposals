@@ -19,7 +19,7 @@ I have been fascinated by astronomy since I was 14, when I started a blog called
 
 Recently, I started contributing to the radiospectra repository, where I worked on several issues and submitted multiple pull requests. These contributions which included restoring the WIND/WAVES Fido client and improving spectrogram plotting behavior which helped me understand the structure of the codebase and how radiospectra integrates with the broader SunPy ecosystem. Through this process, I gained practical experience in debugging, testing and maintaining scientific software.
 
-Alongside open source contributions, I have built small Python projects involving API usage and data processing, which strengthened my understanding of writing clean and maintainable code. I am particularly interested in building reliable tools that are useful for real world scientific workflows and am motivated to continue learning while contributing meaningfully to the community.
+Alongside open source contributions, I have built small Python projects involving API usage and data processing, which strengthened my understanding of writing clean and maintainable code. I am particularly interested in building reliable tools that are useful for real world scientific workflows and am motivated to continue learning while contributing meaningfully to the community. I'm still in my first year so a lot of this is new to me but I've found that working on the real issues has been the fastest way to learn. 
 
 ### Interest in OpenAstronomy
 I have long been interested in astronomy and scientific computing. During my recent contributions to radiospectra, I found the intersection of solar radio physics and modern scientific Python tooling particularly interesting. OpenAstronomy provides a collaborative environment where high quality scientific software is developed in the open source and contributing here allows me to combine my interests in astronomy, data analysis and software engineering. I would greatly appreciate the opportunity to contribute through GSoC and help strengthen radiospectra within the broader SunPy ecosystem.
@@ -43,6 +43,9 @@ This project aims to replace that foundation with a new `Spectra` class built on
 I am drawn to this project because it sits at the intersection of software design and scientific usability and these are the two things I care about. After exploring the codebase and discussing the architecture with maintainers in [issue #143](https://github.com/sunpy/radiospectra/issues/143), I have a good understanding of what the current challenges are and what the redesigned API should look like. This is a project where I can make a lasting structural improvement rather than an incremental fix and thats what excites me most.
 
 ### Deliverables
+
+#### Note:
+Some of the design decisions here like whether to use the subclass NDCube directly or wrapping it, will be figured out with the mentors during community bonding. I have written on based on what I've researched and read about.
 
 **1. Redesigned, coordinate-aware Spectra object**
 - A new `Spectra` class with a clear external API providing a WCS-like mapping from physical coordinates like time and frequency to array indices.
