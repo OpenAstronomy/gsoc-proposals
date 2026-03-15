@@ -8,7 +8,7 @@
 * **Github username:** dhruv1955
 * **Blog:** https://dev.to/dhruv1955
 * **Blog RSS feed:** https://dev.to/feed/dhruv1955
-* **Proposal discussion link:** 
+* **Proposal discussion link:** https://github.com/OpenAstronomy/gsoc-proposals/pull/4
 
 ### PR link(s): Pre-GSoC Contributions (12 PRs submitted, 8 merged)
 
