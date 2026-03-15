@@ -6,8 +6,8 @@
 * **Time-zone:** IST (UTC+5:30)
 * **Matrix Handle:** @dhruv1955:matrix.org
 * **Github username:** dhruv1955
-* **Blog:** N/A
-* **Blog RSS feed:** N/A
+* **Blog:** https://dev.to/dhruv1955
+* **Blog RSS feed:** https://dev.to/feed/dhruv1955
 * **Proposal discussion link:** 
 
 ### PR link(s): Pre-GSoC Contributions (12 PRs submitted, 8 merged)
