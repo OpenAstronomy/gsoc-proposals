@@ -22,7 +22,7 @@ Recently, I started contributing to the radiospectra repository, where I worked 
 Alongside open source contributions, I have built Python projects involving APIs and data processing, which helped me get better at writing code thats easier to read and work with. I am particularly interested in building reliable tools that are useful for real world scientific workflows and I will continue learning and improving while making meaningful contributions to the community.
 
 ### Interest in OpenAstronomy
-I have long been interested in astronomy and scientific computing. During my recent contributions to radiospectra, I found the intersection of solar radio physics and modern scientific Python tooling particularly interesting. OpenAstronomy is a place where serious scientific software is built out in the open and contributing here allows me to combine my interests in astronomy, data analysis and software engineering.
+I have long been interested in astronomy and scientific computing. During my recent contributions to radiospectra, I found the intersection of solar radio physics and modern scientific Python tooling particularly interesting. OpenAstronomy is a place where serious scientific software is built out in the open and contributing here allows me to combine my interests in astronomy, data analysis and software engineering. I have also attended SunPy's weekly meetings and they are very welcoming and I am looking forward to contributing to the community.
 
 ## Project Proposal Application
 **Proposal Title:** Modernizing radiospectra: A Coordinate-Aware and Interoperable Spectral Data Framework
@@ -36,37 +36,52 @@ I have long been interested in astronomy and scientific computing. During my rec
 **Difficulty:** High
 
 ### Summary
-The current `radiospectra` stores spectral data as plain NumPy arrays and every instrument client has its own way of handling metadata, axis ordering and coordinate conversions. There is no built-in way to go from physical coordinates like time and frequency to array indices, no background subtraction tools and it doesn't really fit in with the coordinate-aware models like NDCube and WCS that the rest of SunPy uses. So users end up writing a lot of boilerplate just to do basic things. This project aims to fix that by building a new `Spectra` class on top of NDCube and Astropy's WCS framework, so we can slice by time or frequency, do background subtraction and plot spectrograms without having to worry about the underlying array layout. So, the goal is to bring radiospectra closer to the kind of usability that `sunpy.map` already provides for image data.
+The current `radiospectra` stores spectral data as plain NumPy arrays and every instrument client has its own way of handling metadata, axis ordering and coordinate conversions. There is no built-in way to go from physical coordinates like time and frequency to array indices, no background subtraction tools and it doesn't really fit in with the coordinate-aware models like NDCube and WCS that the rest of SunPy uses. So users end up writing a lot of boilerplate just to do basic things.
+
+This project aims to fix that by building a new `Spectra` class that gives users a better way to slice by time or frequency, do background subtraction and plot spectrograms without having to worry about the underlying array layout. NDCube is a strong option for this since `sunpy.map` and `sunkit-spex` already use it, but part of the project will be to properly explore how best to use it and whether other approaches like xarray or a custom WCS layer might work better for radiospectra's specific needs. The goal is to bring radiospectra closer to the kind of usability that `sunpy.map` already provides for image data.
 
 I am drawn to this project because it involves both software design and real scientific usability and these are the two things I care about. After exploring the codebase and discussing the architecture with mentors in [issue #143](https://github.com/sunpy/radiospectra/issues/143), I have a good understanding of what the current challenges are and what the redesigned API should look like. This is a project where I can make a lasting structural improvement rather than an incremental fix and thats what excites me most.
 
 ### Deliverables
 
-#### Note:
-Some of the design decisions here like whether to use the subclass NDCube directly or wrapping it or using some other way like xarray, will be figured out with the mentors during community bonding. I have written on based on what I've researched and read about.
+#### Design Approach Evaluation
 
-**1. Redesigned, coordinate-aware Spectra object**
+Before building the `Spectra` class I want to breakdown all the possible design approaches during community bonding by building small prototypes and comparing them. The table below shows my initial analysis based on my research:
+
+| Factor | NDCube (subclass) | NDCube (wrapper) | xarray | Plain NumPy + WCS |
+|---|---|---|---|---|
+| **SunPy Integration** | Already used by sunpy.map and sunkit-spex | Native to SunPy | Adds an external dependency | Minimal external dependencies |
+| **WCS Support** | Built-in via Astropy | Built-in | Needs some manual mapping | Have to build this manually |
+| **Implementation Effort** | Have to follow NDCube's internal design | Needs more effort to connect components | Easy to start, harder to maintain | Simple to start |
+| **API Simplicity** | Inherits NDCube's interface | Can build our own clean API | Familiar to data science users | Simple but limited |
+| **Axis-Aware slicing** | Native support | Have to do it via wrapper | Native support | Have to build from scratch |
+| **Plotting** | Can use NDCube plotters | Via wrapper | Needs custom plotters | Have to build from scratch |
+| **Maintenance burden** | Handled by NDCube team | Handled by NDCube team | Risk of upstream API changes | Fully on the radiospectra team |
+
+The community bonding phase will be used to build prototypes and pick the best one with mentors input before coding starts.
+
+#### 1. New coordinate-aware Spectra object
 - A new `Spectra` class with a clear external API providing a WCS-like mapping from physical coordinates like time and frequency to array indices.
-- Support for axis-aware operations: slicing, scaling, statistics, rebinning by index or by coordinate.
-- Clean Integration with SunPy, Astropy, NDCube or xarray data structures.
+- Support for axis-aware operations like slicing, scaling, statistics, rebinning by index or by coordinate.
+- Clean integration with SunPy and Astropy built on whichever data model i.e. NDCube, xarray or other works best after evaluation.
 - Methods like `freq_at_index()`, `time_at_index()`, `in_interval()` and coordinate slicing.
 
-**2. Background subtraction framework and analysis tools**
+#### 2. Tools for background subtraction and analysis
 - Common background subtraction methods like `auto_const_bg`, `subtract_bg`, `randomized_auto_const_bg` that are used in solar radio analysis.
 - An interface so that users can add their own custom methods for background subtraction if needed.
 - Other operations like `rescale`, `flatten`, `join_many`, `check_linearity`.
 
-**3. Improved visualisation for real-world data**
+#### 3. Better visualisation tools
 - Plotting tools that can  handle the real observational features like data gaps, missing channels, masked values and irregular sampling.
 - Proper defaults but also options to customize things like colormaps, axis labels and normalization.
 
-**4. Example and tests**
+#### 4. Examples and Tests
 - As examples are important, I will add example notebooks or scripts demonstrating coordinate slicing and workflows, background subtraction use cases and improved plotting of gappy spectral data.
 - Proper test coverage to support all new functionality.
 
 ### Description/timeline
 
-Breakdown of the work across the GSoC period:
+Breakdown of my plan across the GSoC period:
 
 #### Note: 
 Tests and Documentation i.e. API docstrings, narrative docs and user guides will be written continuously alongside development rather than as in a separate phase to maintain consistency.
@@ -75,15 +90,15 @@ Tests and Documentation i.e. API docstrings, narrative docs and user guides will
 
 - Get more familiar with the SunPy organisation and go through the radiospectra codebase properly.
 - Look at existing radiospectra features and open issues.
-- Discuss design choices for the Spectra data model with mentors.
-- Explore approaches like NDCube, xarray, Astropy WCS and agree on a plan.
+- Build small prototypes using different approaches like subclassing NDCube or wrapping it, using xarray or custom WCS layer to understand what works best for radiospectra.
+- Compare the prototypes with mentors and agree on a final approach for the Spectra data model.
 - Set up the development branch and agree on a PR strategy.
 
 #### Phase 1 : Core Data Structure & Coordinates (Weeks 1 - 6, May 25 - Jul 5)
 
 | Week | Dates | Description |
 | ---- | ----- | ----------- |
-| Week 1 | May 25 - May 31 | Start building the base `Spectra` class with NDCube. Open PRs for the core class structure.|
+| Week 1 | May 25 - May 31 | Start building the base `Spectra` class using the approach agreed on during community bonding. Open PRs for the core class structure.|
 | Week 2 | Jun 1 - Jun 7 | Add the WCS-like interface that maps physical coordinates like time and frequency to array indices.|
 | Week 3 | Jun 8 - Jun 14 | Build the transition layer that converts old instrument metadata like e-Callisto, WAVES etc. into valid WCS formats.|
 | Week 4 | Jun 15 - Jun 21 | Write methods for coordinate lookup like `freq_at_index()`, `time_at_index()` and `in_interval()`. Also support slicing by both indices and coordinates.|
