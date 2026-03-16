@@ -1,9 +1,13 @@
 name: Generate PDF
 
 on:
-  pull_request:
+  pull_request_target:
+    types: 
+      - opened
+      - assigned
     branches:
       - main
+      
 permissions: 
   pull-requests: write 
 
@@ -11,7 +15,9 @@ jobs:
   convert_via_pandoc:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}      
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
@@ -27,12 +33,13 @@ jobs:
         uses: docker://pandoc/latex:3.8
         with:
           args: -f markdown+rebase_relative_paths --output=output/proposal.pdf ${{ steps.changed-markdown-files.outputs.all_changed_files }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         id: artifact
         with:
           name: proposal
           path: output/proposal.pdf
           if-no-files-found: error 
+          archive: false
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v3
         id: message-pdf
@@ -40,3 +47,4 @@ jobs:
           message: |
             Hello! [Here's your application in pdf](${{ steps.artifact.outputs.artifact-url}})
           github-token: ${{ secrets.comments}}
+          comment-tag: pdf
