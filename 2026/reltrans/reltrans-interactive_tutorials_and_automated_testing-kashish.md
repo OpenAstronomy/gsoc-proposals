@@ -14,6 +14,8 @@ Name | Kashish Shrivastav
 GitHub | @kashish2210
 Slack | [Kashish Shrivastav](https://reltrans-workspace.slack.com/team/U0AGL7BC8A0)
 Matrix | [@kashish2210:matrix.org](https://matrix.org/)
+Blog | https://kashish2210.blogspot.com/2026/03/interactive-tutorials-and-automated.html
+Blog RSS feed | https://kashish2210.blogspot.com/feeds/posts/default/-/gsoc26
 Time Zone | IST (GMT + 5:30)
 
 ---
