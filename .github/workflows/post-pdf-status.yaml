@@ -1,0 +1,27 @@
+name: PDF Link
+
+on:
+  workflow_run:  # zizmor: ignore[dangerous-triggers]
+    # must match the build workflow's `name:` exactly, i.e., "Test Suite", and
+    # not "tests", or any other variation
+    workflows: ["Generate PDF"]
+    types: [completed]
+
+permissions: {}
+
+jobs:
+  link:
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+      actions: read
+    steps:
+      - uses: agriyakhetarpal/github-actions-artifacts-redirector-action@683d25ace2cb0aefe8e6719c39c2ac7f3d22dd8c # v1.0.0
+        id: redirect
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          artifact-name: proposal # matches the uploaded filename without extension
+          job-title: View your rendered proposal here
+
+      - name: Check the URL
+        run: echo "${{ steps.redirect.outputs.url }}"
