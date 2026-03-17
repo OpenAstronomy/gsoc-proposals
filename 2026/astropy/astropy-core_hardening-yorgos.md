@@ -1,5 +1,5 @@
-# Application Title
-Hardening astropy’s core stability - Yorgos Vasilantonakis
+# Hardening astropy’s core stability - Yorgos Vasilantonakis
+
 
 ## Contributor Information
 * **Name:** Yorgos Vasilantonakis
@@ -27,10 +27,10 @@ Coming from a physics background I've worked with free and open-source programs 
 I am drawn to this project because it sits exactly at the intersection of my skill sets. My primary programming focus is in C, making Astropy's C core an ideal environment for me to contribute. I am also very interested in analyzing performance-critical C code in a real world codebase. 
 
 ### Deliverables
-**1.** Direct tests for astropy/convolution/src/_convolve.c
-**2.** Direct tests for astropy/timeseries/periodograms/bls/bls.c
-**3.** Direct tests for astropy/wcs/src/ files
-**4.** CI/CD pipeline and documentation
+* **1.** Direct tests for astropy/convolution/src/_convolve.c
+* **2.** Direct tests for astropy/timeseries/periodograms/bls/bls.c
+* **3.** Direct tests for astropy/wcs/src/ files
+* **4.** CI/CD pipeline and documentation
 
 ### Description/timeline
 
