@@ -8,11 +8,11 @@
 * **Blog:** [Modernizing radiospectra](https://sunpy-radiospectra.blogspot.com/)
 * **Blog RSS feed:** https://sunpy-radiospectra.blogspot.com/feeds/posts/default?alt=rss
 * **PR link(s):**
-  * [radiospectra#142](https://github.com/sunpy/radiospectra/pull/142)
-  * [radiospectra#144](https://github.com/sunpy/radiospectra/pull/144)
-  * [radiospectra#151](https://github.com/sunpy/radiospectra/pull/151)
-  * [radiospectra#158](https://github.com/sunpy/radiospectra/pull/158)
-  * [radiospectra#163](https://github.com/sunpy/radiospectra/pull/163)
+  * [Migrate network clients to new unified Scraper format (#142)](https://github.com/sunpy/radiospectra/pull/142) (Merged)
+  * [Ensure spectrogram plotting correctly handles non-UTC time scales (#144)](https://github.com/sunpy/radiospectra/pull/144) (Merged)
+  * [Fix mixed frequency unit plotting on shared axes (#151)](https://github.com/sunpy/radiospectra/pull/151) (Merged)
+  * [Restore WAVES Fido client for SPDF data sources (#158)](https://github.com/sunpy/radiospectra/pull/158) (Merged)
+  * [Improve default time axis formatting using ConciseDateFormatter (#163)](https://github.com/sunpy/radiospectra/pull/163) (Waiting for review)
 
 ### Background
 I have had a fascination in astronomy since I was 14, when I started a blog called [Star-gazers](https://stargazing53179.blogspot.com/) where I wrote articles on topics like stellar evolution, neutron stars and meteor showers. That early curiosity and technical eagerness eventually led me to pursue a degree in Computer Science and Data Science, where I am now learning about statistics, scientific computing and software engineering. Over the past year, I have become comfortable working with Python and its scientific ecosystem including NumPy, Matplotlib and related data analysis tools.
@@ -22,7 +22,7 @@ Recently, I started contributing to the radiospectra repository, where I worked 
 Alongside open source contributions, I have built Python projects involving APIs and data processing, which helped me get better at writing code thats easier to read and work with. I am particularly interested in building reliable tools that are useful for real world scientific workflows and I will continue learning and improving while making meaningful contributions to the community.
 
 ### Interest in OpenAstronomy
-I have long been interested in astronomy and scientific computing. During my recent contributions to radiospectra, I found the intersection of solar radio physics and modern scientific Python tooling particularly interesting. OpenAstronomy is a place where serious scientific software is built out in the open and contributing here allows me to combine my interests in astronomy, data analysis and software engineering. I have also attended SunPy's weekly meetings and they are very welcoming and I am looking forward to contributing to the community.
+I have long been interested in astronomy and scientific computing. During my recent contributions to radiospectra, I found the intersection of solar radio physics and modern scientific Python tooling particularly interesting. OpenAstronomy is a place where serious scientific software is built out in the open and contributing here allows me to combine my interests in astronomy, data analysis and software engineering. I have been attending SunPy's weekly meetings regularly which gave me a much better sense of how the community operates and SunPy ecosystem works. Everyone has been very welcoming and I look forward to contributing to the community.
 
 ## Project Proposal Application
 **Proposal Title:** Modernizing radiospectra: A Coordinate-Aware and Interoperable Spectral Data Framework
@@ -50,13 +50,13 @@ Before building the `Spectra` class I want to breakdown all the possible design 
 
 | Factor | NDCube (subclass) | NDCube (wrapper) | xarray | Plain NumPy + WCS |
 |---|---|---|---|---|
-| **SunPy Integration** | Already used by sunpy.map and sunkit-spex | Native to SunPy | Adds an external dependency | Minimal external dependencies |
-| **WCS Support** | Built-in via Astropy | Built-in | Needs some manual mapping | Have to build this manually |
-| **Implementation Effort** | Have to follow NDCube's internal design | Needs more effort to connect components | Easy to start, harder to maintain | Simple to start |
-| **API Simplicity** | Inherits NDCube's interface | Can build our own clean API | Familiar to data science users | Simple but limited |
-| **Axis-Aware slicing** | Native support | Have to do it via wrapper | Native support | Have to build from scratch |
-| **Plotting** | Can use NDCube plotters | Via wrapper | Needs custom plotters | Have to build from scratch |
-| **Maintenance burden** | Handled by NDCube team | Handled by NDCube team | Risk of upstream API changes | Fully on the radiospectra team |
+| **SunPy Integration** | **Pros:** `sunpy.map` and `sunkit-spex` use it<br>**Cons:** Restricted to NDCube ecosystem | **Pros:** Native to SunPy<br>**Cons:** Wrapper adds extra layer to maintain | **Pros:** Popular in data science<br>**Cons:** Pulls in major external dependency | **Pros:** Minimum dependencies<br>**Cons:** Gains nothing from SunPy ecosystem |
+| **WCS Support** | **Pros:** Built-in coordinate handling<br>**Cons:** None | **Pros:** Built-in via wrapper<br>**Cons:** Wrapper can get complex | **Pros:** Good for labeled data<br>**Cons:** Needs manual mapping to Astropy WCS | **Pros:** Full control<br>**Cons:** have to build WCS mapping from scratch |
+| **Implementation Effort** | **Pros:** Direct inheritance<br>**Cons:** Must strictly follow NDCube design | **Pros:** Flexible API design<br>**Cons:** Needs more effort to connect components | **Pros:** Quick to start<br>**Cons:** Harder to maintain over time | **Pros:** Simple initially<br>**Cons:** Have to write all coordinate logic manually |
+| **API Simplicity** | **Pros:** Familiar to SunPy users<br>**Cons:** Tied to NDCube's structure | **Pros:** Clean, custom API<br>**Cons:** Users must learn specific wrapper | **Pros:** Familiar pandas like syntax<br>**Cons:** Unfamiliar to some | **Pros:** Very simple<br>**Cons:** Very limited functionality |
+| **Axis-Aware Slicing** | **Pros:** Native support by coordinate<br>**Cons:** None | **Pros:** Possible via wrapper<br>**Cons:** Slower and more complex code | **Pros:** Native support<br>**Cons:** Uses xarray syntax, not Astropy | **Pros:** Fully custom behavior<br>**Cons:** Must build from scratch |
+| **Plotting** | **Pros:** Reuses NDCube plotters<br>**Cons:** Limited to their plot styles | **Pros:** Can use NDCube or custom<br>**Cons:** Needs extra code to connect things | **Pros:** has own plot tools<br>**Cons:** Needs custom code for solar WCS data | **Pros:** Exact plotting required<br>**Cons:** Must build everything from scratch |
+| **Maintenance Burden** | **Pros:** Handled by NDCube team<br>**Cons:** If NDCube breaks, then there can be a problem | **Pros:** Handled by NDCube team<br>**Cons:** Must maintain wrapper layer | **Pros:** Handled by xarray team<br>**Cons:** High risk of upstream API changes | **Pros:** No external breakages<br>**Cons:** All maintenance falls on radiospectra team |
 
 The community bonding phase will be used to build prototypes and pick the best one with mentors input before coding starts.
 
@@ -131,7 +131,7 @@ No.
 
 ### Schedule availability
 
-I am available throughout the GSoC period and committed wholeheartedly to the 350 hour project. I have no planned holidays or travel during the programme timeline.
+I am available throughout the GSoC period as my vacations will start from May and committed fully to the 350 hour project. I have no planned holidays or travel during the programme timeline.
 
 
 ## Other comments
