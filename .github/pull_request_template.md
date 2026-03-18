@@ -1,9 +1,9 @@
-<!-- 
+<!--
 
 Make sure the title of the Pull Request is:
   SubOrg name: Project (Your name)
   e.g., SunPy: Coordinates revamping (Joe Black)
-  
+
 Make sure that you Pull Request is not removing the `template.md` file
 
 -->
