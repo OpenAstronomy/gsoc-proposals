@@ -37,7 +37,7 @@
 
 ## Background
 
-I'm a 3rd-year B.Tech student in Engineering Physics at NIT Agartala, with a strong foundation in C and C++. I also have industry experience building a safety management system at Tata Power Delhi Distribution Limited - my first taste of what it means to write code that cannot fail silently.
+I'm a 3rd-year B.Tech student in Engineering Physics at NIT Agartala, with a strong foundation in C and C++. I also have industry experience building a safety management system at Tata Power Delhi Distribution Limited - my first experience writing code where a missed error path had real operational consequences.
 
 That interest in what happens under the hood led me to Astropy. When I dug into the codebase, I found C and Cython extensions that were never tested directly - meaning bugs in the compiled layer could be masked by the Python API indefinitely. It's a real problem worth fixing, and it's what I've been working on since February 2026, with 9 of 12 submitted PRs already merged.
 
@@ -45,11 +45,11 @@ That interest in what happens under the hood led me to Astropy. When I dug into 
 
 ## Interest in OpenAstronomy
 
-I'm drawn to infrastructure work that users never see but always depend on. Astropy's compiled layer is exactly that - C and Cython extensions that sit beneath the Python API and handle the performance-critical paths that astronomers rely on daily. When those extensions go untested, bugs can hide there indefinitely. That's the kind of problem I want to fix.
+I started contributing to Astropy because I wanted to understand what the compiled layer actually does, not just what it's supposed to do. The `goto fail` I found in `parse_times.c` wasn't something I went looking for - I was just reading the error path to see whether it worked, and it didn't. That's the kind of reading I want to keep doing.
 
-What keeps me invested in OpenAstronomy specifically is the scale of real-world use. A bug I catch in `_parse_times.c` or `fast_sigma_clip.c` isn't an academic exercise - it affects researchers processing actual observational data. That connection between low-level engineering and scientific work is what makes this community worth contributing to long-term.
+What keeps me engaged with OpenAstronomy is that the bugs here aren't academic. A regression in `_parse_times.c` affects researchers processing real observational data, not a toy benchmark. That raises the stakes enough to make the work feel worth doing carefully.
 
-The draft Astropy Proposal for Enhancement ([neutrinoceros/astropy-APEs#1](https://github.com/neutrinoceros/astropy-APEs/pull/1)) also makes clear that direct extension-level testing isn't just cleanup work - it's a prerequisite for the compiled layer becoming independently modular and maintainable. This project fits directly into that roadmap, which means the work has durability beyond GSoC.
+The draft APE makes it clear that direct extension-level testing is a prerequisite for the compiled layer becoming independently modular. The Meson migration and Limited API work that maintainers are planning both depend on it. This means the work has a clear path forward beyond GSoC, which is exactly the kind of contribution I want to make.
 
 ---
 
@@ -154,15 +154,11 @@ Tier B begins once 80% of Tier A is merged. Two infrastructure items - Meson bui
 
 ## Communication Plan
 
-- My primary channel is Zulip, where I'll post 2-3 async updates per week covering what's done, what's blocked, and what's next. These aren't status reports for the sake of it - they're early-warning signals so mentors can redirect me before I lose a week going the wrong direction.
-
-- I'll request a 30–60 minute weekly sync with mentors, with a written agenda shared the day before. This is where scope questions, timeline slippage, and design decisions get resolved - not via back-and-forth comment threads on a PR.
-
-- All work happens through GitHub. Every module gets a draft PR on day one, not when I think it's ready. Mentors can see direction early and I get feedback before I've written 200 lines in the wrong direction. I keep no more than 2 PRs active at any time.
-
-- If I'm blocked for more than 48 hours - whether by a CI issue, an unclear extension interface, or a stalled review - I escalate in Zulip immediately and flag it for the next weekly sync. I won't silently lose days.
-
-- At midterm and final evaluation I'll submit a written report covering: which modules are complete, CI results across Linux/macOS/Windows, any timeline deviations and how I addressed them, and what remains for whoever continues this work.
+- Zulip is my primary channel. I'll post 2–3 updates a week—what's done, what's blocked, what's next. The goal is to catch wrong directions early before they cost a week.
+- I'll have a weekly 30–60 minute sync with mentors and share a short written agenda the day before.
+- Every module will have a draft PR opened on day one, not when it feels “ready,” so feedback comes before I go too far in the wrong direction.
+- If I'm blocked for more than 48 hours—due to CI issues, unclear interfaces, or stalled reviews—I’ll escalate on Zulip immediately instead of waiting.
+- Midterm and final reports will cover completed work, CI results across Linux/macOS/Windows, any timeline deviations, and remaining work.
 
 ---
 
@@ -178,25 +174,25 @@ I placed All India Rank 128 in Engineers' Ring of Honor 2025. I also coordinate 
 
 ### Motivation: Why This Project?
 
-I've spent the last few months reading Astropy's compiled layer not as a user but as someone trying to understand what could go wrong and where. That's what led me to the missing `goto fail` in `parse_times.c` - not a code audit, just genuine curiosity about what the error path actually does. That kind of work, finding the gap between what code is supposed to do and what it actually does at the boundary, is what I want to spend my time on.
+The last few months, I've been reading through the compiled layer of Astropy, not as a user, but as someone who wants to know what could go wrong and where. This is what got me to the `goto fail` issue in `parse_times.c`, not as a code review, but as something to satiate my curiosity about what the error code actually does. This kind of work, trying to find the difference between what code should do and what it actually does at the edges, is what I'd like to spend my time on.
 
-The reason this project matters beyond GSoC is that the compiled layer can't become independently modular until it's independently testable. The draft APE makes this explicit - the path to a cleaner build system and eventual Limited API compatibility runs directly through having tests that don't depend on the Python API to exercise the C layer. I understand this not just from reading the proposal but from hitting the problem directly: when I tried to test `_parse_times` without touching the `Time` constructor, I had to reverse-engineer the calling convention from internal usage. That friction is exactly what this project removes for every contributor who comes after.
+The reason this project is important outside of GSoC is that the compiled layer will not be able to become independently modular until it is independently testable. This is made clear in the draft APE - the way to a cleaner build system and ultimately Limited API compatibility is through testing that does not depend on the Python API for the C layer. I understand this not only through the proposal, but because I've run into it myself - when I was trying to test `_parse_times` without relying on the Python API for the `Time` constructor, I had to reverse-engineer the call convention from internal usage. This is precisely what this project removes for every contributor that comes after.
 
-I'm not applying because this fits my skills. I'm applying because I've already started and I want to finish it properly.
+I'm not applying because I'm a good fit for this. I'm applying because I've already started and I want to complete it well.
 
 ---
 
 ### Why Me?
 
-The short answer is that I've already done this work. I derived the `_parse_times` calling convention from internal usage of `TimeString.get_jds_fast` without any documentation to guide me, found and fixed a real error-path bug in the process ([#19368](https://github.com/astropy/astropy/pull/19368)), and got the cosmology extension tests merged and passing on all three platforms ([#19407](https://github.com/astropy/astropy/pull/19407)). That PR now exists as a working template for every module that follows.
+The quick summary is that I've already done this. I developed the `_parse_times` calling convention from internal usage of `TimeString.get_jds_fast` with no documentation available to me, fixed an actual error path bug in doing so ([#19368](https://github.com/astropy/astropy/pull/19368)), and got the cosmology extension tests merged and passing for all three platforms ([#19407](https://github.com/astropy/astropy/pull/19407)). That PR is now live as a working example for all future modules.
 
-I've also worked directly with the mentors through PR review - not just read their names on the project page. I know what they push back on (the `assert` vs `ValueError` distinction from [#19359](https://github.com/astropy/astropy/pull/19359) is a good example), and I've adjusted how I write tests accordingly. That feedback loop is already running. A new contributor would spend the first month of GSoC building what I've already built.
+I've also worked directly with the mentors through PR review, not just seen their name on the project page. I'm familiar with what they push back on (the difference between `assert` and `ValueError`, for example, from [#19359](https://github.com/astropy/astropy/pull/19359)), and I've adjusted my approach to writing tests accordingly. This process is already underway. The new contributor will spend the first month of GSoC doing what I've already done.
 
-What I'm proposing isn't a plan to do something - it's a plan to finish something that's already started, with evidence that the approach works on real code, real reviews, and real CI.
+So what I'm proposing is not a plan for doing something, it is a plan for finishing something that has already been started, and I have proof that this approach works.
 
 ### Availability
 
-My semester ends before May 10 and my summer break runs through July 15, covering the entire GSoC coding period without interruption. I can contribute 20-25 hours per week and more during the early weeks when the hardest module (`_parse_times`) is the focus. I have no exams, internships, or other commitments during this window.
+My semester ends before May 10 and my summer break runs through July 15, covering the entire GSoC coding period without interruption. I can contribute 20-25 hours per week and more during the early weeks before review cycles slow things down. I have no exams, internships, or other commitments during this window.
 
 ---
 
@@ -207,4 +203,3 @@ My semester ends before May 10 and my summer break runs through July 15, coverin
 - **Are you applying to other projects?** No.
 
 - **Schedule availability:** I'll flag any planned absences to mentors via Zulip in advance. Nothing is currently planned during the coding period.
-
