@@ -8,9 +8,7 @@
 * **Github/forge username:** toastmt
 * **Blog:**
 * **Blog RSS feed:**
-* **PR link(s):**
-  * .
-  * .
+* **PR link(s):** #19452 WIP: Standalone C-level tests for 1D convolution (GSoC 2026) (https://github.com/astropy/astropy/pull/19452)
 
 ### Background
 My name is Yorgos and I'm currently doing a CS conversion degree, building on my previous BSc in Physics. Over the last year I have focused on C and Python. I was drawn to this project because it perfectly bridges my two backgrounds. It allows me to apply my recent CS focus to the mathematical concepts I studied in physics.
