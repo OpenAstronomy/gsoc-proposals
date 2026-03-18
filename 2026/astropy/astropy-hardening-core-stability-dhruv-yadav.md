@@ -92,13 +92,13 @@ These aren't anticipated challenges - I've already hit them:
 
 ### Deliverables
 
-1. Direct tests for `astropy/time/_parse_times.c` - `create_parser` ufunc, structured dtype inputs, ISO/ISOT/yday parsing correctness, error path coverage — **already merged** ([#19410](https://github.com/astropy/astropy/pull/19410))
+1. Direct tests for `astropy/time/_parse_times.c` - `create_parser` ufunc, structured dtype inputs, ISO/ISOT/yday parsing correctness, error path coverage - **already merged** ([#19410](https://github.com/astropy/astropy/pull/19410))
 2. Direct tests for `astropy/stats/src/fast_sigma_clip.c` - all flag combinations, empty and all-masked inputs, edge cases
 3. Direct tests for `astropy/stats/_stats.pyx` - `ks_2samp` tested against analytical expected values, no scipy dependency
 4. Direct tests for `astropy/cosmology/_src/flrw/scalar_inv_efuncs.pyx` - all 6 scalar inverse E(z) functions, **already merged** ([#19407](https://github.com/astropy/astropy/pull/19407))
 5. A short contributor guide on testing compiled extensions - covering how to construct structured dtypes, call ufuncs directly, and write error path tests, so future contributors don't have to rediscover this from scratch
 
-**Stretch goals — Tier A:**
+**Stretch goals - Tier A:**
 
 6. Direct tests for `astropy/table/_column_mixins.pyx` - `__getitem__` overrides, structured array field access, multi-dimensional slicing
 7. Direct tests for `astropy/table/_np_utils.pyx` - `join_inner` covering inner, left, right, and outer joins; masks; empty tables; duplicate keys
@@ -108,7 +108,7 @@ These aren't anticipated challenges - I've already hit them:
 
 Tier A begins once deliverables 1-3 are merged or approved.
 
-**Stretch goals — Tier B:**
+**Stretch goals - Tier B:**
 
 11. Direct tests for `astropy/wcs` C extensions (wcslib)
 12. Direct tests for `astropy/coordinates` C/Cython extensions
@@ -154,10 +154,10 @@ Tier B begins once 80% of Tier A is merged. Two infrastructure items - Meson bui
 
 ## Communication Plan
 
-- Zulip is my primary channel. I'll post 2–3 updates a week—what's done, what's blocked, what's next. The goal is to catch wrong directions early before they cost a week.
-- I'll have a weekly 30–60 minute sync with mentors and share a short written agenda the day before.
+- Zulip is my primary channel. I'll post 2–3 updates a week-what's done, what's blocked, what's next. The goal is to catch wrong directions early before they cost a week.
+- I'll have a weekly 30-60 minute sync with mentors and share a short written agenda the day before.
 - Every module will have a draft PR opened on day one, not when it feels “ready,” so feedback comes before I go too far in the wrong direction.
-- If I'm blocked for more than 48 hours—due to CI issues, unclear interfaces, or stalled reviews—I’ll escalate on Zulip immediately instead of waiting.
+- If I'm blocked for more than 48 hours-due to CI issues, unclear interfaces, or stalled reviews-I’ll escalate on Zulip immediately instead of waiting.
 - Midterm and final reports will cover completed work, CI results across Linux/macOS/Windows, any timeline deviations, and remaining work.
 
 ---
@@ -166,7 +166,7 @@ Tier B begins once 80% of Tier A is merged. Two infrastructure items - Meson bui
 
 ### Past Experience
 
-Since February 2026 I've submitted 12 PRs to Astropy, with 9 merged. The work spans bug fixes in C and Python, documentation, and direct extension-level tests. One closed PR ([#19359](https://github.com/astropy/astropy/pull/19359)) was particularly instructive — the review clarified Astropy's convention of using `assert` for internal invariants and `ValueError`/`TypeError` for user-facing errors, which directly shapes how I write extension-level tests.
+Since February 2026 I've submitted 12 PRs to Astropy, with 9 merged. The work spans bug fixes in C and Python, documentation, and direct extension-level tests. One closed PR ([#19359](https://github.com/astropy/astropy/pull/19359)) was particularly instructive - the review clarified Astropy's convention of using `assert` for internal invariants and `ValueError`/`TypeError` for user-facing errors, which directly shapes how I write extension-level tests.
 
 I'm a 3rd-year Engineering Physics student at NIT Agartala with a strong foundation in C and numerical programming. At Tata Power Delhi Distribution Limited I built a safety management system as a full stack developer - my first experience writing code where silent failures have real consequences, which is exactly the failure mode this project is trying to prevent in Astropy's compiled layer.
 
