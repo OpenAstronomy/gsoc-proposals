@@ -5,17 +5,19 @@
 * **Name:** Dhruv Yadav
 * **Time-zone:** IST (UTC+5:30)
 * **Matrix Handle:** @dhruv1955:matrix.org
-* **Github username:** dhruv1955
+* **Github username:** [dhruv1955](https://github.com/dhruv1955)
 * **Blog:** https://dev.to/dhruv1955
 * **Blog RSS feed:** https://dev.to/feed/dhruv1955
 * **Proposal discussion link:** https://github.com/OpenAstronomy/gsoc-proposals/pull/4
 
-### PR link(s): Pre-GSoC Contributions (12 PRs submitted, 9 merged)
+### PR link(s): Pre-GSoC Contributions (14 PRs submitted, 9 merged)
 
-**Open (2)**
+**Open (4)**
 
 * [#19378 TST: Add direct tests for ks_2samp Cython extension in stats._stats](https://github.com/astropy/astropy/pull/19378)
 * [#19377 TST: Add direct tests for _sigma_clip_fast C extension](https://github.com/astropy/astropy/pull/19377)
+* [#19457 BUG: Fix missing dereference in use_mad_std allocation check in fast_sigma_clip.c](https://github.com/astropy/astropy/pull/19457)
+* [#19455 TST: Add direct tests for _convolveNd_c Cython extension](https://github.com/astropy/astropy/pull/19455)
 
 **Merged (9)**
 
@@ -39,7 +41,7 @@
 
 I'm a 3rd-year B.Tech student in Engineering Physics at NIT Agartala, with a strong foundation in C and C++. I also have industry experience building a safety management system at Tata Power Delhi Distribution Limited - my first experience writing code where a missed error path had real operational consequences.
 
-That interest in what happens under the hood led me to Astropy. When I dug into the codebase, I found C and Cython extensions that were never tested directly - meaning bugs in the compiled layer could be masked by the Python API indefinitely. It's a real problem worth fixing, and it's what I've been working on since February 2026, with 9 of 12 submitted PRs already merged.
+That interest in what happens under the hood led me to Astropy. When I dug into the codebase, I found C and Cython extensions that were never tested directly - meaning bugs in the compiled layer could be masked by the Python API indefinitely. It's a real problem worth fixing, and it's what I've been working on since February 2026, with 9 of 14 submitted PRs already merged.
 
 ---
 
