@@ -124,7 +124,7 @@ I plan to improve the **`GenericSpectrogram`** class and the radiospectra packag
 
 * **Organize time and frequency methods** so it’s easier to convert between coordinates (time, frequency) and array indices.  
 * **Standardize names and data structures** for consistent access to time and frequency information.  
-* **Move helper functions** (like index ↔ time and index ↔ frequency conversions) into **`utils.py`** to avoid duplicate code.  
+* **Move helper functions** (like index <-> time and index <-> frequency conversions) into **`utils.py`** to avoid duplicate code. 
 * **Improve visualization methods** to handle gappy or irregular data with clear defaults.  
 * **Add background subtraction tools** with built-in methods and support for custom user functions.
 
