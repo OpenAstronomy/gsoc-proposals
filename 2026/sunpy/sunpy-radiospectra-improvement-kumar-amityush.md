@@ -19,7 +19,7 @@ I have had a fascination in astronomy since I was 14, when I started a blog call
 
 Recently, I started contributing to the radiospectra repository, where I worked on several issues and submitted multiple pull requests. These contributions which included restoring the WIND/WAVES Fido client and improving spectrogram plotting behavior which helped me understand the structure of the codebase and how radiospectra integrates with the broader SunPy ecosystem. Through this process I gained practical experience in debugging, testing and maintaining scientific software.
 
-Alongside open source contributions, I have built Python projects involving APIs and data processing, which helped me get better at writing code thats easier to read and work with. I am particularly interested in building reliable tools that are useful for real world scientific workflows and I will continue learning and improving while making meaningful contributions to the community.
+Alongside open source contributions, I have built Python projects involving APIs and data processing, which helped me get better at writing code that's easier to read and work with. I am particularly interested in building reliable tools that are useful for real world scientific workflows and I will continue learning and improving while making meaningful contributions to the community.
 
 ### Interest in OpenAstronomy
 I have long been interested in astronomy and scientific computing. During my recent contributions to radiospectra, I found the intersection of solar radio physics and modern scientific Python tooling particularly interesting. OpenAstronomy is a place where serious scientific software is built out in the open and contributing here allows me to combine my interests in astronomy, data analysis and software engineering. I have been attending SunPy's weekly meetings regularly which gave me a much better sense of how the community operates and SunPy ecosystem works. Everyone has been very welcoming and I look forward to contributing to the community.
@@ -40,13 +40,13 @@ The current `radiospectra` stores spectral data as plain NumPy arrays and every 
 
 This project aims to fix that by building a new `Spectra` class that gives users a better way to slice by time or frequency, do background subtraction and plot spectrograms without having to worry about the underlying array layout. NDCube is a strong option for this since `sunpy.map` and `sunkit-spex` already use it, but part of the project will be to properly explore how best to use it and whether other approaches like xarray or a custom WCS layer might work better for radiospectra's specific needs. The goal is to bring radiospectra closer to the kind of usability that `sunpy.map` already provides for image data.
 
-I am drawn to this project because it involves both software design and real scientific usability and these are the two things I care about. After exploring the codebase and discussing the architecture with mentors in [issue #143](https://github.com/sunpy/radiospectra/issues/143), I have a good understanding of what the current challenges are and what the redesigned API should look like. This is a project where I can make a lasting structural improvement rather than an incremental fix and thats what excites me most.
+I am drawn to this project because it involves both software design and real scientific usability and these are the two things I care about. After exploring the codebase and discussing the architecture with mentors in [issue #143](https://github.com/sunpy/radiospectra/issues/143), I have a good understanding of what the current challenges are and what the redesigned API should look like. This is a project where I can make a lasting structural improvement rather than an incremental fix and that's what excites me most.
 
 ### Deliverables
 
 #### Design Approach Evaluation
 
-Before building the `Spectra` class I want to breakdown all the possible design approaches during community bonding by building small prototypes and comparing them. The table below shows my initial analysis based on my research:
+Before building the `Spectra` class I want to break down all the possible design approaches during community bonding by building small prototypes and comparing them. The table below shows my initial analysis based on my research:
 
 | Factor | NDCube (subclass) | NDCube (wrapper) | xarray | Plain NumPy + WCS |
 |---|---|---|---|---|
@@ -72,7 +72,7 @@ The community bonding phase will be used to build prototypes and pick the best o
 - Other operations like `rescale`, `flatten`, `join_many`, `check_linearity`.
 
 #### 3. Better visualisation tools
-- Plotting tools that can  handle the real observational features like data gaps, missing channels, masked values and irregular sampling.
+- Plotting tools that can handle the real observational features like data gaps, missing channels, masked values and irregular sampling.
 - Proper defaults but also options to customize things like colormaps, axis labels and normalization.
 
 #### 4. Examples and Tests
@@ -102,7 +102,7 @@ Tests and Documentation i.e. API docstrings, narrative docs and user guides will
 | Week 2 | Jun 1 - Jun 7 | Add the WCS-like interface that maps physical coordinates like time and frequency to array indices.|
 | Week 3 | Jun 8 - Jun 14 | Build the transition layer that converts old instrument metadata like e-Callisto, WAVES etc. into valid WCS formats.|
 | Week 4 | Jun 15 - Jun 21 | Write methods for coordinate lookup like `freq_at_index()`, `time_at_index()` and `in_interval()`. Also support slicing by both indices and coordinates.|
-| Week 5 | Jun 22 - Jun 28 | Start working on background subtraction. Implement atleast one common method i.e. `auto_const_bg` or something else. Define the interface for user supplied background subtraction functions.|
+| Week 5 | Jun 22 - Jun 28 | Start working on background subtraction. Implement at least one common method i.e. `auto_const_bg` or something else. Define the interface for user supplied background subtraction functions.|
 | Week 6 | Jun 29 - Jul 5 | Set up the core test infrastructure for new data model. Start improving visualisation for irregular or gapped data. Finalise and merge Phase 1 PRs.|
 
 #### Midterm Evaluation (Jul 6 - Jul 10)
@@ -111,10 +111,10 @@ Tests and Documentation i.e. API docstrings, narrative docs and user guides will
 
 | Week | Dates | Description |
 | ---- | ----- | ----------- |
-| Week 7 | Jul 6 - Jul 12 | Implement the remaining operations on `Spectra` like scaling, reductions rebinning. |
+| Week 7 | Jul 6 - Jul 12 | Implement the remaining operations on `Spectra` like scaling, reductions and rebinning. |
 | Week 8 | Jul 13 - Jul 19 | Finish background subtraction framework with `subtract_bg`, `randomized_auto_const_bg` and additional built-in methods. Also implement `rescale`, `flatten`, `check_linearity`. |
 | Week 9 | Jul 20 - Jul 26 | Build the plotting functions using Matplotlib or NDCube plotters. Handle missing channels and add customized color normalizations. |
-| Week 10 | Jul 27 - Aug 2 | Finish up visualisation improvements for data with gaps, masked values and irregular sampling. Add depreceation warnings and migration paths for old `Spectrogram`/`SpectrogramFactory` classes. |
+| Week 10 | Jul 27 - Aug 2 | Finish up visualisation improvements for data with gaps, masked values and irregular sampling. Add deprecation warnings and migration paths for old `Spectrogram`/`SpectrogramFactory` classes. |
 | Week 11 | Aug 3 - Aug 9 | Make example gallery demonstrating coordinate-based slicing, background subtraction workflows and improved plotting of gappy spectral data. |
 | Week 12 | Aug 10 - Aug 16 | Improve test coverage, fix remaining issues and complete final refactoring. Merge all completed work upstream. |
 
