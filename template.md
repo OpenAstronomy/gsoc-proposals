@@ -1,21 +1,21 @@
 > [!CAUTION]
 > Do not edit this template directly!
 > Instead copy the file into this year directory as explained in the [README](../README.md#how-to-apply) and open a Pull-Request.
-> 
+>
 > Please, follow this template as indicated and do not add any personal information like phone number/email/home address.
 >
 > If you wish to add images, create a directory under this year directory named: `your-name/` and add any extra images required.
-> 
+>
 > You should delete this warning box.
 
 # Application Title
 
 ## Contributor Information
-* **Name:** 
+* **Name:**
 * **Time-zone:**
 * **Matrix/slack/IRC Handle:**
 * **Github/forge username:**
-* **Blog:** 
+* **Blog:**
 * **Blog RSS feed:**
 * **PR link(s):**
   * .
@@ -67,12 +67,3 @@
 
 
 ## Other comments
-
-
-
-
-
-
-
-    
-
