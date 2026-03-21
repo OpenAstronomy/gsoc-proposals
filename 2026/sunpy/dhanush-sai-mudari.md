@@ -1,4 +1,4 @@
-Improving Radiospectra Functionality and Interoperability [sunpy]
+[sunpy] Improving Radiospectra Functionality and Interoperability 
 Contributor Information
 •	Name: Dhanush Sai Mudari
 •	Time-zone: IST (UTC +5:30) 
