@@ -27,7 +27,7 @@ I am a 3rd year Computer Science undergraduate from Lahore, Pakistan. I have bee
 
 Prior to my university studies, I completed my Intermediate in Computer Science (ICS), which gave me a solid foundation in programming fundamentals. Along with my degree.
 
-I tend to approach problems from first principles, questioning assumptions and look for clarity to deeply understand what I work with before acting. I also beleive in strong and clear communication, defining objectives explicitly, aligning on what we are trying to achieve, and making sure nothing is left ambiguous. I find that this combination of careful thinking and clear communication leads to better decisions and collaboration.
+I tend to approach problems from first principles, questioning assumptions and look for clarity to deeply understand what I work with before acting. I also believe in strong and clear communication, defining objectives explicitly, and making sure nothing is left ambiguous. I find that this appraoch helps in making better and well informed decisions and collaboration.
 
 I am interested in FOSS and see GSoC as an ideal opportunity to channel this mindset into a real-world project.
 
