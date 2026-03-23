@@ -80,7 +80,6 @@ No
 ### Are you also applying to other projects?
 No
 ### Schedule availability
-I will be available throughout the course of the GSoC period 
-
+The scheduled leave during the end of June and start of July is highly contigent on the agreement of mentors. Should they deem necessary then I will be available throughout the course of the GSoC project.
 
 ## Other comments
