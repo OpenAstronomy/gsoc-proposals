@@ -70,7 +70,7 @@ The draft APE makes it clear that direct extension-level testing is a prerequisi
 
 Astropy relies on performance-critical compiled extensions for time parsing, cosmology, and statistics. These extensions are currently tested only indirectly through the high-level Python API, which makes it hard to distinguish regressions in the compiled layer from regressions in the Python layer above it - and makes it impossible to test extension boundaries in isolation.
 
-This project adds direct, low-level tests for critical C and Cython modules, ensuring compiled code is tested at the extension interface and not just through the API's observable behavior. This is a stated requirement of the proposed Astropy Enhancement Proposal ([neutrinoceros/astropy-APEs#1](https://github.com/neutrinoceros/astropy-APEs/pull/1)), which targets a more independently maintainable compiled layer. The work also lays groundwork for future infrastructure changes such as the Meson build migration ([astropy#17760](https://github.com/astropy/astropy/issues/17760)).
+This project adds direct, low-level tests for critical C and Cython modules, ensuring compiled code is tested at the extension interface and not just through the API's observable behavior. This is a stated requirement of the draft APE ([neutrinoceros/astropy-APEs#1](https://github.com/neutrinoceros/astropy-APEs/pull/1)), which targets a more independently maintainable compiled layer. The work also lays groundwork for future infrastructure changes such as the Meson build migration ([astropy#17760](https://github.com/astropy/astropy/issues/17760)).
 
 By making extension behavior directly testable, this work increases maintainer confidence during refactors and reduces the risk of silent regressions across release cycles.
 
@@ -167,7 +167,7 @@ Tier B begins once 80% of Tier A is merged. Two infrastructure items - Meson bui
 
 ### Past Experience
 
-Since February 2026 I've submitted 12 PRs to Astropy, with 9 merged. The work spans bug fixes in C and Python, documentation, and direct extension-level tests. One closed PR ([#19359](https://github.com/astropy/astropy/pull/19359)) was particularly instructive - the review clarified Astropy's convention of using `assert` for internal invariants and `ValueError`/`TypeError` for user-facing errors, which directly shapes how I write extension-level tests.
+Since February 2026 I've submitted 14 PRs to Astropy, with 9 merged. The work spans bug fixes in C and Python, documentation, and direct extension-level tests. One closed PR ([#19359](https://github.com/astropy/astropy/pull/19359)) was particularly instructive - the review clarified Astropy's convention of using `assert` for internal invariants and `ValueError`/`TypeError` for user-facing errors, which directly shapes how I write extension-level tests.
 
 I'm a 3rd-year Engineering Physics student at NIT Agartala with a strong foundation in C and numerical programming. At Tata Power Delhi Distribution Limited I built a safety management system as a full stack developer - my first experience writing code where silent failures have real consequences, which is exactly the failure mode this project is trying to prevent in Astropy's compiled layer.
 
