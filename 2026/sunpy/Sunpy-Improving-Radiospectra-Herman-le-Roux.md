@@ -32,13 +32,14 @@ OpenAstronomy's has endeavoured to create a community where not only open source
 **Organisation:** SunPy
 
 ### **Summary:**
-Radiospectra currently enables users to plot radio spectra from several solar radio telescopes and receivers. Expanding its functionality would significantly enhance researchers' ability to collect and analyze available solar radio data. During my PhD, I will need to implemented functionalities similar to those proposed for the improved radiospectra functionality that could benefit the broader community if developed as an open-source package. Combined with my undergraduate degrees in Information Technology and Computer Science and my hands-on experience working with e-CALLISTO, I-LOFAR, and SOLO data, I am well suited and eager to contribute to a package the solar radio community will benefit from.
+Radiospectra currently enables users to plot radio spectra from several solar radio telescopes and receivers. Expanding its functionality would significantly enhance researchers' ability to collect and analyse available solar radio data. During my PhD, I will need to implemented functionalities similar to those proposed for the improved radiospectra functionality that could benefit the broader community if developed as an open-source package. Combined with my undergraduate degrees in Information Technology and Computer Science and my hands-on experience working with e-CALLISTO, I-LOFAR, and SOLO data, I am well suited and eager to contribute to a package the solar radio community will benefit from.
 
 
 ### Deliverables
 **1.** A redesigned Spectra object that:
- *  integrates cleanly with existing SunPy and Astropy data structures (`TimeRange` / `u.Quantities`) 
+ *  integrates cleanly with existing SunPy and Astropy data structures (`u.Quantities`) 
  *  enables operations such as cropping along the frequency or time axis using array indices or physical coordinates (frequency bands or time ranges).
+ *  preserves metadata through operations
 
 **2.** Built-in support for common background subtraction techniques and extensible support for tailored methods. 
 
@@ -47,19 +48,30 @@ Radiospectra currently enables users to plot radio spectra from several solar ra
  * update docstrings and test coverage
  * expand example gallery.
   
-**4.** Stretch goal: Add type hints
+**4.** Stretch goal: Add type hints incrementally
 Considering the extent of the refactoring required I would like to suggest type hinting as a stretch goal through out the project.
 
 
-### Description/timeline
-*Break your project in blocks, what do you expect you will do each week?*
+
+### Description/Timeline
+Important to note that the creation of tests, docstrings and type hints should ideally be done alongside core deliverables to ensure it doesn't lead to large loads at the end of the project.
 
 |Period|Description|
 |------|-----------|
-|Community Bonding period| ... |
-| week 1 (dates) | ...|
-| ... | ...|
-| week n | ... |
+|Community Bonding Period (May 1-24)| Meet with mentors, set up development environment, review radiospectra codebase and open issues. Survey existing approaches (NDCube, xarray) and finalise design choices for the new Spectra data model. Finalise implementation plan.|
+|Week 1 (May 25-31)| **Deliverable 1 (Part 1)**: Begin implementing redesigned Spectra object. Establish WCS-like interface for mapping physical coordinates (time, frequency) to array indices.|
+|Week 2 (June 1-7)| **Deliverable 1 (Part 1 & Part 2)**: Finalise spectra object. Begin implementation of coordinate-aware slicing (by indices and physical coordinates).|
+|Week 3 (June 8-14)| **Deliverable 1 (Part 2 & Part 3)**:  Add basic cropping operations along time and frequency axes. Expand test coverage.|
+|Week 4 (June 15-21)| **Deliverable 2 (Part 1)**: Begin background subtraction framework. Implement first common method. Define interface for custom methods.|
+|Week 5 (June 22-23)| **Deliverable 2 (Part 2)**: Add second background subtraction method. Prepare midterm progress report and documentation of work completed. Coordinate midterm evaluation timeline with mentor before holiday.|
+|**Holiday Break (June 24 - July 9)**| **Personal leave - coordinated with mentor for midterm evaluation**|
+|Week 6 (July 10-16)| **Submit midterm evaluation (July 10).** Review mentor feedback and adjust timeline if needed. **Deliverable 2 (Part 3)**: Complete additional built-in background subtraction methods. Finalise extensible interface with examples.|
+|Week 7 (July 17-23)| **Deliverable 3 (Part 1)**: Begin visualisation improvements. Update existing plotting functions to use new Spectra object.|
+|Week 8 (July 24-30)| **Deliverable 3 (Part 2)**: Continue visualisation enhancements. Address irregular sampling and gapped data rendering. Implement sensible defaults with customisation options.|
+|Week 9 (July 31 - Aug 6)| **Deliverable 3 (Part 3)**: Create example gallery demonstrating coordinate slicing, background subtraction workflows, and improved plotting of irregular data.|
+|Week 10 (Aug 7-13)| **Deliverable 3 (Part 4)**: Expand example gallery with real-world use cases. Complete docstring updates and expand test coverage across all deliverables.|
+|Week 11 (Aug 14-20)| Integration testing with real observational data. Address outstanding issues and bugs. **Deliverable 4 (Stretch)**: Add type hints to core functions if time permits. Prepare final documentation.|
+|Week 12 (Aug 21-24)| Final code cleanup and refactoring. Complete API documentation. Merge upstream and address reviewer feedback. **Submit final work product by August 24**.|
 
 ## GSoC
 
