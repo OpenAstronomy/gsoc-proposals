@@ -37,14 +37,18 @@ Radiospectra currently enables users to plot radio spectra from several solar ra
 
 ### Deliverables
 **1.** A redesigned Spectra object that:
- *  integrates cleanly with existing SunPy data structures 
- *  enables operations such as cropping along the frequency or time axis using array indices or physical coordinates(frequency bands or time ranges).
+ *  integrates cleanly with existing SunPy and Astropy data structures (`TimeRange` / `u.Quantities`) 
+ *  enables operations such as cropping along the frequency or time axis using array indices or physical coordinates (frequency bands or time ranges).
 
 **2.** Built-in support for common background subtraction techniques and extensible support for tailored methods. 
 
 **3.** Enhanced visualisations that:
- * improve current plotting
- * 
+ * improve current plotting to address irregular sampling and gapped data
+ * update docstrings and test coverage
+ * expand example gallery.
+  
+**4.** Stretch goal: Add type hints
+Considering the extent of the refactoring required I would like to suggest type hinting as a stretch goal through out the project.
 
 
 ### Description/timeline
