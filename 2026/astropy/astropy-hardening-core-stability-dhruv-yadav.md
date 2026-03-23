@@ -12,28 +12,27 @@
 
 ### PR link(s): Pre-GSoC Contributions (14 PRs submitted, 9 merged)
 
-**Open (4)**
+**PR link(s):**
 
-* [#19378 TST: Add direct tests for ks_2samp Cython extension in stats._stats](https://github.com/astropy/astropy/pull/19378)
-* [#19377 TST: Add direct tests for _sigma_clip_fast C extension](https://github.com/astropy/astropy/pull/19377)
-* [#19457 BUG: Fix missing dereference in use_mad_std allocation check in fast_sigma_clip.c](https://github.com/astropy/astropy/pull/19457)
-* [#19455 TST: Add direct tests for _convolveNd_c Cython extension](https://github.com/astropy/astropy/pull/19455)
+**Open (4)**
+* [Add direct tests for ks_2samp Cython extension in stats._stats (#19378)](https://github.com/astropy/astropy/pull/19378)
+* [Add direct tests for _sigma_clip_fast C extension (#19377)](https://github.com/astropy/astropy/pull/19377)
+* [Fix missing dereference in use_mad_std allocation check in fast_sigma_clip.c (#19457)](https://github.com/astropy/astropy/pull/19457)
+* [Add direct tests for _convolveNd_c Cython extension (#19455)](https://github.com/astropy/astropy/pull/19455)
 
 **Merged (9)**
-
-* [#19410 TST: add direct tests for _parse_times C extension in time](https://github.com/astropy/astropy/pull/19410)
-* [#19407 TST: add direct tests for scalar_inv_efuncs Cython extension in cosmology](https://github.com/astropy/astropy/pull/19407)
-* [#19376 DOC: add examples for masked=False behavior in sigma_clip](https://github.com/astropy/astropy/pull/19376)
-* [#19372 BUG: fix pickling of SigmaClip when Bottleneck is installed](https://github.com/astropy/astropy/pull/19372)
-* [#19368 BUG: Fix missing goto fail in create_parser after ValueError in parse_times.c](https://github.com/astropy/astropy/pull/19368)
-* [#19360 BUG: Fix numpy.ediff1d returning incorrect unit for magnitudes](https://github.com/astropy/astropy/pull/19360)
-* [#19358 BUG: Fix AssertionError for numpy bool index in _handle_index_argument](https://github.com/astropy/astropy/pull/19358)
-* [#19357 TST: replace TODO-skipped get_formats tests with real coverage](https://github.com/astropy/astropy/pull/19357)
-* [#19351 BUG: Fix return vs raise in ShapedLikeNDArray.take() when out is passed](https://github.com/astropy/astropy/pull/19351)
+* [Add direct tests for _parse_times C extension in time (#19410)](https://github.com/astropy/astropy/pull/19410)
+* [Add direct tests for scalar_inv_efuncs Cython extension in cosmology (#19407)](https://github.com/astropy/astropy/pull/19407)
+* [Add examples for masked=False behavior in sigma_clip (#19376)](https://github.com/astropy/astropy/pull/19376)
+* [Fix pickling of SigmaClip when Bottleneck is installed (#19372)](https://github.com/astropy/astropy/pull/19372)
+* [Fix missing goto fail in create_parser after ValueError in parse_times.c (#19368)](https://github.com/astropy/astropy/pull/19368)
+* [Fix numpy.ediff1d returning incorrect unit for magnitudes (#19360)](https://github.com/astropy/astropy/pull/19360) 
+* [Fix AssertionError for numpy bool index in _handle_index_argument (#19358)](https://github.com/astropy/astropy/pull/19358)
+* [Replace TODO-skipped get_formats tests with real coverage (#19357)](https://github.com/astropy/astropy/pull/19357) 
+* [Fix return vs raise in ShapedLikeNDArray.take() when out is passed (#19351)](https://github.com/astropy/astropy/pull/19351)
 
 **Closed without merge (1)**
-
-* [#19359 BUG: Replace assert with RuntimeError in units/quantity_helper/function_helpers.py](https://github.com/astropy/astropy/pull/19359)
+* [Replace assert with RuntimeError in units/quantity_helper/function_helpers.py (#19359)](https://github.com/astropy/astropy/pull/19359)
 
 ---
 
@@ -124,19 +123,19 @@ Tier B begins once 80% of Tier A is merged. Two infrastructure items - Meson bui
 
 | Period | Description |
 | --- | --- |
-| **Community Bonding** | First priority is getting CI green on all three platforms - Linux, macOS, Windows - before a single test is written. I'll map all untested C/Cython extensions across the target subpackages (exported symbols, ufunc signatures, dtype requirements) and walk through my findings with mentors. The goal is to leave this period with a shared, written definition of "done" for each module so there's no ambiguity when coding starts. |
-| **Week 1** | `_parse_times.c` tests are already merged ([#19410](https://github.com/astropy/astropy/pull/19410)), so this week starts on `astropy/stats` immediately. Draft PR for `fast_sigma_clip.c` opens on day one. Initial tests cover finite bounds, `use_median` vs. `use_mean`, and pre-masked input. |
-| **Week 2** | Expand `fast_sigma_clip.c` coverage: `use_mad_std` flag, `max_iter=0`, single element, and all-masked input returning NaN. The flag combinations here are combinatorially large - I'll prioritise the paths most likely to regress silently. |
-| **Week 3** | Begin `astropy/stats/_stats.pyx`. `ks_2samp` tests use analytical expected values - identical arrays (0.0), non-overlapping (1.0), partial overlap, different sizes - with no scipy dependency. Continue iterating on reviewer feedback for the `fast_sigma_clip` PR in parallel. |
-| **Week 4** | Wrap up both stats PRs. My goal is merged, not just open. I'll also write a short internal note on the calling conventions and dtype patterns found across `_parse_times`, `fast_sigma_clip`, and `_stats` - this becomes the reference document for all remaining subpackages so I'm not re-deriving the same things from scratch each time. |
-| **Week 5** | With stats PRs in review, begin the contributor guide (deliverable 5) - documenting the calling conventions, dtype construction patterns, and error path strategies found across `_parse_times`, `fast_sigma_clip`, and `_stats`. Writing this now while the patterns are fresh is better than leaving it to Week 12. |
-| **Week 6 (Midterm)** | Buffer week for stats. Both stats PRs should be merged or in active review with passing CI by now. Midterm report submitted. If anything is still blocked, this is the week I escalate with mentors rather than quietly falling behind. |
-| **Week 7** | Survey remaining Cython in `astropy/cosmology` beyond `scalar_inv_efuncs` and write numerical accuracy tests against known analytic integrals. I'm keeping this week scoped to cosmology only - coordinates is Tier B and I won't let it bleed in here just because the cosmology work finishes early. |
-| **Week 8** | Begin `astropy/table`. Direct tests for `_column_mixins.pyx`: `__getitem__` overrides, structured array field access, multi-dimensional column slicing. I'll open the `_np_utils.pyx` PR in draft if the `_column_mixins` review is already moving, but I won't actively split attention between two unreviewed PRs. |
-| **Week 9** | Complete `_np_utils.pyx`: `join_inner` for inner, left, right, and outer joins, masking behavior, empty tables, duplicate key edge cases. Begin `astropy/convolution/_convolve.pyx`: numerical accuracy against a pure Python reference implementation, boundary conditions, padding modes. |
-| **Week 10** | Complete `_convolve.pyx`. Begin `astropy/io/ascii/cparser.pyx`: format correctness, malformed input, encoding error paths. If Tier A is on track I'll open a draft for `lombscargle/cython_impl.pyx` and `bls/_impl.pyx`, but these are stretch - I won't sacrifice polish on the core deliverables to hit them. |
-| **Week 11** | Code freeze. Every open PR gets a full CI audit on Linux, macOS, and Windows. Platform-specific failures get fixed before anything else. No new features, no scope expansion - just making sure everything that's open is actually ready to merge. |
-| **Week 12** | Final report: which extensions were tested, what approach worked, what remains uncovered, and a concrete roadmap for whoever picks this up next. Then final evaluation. This week also exists as a real buffer - if Week 11 uncovered something broken, Week 12 is where it gets fixed. |
+| **Community Bonding (May 1 - May 25)** | First priority is getting CI green on all three platforms - Linux, macOS, Windows - before a single test is written. I'll map all untested C/Cython extensions across the target subpackages (exported symbols, ufunc signatures, dtype requirements) and walk through my findings with mentors. The goal is to leave this period with a shared, written definition of "done" for each module so there's no ambiguity when coding starts. |
+| **Week 1 (May 26 - Jun 1)** | `_parse_times.c` tests are already merged ([#19410](https://github.com/astropy/astropy/pull/19410)), so this week starts on `astropy/stats` immediately. Draft PR for `fast_sigma_clip.c` opens on day one. Initial tests cover finite bounds, `use_median` vs. `use_mean`, and pre-masked input. |
+| **Week 2 (Jun 2 - Jun 8)** | Expand `fast_sigma_clip.c` coverage: `use_mad_std` flag, `max_iter=0`, single element, and all-masked input returning NaN. The flag combinations here are combinatorially large - I'll prioritise the paths most likely to regress silently. |
+| **Week 3 (Jun 9 - Jun 15)** | Begin `astropy/stats/_stats.pyx`. `ks_2samp` tests use analytical expected values - identical arrays (0.0), non-overlapping (1.0), partial overlap, different sizes - with no scipy dependency. Continue iterating on reviewer feedback for the `fast_sigma_clip` PR in parallel. |
+| **Week 4 (Jun 16 - Jun 22)** | Wrap up both stats PRs. My goal is merged, not just open. I'll also write a short internal note on the calling conventions and dtype patterns found across `_parse_times`, `fast_sigma_clip`, and `_stats` - this becomes the reference document for all remaining subpackages so I'm not re-deriving the same things from scratch each time. |
+| **Week 5 (Jun 23 - Jun 29)** | With stats PRs in review, begin the contributor guide (deliverable 5) - documenting the calling conventions, dtype construction patterns, and error path strategies found across `_parse_times`, `fast_sigma_clip`, and `_stats`. Writing this now while the patterns are fresh is better than leaving it to Week 12. |
+| **Week 6 - Midterm (Jun 30 - Jul 6)** | Buffer week for stats. Both stats PRs should be merged or in active review with passing CI by now. Midterm report submitted. If anything is still blocked, this is the week I escalate with mentors rather than quietly falling behind. |
+| **Week 7 (Jul 7 - Jul 13)** | Survey remaining Cython in `astropy/cosmology` beyond `scalar_inv_efuncs` and write numerical accuracy tests against known analytic integrals. I'm keeping this week scoped to cosmology only - coordinates is Tier B and I won't let it bleed in here just because the cosmology work finishes early. |
+| **Week 8 (Jul 14 - Jul 20)** | Begin `astropy/table`. Direct tests for `_column_mixins.pyx`: `__getitem__` overrides, structured array field access, multi-dimensional column slicing. I'll open the `_np_utils.pyx` PR in draft if the `_column_mixins` review is already moving, but I won't actively split attention between two unreviewed PRs. |
+| **Week 9 (Jul 21 - Jul 27)** | Complete `_np_utils.pyx`: `join_inner` for inner, left, right, and outer joins, masking behavior, empty tables, duplicate key edge cases. Begin `astropy/convolution/_convolve.pyx`: numerical accuracy against a pure Python reference implementation, boundary conditions, padding modes. |
+| **Week 10 (Jul 28 - Aug 3)** | Complete `_convolve.pyx`. Begin `astropy/io/ascii/cparser.pyx`: format correctness, malformed input, encoding error paths. If Tier A is on track I'll open a draft for `lombscargle/cython_impl.pyx` and `bls/_impl.pyx`, but these are stretch - I won't sacrifice polish on the core deliverables to hit them. |
+| **Week 11 (Aug 4 - Aug 10)** | Code freeze. Every open PR gets a full CI audit on Linux, macOS, and Windows. Platform-specific failures get fixed before anything else. No new features, no scope expansion - just making sure everything that's open is actually ready to merge. |
+| **Week 12 (Aug 11 - Aug 17)** | Final report: which extensions were tested, what approach worked, what remains uncovered, and a concrete roadmap for whoever picks this up next. Then final evaluation. This week also exists as a real buffer - if Week 11 uncovered something broken, Week 12 is where it gets fixed. |
 
 **Weekly exit criteria:** Each week must include at least one extension-path test and one error-path test in the active PR. Linux CI must pass before the week ends; if macOS or Windows runs are delayed by queue issues, they must complete within 48 hours. I keep no more than 2 PRs active at any time - opening a third means something earlier isn't getting the review attention it needs.
 
@@ -205,3 +204,9 @@ My semester ends before May 10 and my summer break runs through July 15, coverin
 - **Are you applying to other projects?** No.
 
 - **Schedule availability:** I'll flag any planned absences to mentors via Zulip in advance. Nothing is currently planned during the coding period.
+
+## Other comments
+
+- I will post weekly progress updates on my [blog](https://dev.to/dhruv1955)  throughout the GSoC coding period.
+- I am comfortable communicating on Zulip and GitHub and can adjust my working hours to overlap with mentor availability if needed.
+- Beyond the PRs listed above, I have spent time reading C source files across the codebase directly - this is how I found the missing `goto fail` in `parse_times.c` and the missing dereference in `fast_sigma_clip.c`. Reading error paths rather than just API behavior is the approach I plan to continue throughout the project.
