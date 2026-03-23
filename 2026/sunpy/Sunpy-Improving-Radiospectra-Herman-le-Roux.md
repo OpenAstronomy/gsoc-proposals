@@ -32,8 +32,7 @@ OpenAstronomy's has endeavoured to create a community where not only open source
 **Organisation:** SunPy
 
 ### **Summary:**
-*Explain why this project is attractive to you and why you think you can do it.*
-Along with my prior undegraduate B\.Sc\. degrees in Information Technology and Computer Science and my experience working with e-CALLISTO, I-LOFAR and SOLO data, 
+Radiospectra currently enables users to plot radio spectra from several solar radio telescopes and receivers. Expanding its functionality would significantly enhance researchers' ability to collect and analyze available solar radio data. During my PhD, I will need to implemented functionalities similar to those proposed for the improved radiospectra functionality that could benefit the broader community if developed as an open-source package. Combined with my undergraduate degrees in Information Technology and Computer Science and my hands-on experience working with e-CALLISTO, I-LOFAR, and SOLO data, I am well suited and eager to contribute to a package the solar radio community will benefit from.
 
 
 ### Deliverables
