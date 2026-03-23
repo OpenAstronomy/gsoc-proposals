@@ -97,7 +97,7 @@ These aren't anticipated challenges - I've already hit them:
 2. Direct tests for `astropy/stats/src/fast_sigma_clip.c` - all flag combinations, empty and all-masked inputs, edge cases
 3. Direct tests for `astropy/stats/_stats.pyx` - `ks_2samp` tested against analytical expected values, no scipy dependency
 4. Direct tests for `astropy/cosmology/_src/flrw/scalar_inv_efuncs.pyx` - all 6 scalar inverse E(z) functions
-5. A short contributor guide on testing compiled extensions - covering how to construct structured dtypes, call ufuncs directly, and write error path tests, so future contributors don't have to rediscover this from scratch
+5. A contributor guide on testing compiled extensions - documenting calling conventions, dtype construction, and error path strategies so the technical debt of reverse-engineering these patterns is permanently retired for future contributors
 
 **Stretch goals - Tier A:**
 
@@ -208,3 +208,4 @@ My semester ends before May 10 and my summer break runs through July 15, coverin
 - I will post weekly progress updates on my [blog](https://dev.to/dhruv1955)  throughout the GSoC coding period.
 - I am comfortable communicating on Zulip and GitHub and can adjust my working hours to overlap with mentor availability if needed.
 - Beyond the PRs listed above, I have spent time reading C source files across the codebase directly - this is how I found the missing `goto fail` in `parse_times.c` and the missing dereference in `fast_sigma_clip.c`. Reading error paths rather than just API behavior is the approach I plan to continue throughout the project.
+- I have balanced these initial contributions with my ongoing 3rd-year Engineering Physics coursework at NIT Agartala, demonstrating that I can maintain a consistent, professional output alongside academic commitments.
