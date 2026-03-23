@@ -93,10 +93,10 @@ These aren't anticipated challenges - I've already hit them:
 
 ### Deliverables
 
-1. Direct tests for `astropy/time/_parse_times.c` - `create_parser` ufunc, structured dtype inputs, ISO/ISOT/yday parsing correctness, error path coverage - **already merged** ([#19410](https://github.com/astropy/astropy/pull/19410))
+1. Direct tests for `astropy/time/_parse_times.c` - `create_parser` ufunc, structured dtype inputs, ISO/ISOT/yday parsing correctness, error path coverage
 2. Direct tests for `astropy/stats/src/fast_sigma_clip.c` - all flag combinations, empty and all-masked inputs, edge cases
 3. Direct tests for `astropy/stats/_stats.pyx` - `ks_2samp` tested against analytical expected values, no scipy dependency
-4. Direct tests for `astropy/cosmology/_src/flrw/scalar_inv_efuncs.pyx` - all 6 scalar inverse E(z) functions, **already merged** ([#19407](https://github.com/astropy/astropy/pull/19407))
+4. Direct tests for `astropy/cosmology/_src/flrw/scalar_inv_efuncs.pyx` - all 6 scalar inverse E(z) functions
 5. A short contributor guide on testing compiled extensions - covering how to construct structured dtypes, call ufuncs directly, and write error path tests, so future contributors don't have to rediscover this from scratch
 
 **Stretch goals - Tier A:**
@@ -124,7 +124,7 @@ Tier B begins once 80% of Tier A is merged. Two infrastructure items - Meson bui
 | Period | Description |
 | --- | --- |
 | **Community Bonding (May 1 - May 25)** | First priority is getting CI green on all three platforms - Linux, macOS, Windows - before a single test is written. I'll map all untested C/Cython extensions across the target subpackages (exported symbols, ufunc signatures, dtype requirements) and walk through my findings with mentors. The goal is to leave this period with a shared, written definition of "done" for each module so there's no ambiguity when coding starts. |
-| **Week 1 (May 26 - Jun 1)** | `_parse_times.c` tests are already merged ([#19410](https://github.com/astropy/astropy/pull/19410)), so this week starts on `astropy/stats` immediately. Draft PR for `fast_sigma_clip.c` opens on day one. Initial tests cover finite bounds, `use_median` vs. `use_mean`, and pre-masked input. |
+| **Week 1 (May 26 - Jun 1)** | Begin `astropy/stats`. Draft PR for `fast_sigma_clip.c` opens on day one. Initial tests cover finite bounds, `use_median` vs. `use_mean`, and pre-masked input. |
 | **Week 2 (Jun 2 - Jun 8)** | Expand `fast_sigma_clip.c` coverage: `use_mad_std` flag, `max_iter=0`, single element, and all-masked input returning NaN. The flag combinations here are combinatorially large - I'll prioritise the paths most likely to regress silently. |
 | **Week 3 (Jun 9 - Jun 15)** | Begin `astropy/stats/_stats.pyx`. `ks_2samp` tests use analytical expected values - identical arrays (0.0), non-overlapping (1.0), partial overlap, different sizes - with no scipy dependency. Continue iterating on reviewer feedback for the `fast_sigma_clip` PR in parallel. |
 | **Week 4 (Jun 16 - Jun 22)** | Wrap up both stats PRs. My goal is merged, not just open. I'll also write a short internal note on the calling conventions and dtype patterns found across `_parse_times`, `fast_sigma_clip`, and `_stats` - this becomes the reference document for all remaining subpackages so I'm not re-deriving the same things from scratch each time. |
@@ -179,17 +179,15 @@ The last few months, I've been reading through the compiled layer of Astropy, no
 
 The reason this project is important outside of GSoC is that the compiled layer will not be able to become independently modular until it is independently testable. This is made clear in the draft APE - the way to a cleaner build system and ultimately Limited API compatibility is through testing that does not depend on the Python API for the C layer. I understand this not only through the proposal, but because I've run into it myself - when I was trying to test `_parse_times` without relying on the Python API for the `Time` constructor, I had to reverse-engineer the call convention from internal usage. This is precisely what this project removes for every contributor that comes after.
 
-I'm not applying because I'm a good fit for this. I'm applying because I've already started and I want to complete it well.
+I'm applying because this is the kind of problem I want to spend my time on, and I understand it well enough to do it properly.
 
 ---
 
 ### Why Me?
 
-The quick summary is that I've already done this. I developed the `_parse_times` calling convention from internal usage of `TimeString.get_jds_fast` with no documentation available to me, fixed an actual error path bug in doing so ([#19368](https://github.com/astropy/astropy/pull/19368)), and got the cosmology extension tests merged and passing for all three platforms ([#19407](https://github.com/astropy/astropy/pull/19407)). That PR is now live as a working example for all future modules.
+I understand this codebase at the compiled layer, not just the Python API. I derived the `_parse_times` calling convention from internal usage of `TimeString.get_jds_fast` with no documentation available, which required reading how the extension is actually called rather than how it's documented. I've also worked directly with the mentors through PR review and understand what they push back on - the `assert` vs `ValueError` distinction from [#19359](https://github.com/astropy/astropy/pull/19359) directly shaped how I approach writing extension-level tests.
 
-I've also worked directly with the mentors through PR review, not just seen their name on the project page. I'm familiar with what they push back on (the difference between `assert` and `ValueError`, for example, from [#19359](https://github.com/astropy/astropy/pull/19359)), and I've adjusted my approach to writing tests accordingly. This process is already underway. The new contributor will spend the first month of GSoC doing what I've already done.
-
-So what I'm proposing is not a plan for doing something, it is a plan for finishing something that has already been started, and I have proof that this approach works.
+The technical approach is validated - the calling convention patterns, analytical test strategies, and cross-platform CI requirements are understood from direct engagement with the codebase, not from reading about it.
 
 ### Availability
 
