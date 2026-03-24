@@ -279,6 +279,9 @@ No - I am only applying to this project
 I've studied all open issues and understood the roadmap for further work
 
 ### Real Data Analysis
+
+Basic Structures of Codes Have been Stimultated here in my repo : [Spectral-Timing-Notebook-Om](https://github.com/Omiii-215/spectral-timing-notebooks)
+
 I have worked with the NICER observation `ni1200120104_0mpu7_cl.evt` (828 MB, 21.2M events) to generate the visualizations, demonstrating capability with real X-ray timing data.
 
 #### Pre-Bonding Period Plans
