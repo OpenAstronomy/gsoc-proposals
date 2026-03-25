@@ -13,6 +13,7 @@
   * [Fix mixed frequency unit plotting on shared axes (#151)](https://github.com/sunpy/radiospectra/pull/151) (Merged)
   * [Restore WAVES Fido client for SPDF data sources (#158)](https://github.com/sunpy/radiospectra/pull/158) (Merged)
   * [Improve default time axis formatting using ConciseDateFormatter (#163)](https://github.com/sunpy/radiospectra/pull/163) (Waiting for review)
+  * [FITS serialization for SunPy coordinates (#8548)](https://github.com/sunpy/sunpy/pull/8548) (Waiting for review)
 
 ### Background
 I have had a fascination in astronomy since I was 14, when I started a blog called [Star-gazers](https://stargazing53179.blogspot.com/) where I wrote articles on topics like stellar evolution, neutron stars and meteor showers. That early curiosity and technical eagerness eventually led me to pursue a degree in Computer Science and Data Science, where I am now learning about statistics, scientific computing and software engineering. Over the past year, I have become comfortable working with Python and its scientific ecosystem including NumPy, Matplotlib and related data analysis tools.
@@ -42,6 +43,8 @@ This project aims to fix that by building a new `Spectra` class that gives users
 
 I am drawn to this project because it involves both software design and real scientific usability and these are the two things I care about. After exploring the codebase and discussing the architecture with mentors in [issue #143](https://github.com/sunpy/radiospectra/issues/143), I have a good understanding of what the current challenges are and what the redesigned API should look like. This is a project where I can make a lasting structural improvement rather than an incremental fix and that's what excites me most.
 
+Beyond the software engineering benefits, this project will have a direct impact on scientific workflows. By introducing a single, coordinate-aware Spectra object that works consistently across instruments, researchers analyzing solar radio bursts from instruments like e-CALLISTO, WAVES,etc will no longer need to write custom indexing and metadata translation code. Instead, they can focus entirely on their data analysis, relying on an API that automatically handles irregular sampling, masked values and WCS transformations.
+
 ### Deliverables
 
 #### Design Approach Evaluation
@@ -58,13 +61,14 @@ Before building the `Spectra` class I want to break down all the possible design
 | **Plotting** | <u>Pros:</u> Automatically uses NDCube's WCS-aware plotters<br><br><u>Cons:</u> Customizing spectrogram plots is heavily constrained by their class | <u>Pros:</u> Can use NDCube plotters or easily add custom ones<br><br><u>Cons:</u> Requires extra boilerplate code to pass data to the plotting library | <u>Pros:</u> Has excellent built-in plotting for generic 2D data<br><br><u>Cons:</u> Requires heavy custom code to plot solar coordinates correctly | <u>Pros:</u> Allows writing exact matplotlib plotting code required<br><br><u>Cons:</u> Must build the entire WCS-aware plotting architecture from scratch |
 | **Maintenance Burden** | <u>Pros:</u> The NDCube team maintains the core array and WCS math<br><br><u>Cons:</u> If NDCube introduces a breaking change, the package breaks | <u>Pros:</u> NDCube maintains the math, maintaining applies only to the API<br><br><u>Cons:</u> Any changes to NDCube's internal structure will break the wrapper | <u>Pros:</u> Backed by a massive, highly active open source team<br><br><u>Cons:</u> They do not prioritize solar physics, making upstream changes risky | <u>Pros:</u> No risk of external dependencies breaking the code<br><br><u>Cons:</u> The radiospectra maintainers must support every single feature long term |
 
-The community bonding phase will be used to build prototypes and pick the best one with mentors input before coding starts.
+The biggest risk in this project is committing to a base architecture that turns out to be too restrictive for radiospectra's requirements later in development. To mitigate this risk, the community bonding phase will be utilized for prototyping. I will build minimal prototype implementations for the options and review them with the mentors before finalising the design.
 
 #### 1. New coordinate-aware Spectra object
 - A new `Spectra` class with a clear external API providing a WCS-like mapping from physical coordinates like time and frequency to array indices.
 - Support for axis-aware operations like slicing, scaling, statistics, rebinning by index or by coordinate.
 - Clean integration with SunPy and Astropy built on whichever data model i.e. NDCube, xarray or other works best after evaluation.
 - Methods like `freq_at_index()`, `time_at_index()`, `in_interval()` and coordinate slicing.
+- **Backwards Compatibility and Deprecation:** I will implement a safe deprecation cycle using standard `astropy` and `sunpy` deprecation formats for the old `Spectrogram` and `SpectrogramFactory` classes providing clear warnings and documentation to guide users toward the new `Spectra` API.
 
 #### 2. Tools for background subtraction and analysis
 - Common background subtraction methods like `auto_const_bg`, `subtract_bg`, `randomized_auto_const_bg` that are used in solar radio analysis.
@@ -131,7 +135,8 @@ No.
 
 ### Schedule availability
 
-I am available throughout the GSoC period as my vacations will start from May and committed fully to the 350 hour project. I have no planned holidays or travel during the programme timeline.
+- I am available throughout the GSoC period as my vacations will start from May and committed fully to the 350 hour project. I have no planned holidays or travel during the programme timeline.
+- I will dedicate 25-30 hours per week to the project.
 
 
 ## Other comments
