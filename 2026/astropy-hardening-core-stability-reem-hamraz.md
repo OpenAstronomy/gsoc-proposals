@@ -27,9 +27,9 @@ Hi! My name is Reem Hamraz and I'm a 3rd year CS major at Integral University, s
 ---
 
 ### Interest in OpenAstronomy
-Astropy isn't just a popular library, it's genuinely well-engineered. The mixed-language architecture, the build complexity, the fact that a community of volunteers maintains compiled extensions across Python versions and platforms: that stuff is pretty tough but at the same time it's also interesting.
+Astropy isn't just a popular library, it's genuinely well-engineered. The mixed-language architecture, the build complexity, the fact that a community of volunteers maintains compiled extensions across Python versions and platforms: that level of complexity is daunting, but it’s exactly the kind of robust, low-level engineering problem I intend to tackle.
 The specific problem this project is tackling, that a significant chunk of the codebase is almost entirely untested in isolation, is the kind of gap that doesn't show up on a surface read but matters a lot once you understand the dependency graph.
-I am motivated to work on a infrastructure that makes the rest of the project more trustworthy, more specifically building a testable compiled layer that the whole ecosystem can rely on. It's not very glamorous, but it's useful in a way that compounds.
+I am motivated to work on an infrastructure that makes the rest of the project more trustworthy, more specifically building a testable compiled layer that the whole ecosystem can rely on. It's not very glamorous, but it's useful in a way that compounds.
 
 ---
 
@@ -45,14 +45,12 @@ I am motivated to work on a infrastructure that makes the rest of the project mo
 ---
 
 ### **Summary:**
-Astropy’s performance relies on a complex, mixed-language architecture. While the Python-facing API is robust and well-tested, the underlying compiled layer (C, C++, and Cython), which handles the library's most performance-critical "hot-paths" remains a significant testing blind spot, and it accounts for a disproportionate share of build complexity and CI time. Before anyone can responsibly split the low-level layer into a separate package (as outlined in the draft APE), that layer needs its own tests and right now, it doesn't have any. Worse, currently, the compiled extensions that handle performance-critical operations are only validated indirectly through high-level Python calls. This creates a risky abstraction: a regression deep within the compiled code can be masked by the Python layer sitting above it, often remaining invisible, you wouldn't know something broke until it was already downstream.
-Hence, this project aims to build a dedicated, de novo test suite that exercises each compiled extension module directly, bypassing the public API entirely, that too from scratch. This work is the essential prerequisite for three major Astropy milestones:
+Astropy’s performance relies on a complex, mixed-language architecture. While the Python-facing API is robust and well-tested, the underlying compiled layer (C, C++, and Cython), which handles the library's most performance-critical "hot-paths" remains a significant testing blind spot, and it accounts for a disproportionate share of build complexity and CI time. Before anyone can responsibly split the low-level layer into a separate package (as outlined in the draft APE), that layer needs its own tests and right now, it doesn't have nearly enough to stand on its own. Worse, currently, the compiled extensions that handle performance-critical operations are only validated indirectly through high-level Python calls. This creates a risky abstraction: a regression deep within the compiled code can be masked by the Python layer sitting above it, often remaining invisible, you wouldn't know something broke until it was already downstream.
+Hence, this project aims to build a dedicated, de novo test suite that exercises each compiled extension module directly, bypassing the public API. While this is an essential prerequisite for the proposed APE split, it also significantly de-risks two other major Astropy milestones:
 
-* **The APE Split:** Ensuring each extension is stable enough to live in a separate package ([neutrinoceros/astropy-APEs#1](https://github.com/neutrinoceros/astropy-APEs/pull/1)).
-
-* **Meson Migration:** Streamlining our build process and reducing CI friction ([astropy#17760](https://github.com/astropy/astropy/issues/17760)).
-
-* **Limited API Compatibility:** Future-proofing the codebase across Python versions compatibility ([astropy#19249](https://github.com/astropy/astropy/issues/19249)).
+* **The APE Split:** Proving each extension is stable enough to live in a separate package ([neutrinoceros/astropy-APEs#1](https://github.com/neutrinoceros/astropy-APEs/pull/1)).
+* **Meson Migration:** Providing a safety net to catch silent compilation regressions during the build system transition ([astropy#17760](https://github.com/astropy/astropy/issues/17760)).
+* **Python 3.15 Limited API:** Safely testing the internal C-extension refactors required for upcoming free-threaded builds ([astropy#19249](https://github.com/astropy/astropy/issues/19249)).
 
 Personally, I think that the hardest part of this project is not writing the tests, it's figuring out *how* to write them and *how* to probe these modules in isolation, which all the more drives me to strive harder, so that I can bridge this gap.
 And, I think I can do this because I've already started. I've made some contributions, traced the extension module inventory, studied the `astropy/table` subpackage (which the mentor flagged as a good starting point), and looked at the `unit_list_proxy.c` problem in detail. 
@@ -60,11 +58,11 @@ And, I think I can do this because I've already started. I've made some contribu
 ---
 
 ### Deliverables
-**1.** Full inventory of all compiled extension modules (.so files) across all subpackages, with each module name, subpackage, and Python-callable symbols listed. Committed as EXTENSION_INVENTORY.md.
+**1.** Audit of the testable C-API surface for compiled extension modules, cross-referencing against `MANIFEST.in` to ensure all active modules are mapped for the testing roadmap (replacing the need for a redundant inventory file).
 
-**2.** A pytest-based test suite that directly imports and exercises compiled extension modules from astropy/table, astropy/time, astropy/timeseries/periodograms, and astropy/utils/xml — without going through the public Python API.
+**2.** A pytest-based test suite that directly imports and exercises compiled extension modules from `astropy/table`, `astropy/time`, `astropy/timeseries/periodograms`, and `astropy/utils/xml` — without going through the public Python API.
 
-**3.** A documented approach to the astropy/wcs/src/unit_list_proxy.c circular dependency problem: the module depends at runtime on astropy.units.UnitBase, a Python class that doesn't exist at compile time. The test suite either resolves this with a minimal stub, or documents why it can't be resolved independently and proposes a path forward.
+**3.**A resolution to the `astropy/wcs/src/unit_list_proxy.c` circular dependency problem (its runtime reliance on `astropy.units.UnitBase`). The primary approach will be exploring a structural refactor of the C code to break the dependency cycle entirely. If a refactor proves unfeasible, the fallback will be a documented Python-level minimal stub to allow isolated testing.
 
 **4.** Direct pytest tests for astropy/wcs compiled modules, with documentation of symbols that cannot be tested in isolation due to the import cycle.
 
@@ -81,13 +79,13 @@ And, I think I can do this because I've already started. I've made some contribu
 ### Stretch Goals: 
 **9.** Exploratory PR for Meson build system migration (astropy #17760), following patterns from SciPy's completed migration (scipy/scipy#14480).
 
-**10.** Exploratory PEP 809 / Limited API compatibility (astropy #19249),  allowing a single compiled binary to run across multiple Python versions without recompilation.
+**10.** Exploratory PEP 803/809 / Limited API compatibility (astropy #19249), allowing a single compiled binary to run across multiple Python versions without recompilation.
 
 ---
 
 ### Description/timeline
-I've started with `astropy/table`, mostly because it's simpler in comparison to the other sub packages and will help me get into the groove of things.
-The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `PyObject*` that handles to a `UnitBase`-derived class from `astropy.units`. This is a class that doesn't exist at C compile time and is only available once Python has fully initialized `astropy.units`. Now, here is what creates a cycle in the dependency graph: testing WCS extensions in isolation would require either mocking `astropy.units` at the Python level with a minimal stub that satisfies the C module's runtime lookups, or restructuring the C code to defer those lookups more cleanly. My current research leads to the solution that a Python-level stub is the most tractable approach without requiring a refactor of the C code itself, but this is up for suggestions.
+I've started with `astropy/table` mostly because it's simpler in comparison to the other sub packages and will help me get into the groove of things.
+The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `PyObject*` that handles to a `UnitBase`-derived class from `astropy.units`. This is a class that doesn't exist at C compile time and is only available once Python has fully initialized `astropy.units`. That's the cycle: you can't test the WCS extension in isolation without first breaking a runtime dependency the C code never had to think about at compile time. My initial instinct was to mock astropy.units with a minimal Python stub. After feedback from the mentors, I understand that the cleaner path is to refactor the dependency out of the C code directly. That's what I'm going to try first. The stub stays in my back pocket if the refactor proves out of scope for the summer.
 
 ---
 
