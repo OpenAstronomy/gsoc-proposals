@@ -10,23 +10,21 @@
 
 ### PR link(s): Pre-GSoC Contributions
 
-**PR link(s):**
-
 **Open (4)-** 
-    * 1. [#19458 — TST: Add direct tests for join_inner in table/_np_utils](https://github.com/astropy/astropy/pull/19458)
-    * 2. [#19106 — Fix unit extraction in structured_to_unstructured for StructuredQuantity](https://github.com/astropy/astropy/pull/19106)
-    * 3. [#19107 — Align Masked Helpers with NumPy 2.4 signatures; fix in1d namespace crash](https://github.com/astropy/astropy/pull/19107)
-    * 4. [#19096 — Update masked function signatures for NumPy 2.4](https://github.com/astropy/astropy/pull/19096)
+    1. [#19458 — TST: Add direct tests for join_inner in table/_np_utils](https://github.com/astropy/astropy/pull/19458)
+    2. [#19106 — Fix unit extraction in structured_to_unstructured for StructuredQuantity](https://github.com/astropy/astropy/pull/19106)
+    3. [#19107 — Align Masked Helpers with NumPy 2.4 signatures; fix in1d namespace crash](https://github.com/astropy/astropy/pull/19107)
+    4. [#19096 — Update masked function signatures for NumPy 2.4](https://github.com/astropy/astropy/pull/19096)
 
 **Merged (3)-**
-    * 1. [#19103 — Fix redundant as_array helpers for NumPy 2.0+ signatures](https://github.com/astropy/astropy/pull/19103)
-    * 2. [#19104 — Update matrix_rank helper for NumPy 2.0+ tolerance parameters](https://github.com/astropy/astropy/pull/19104)
-    * 3. [#19468 — Add docstring explaining jointype integer mapping in _np_utils.pyx](https://github.com/astropy/astropy/pull/19468)
+    1. [#19103 — Fix redundant as_array helpers for NumPy 2.0+ signatures](https://github.com/astropy/astropy/pull/19103)
+    2. [#19104 — Update matrix_rank helper for NumPy 2.0+ tolerance parameters](https://github.com/astropy/astropy/pull/19104)
+    3. [#19468 — Add docstring explaining jointype integer mapping in _np_utils.pyx](https://github.com/astropy/astropy/pull/19468)
 
 ---
 
 ### Background
-I love coding. And the fact that my dad bought me my first laptop when I was 10 didn't quite help with this either. 
+I love coding. And the fact that my dad bought me my first laptop when I was 10 certainly didn't cure my obsession. 
 
 Hi! My name is Reem Hamraz and I'm a 3rd year CS major at Integral University, specializing in Data Science and AI. My new year's resolution was to contribute to open source (while people make resolutions to be healthier, mine was to sit at my desk and code). So naturally, I started looking for organizations that used Python and C — which is squarely where my experience sits (mainly because of my recent internship and my relevant coursework) — I found Astropy. It was specifically [issue #19093](https://github.com/astropy/astropy/issues/19093) that pulled me into the codebase. What started as a quick look, turned into a proper deep-dive, and here I am, writing my GSoC proposal for this very organization. I've already contributed to Astropy and my first ever merged PR was with this organization as well. That being said, I am fully intent on keeping my streak of meaningful contributions going.
 
@@ -72,7 +70,7 @@ And, I think I can do this because I've already started. I've made some contribu
 
 **2.** A pytest-based test suite that directly imports and exercises compiled extension modules from `astropy/table`, `astropy/time`, `astropy/timeseries/periodograms`, and `astropy/utils/xml` — without going through the public Python API.
 
-**3.**A resolution to the `astropy/wcs/src/unit_list_proxy.c` circular dependency problem (its runtime reliance on `astropy.units.UnitBase`). The primary approach will be exploring a structural refactor of the C code to break the dependency cycle entirely. If a refactor proves unfeasible, the fallback will be a documented Python-level minimal stub to allow isolated testing.
+**3.** A resolution to the `astropy/wcs/src/unit_list_proxy.c` circular dependency problem (its runtime reliance on `astropy.units.UnitBase`). The primary approach will be exploring a structural refactor of the C code to break the dependency cycle entirely. If a refactor proves unfeasible, the fallback will be a documented Python-level minimal stub to allow isolated testing.
 
 **4.** Direct pytest tests for astropy/wcs compiled modules, with documentation of symbols that cannot be tested in isolation due to the import cycle.
 
@@ -191,7 +189,7 @@ Getting involved with Astropy has been an incredible learning experience (I star
 *  Published co-author: “Defining Weight Trajectory After Liver Transplantation Using Generative AI” (VCU, 2024–present).
 *  Winner, CEPT Urban Innovation Hackathon 2025 and WebCraft 2026.
 *  Multiple Best and Outstanding Delegate accolades, International Model United Nations.
-*  Certifications: Python (IBM), Data Analytics in Python (IIT BHU), Software Engineering (JP Morgan), GNSS Overview (ISRO), .
+*  Certifications: Python (IBM), Data Analytics in Python (IIT BHU), Software Engineering (JP Morgan), GNSS Overview (ISRO).
 *  University Tech Club Chief Coordinator. TEDxIUL Lead Organiser and Licensee.
 
 ---
