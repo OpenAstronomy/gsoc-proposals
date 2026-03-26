@@ -103,7 +103,7 @@ The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `P
 
 # Project Timeline
 
-|| Period | Description |
+| Period | Description |
 | :--- | :--- |
 | **Community Bonding** (May 1 – May 24) | Attend the monthly Astropy Dev Telecons (aiming to join the calls on April 1st, May 6th, and the June 1st call marking the end of the bonding period). Re-read the draft APE in full. Finalize the list of extension modules to cover and the order of attack. Understand the existing test infrastructure well enough to build alongside it rather than against it. Spend time on `unit_list_proxy.c` specifically — prototype the stub approach and see if it holds. |
 | **Week 1** (May 25 – May 31) | Write tests for `astropy/table/_np_utils.pyx` — this exposes utility functions for NumPy array operations used by `astropy.table`. Direct import of the `.so`, basic input/output checks, edge cases. |
@@ -131,7 +131,7 @@ No, this is my first time participating in GSoC.
 Yes, I'd mailed my proposal to Data for the Common Good and a mentor advised me to submit it on the official GSoC site.
 
 ### Schedule availability
-My end-semester exams run May 5th to May 26th, 2026, which overlaps with the community bonding period. During those three weeks, I can commit 8–10 hours per week rather than the full 16. I have structured the proposal to absorb this: community bonding is intentionally lighter (codebase reading, environment setup, mentor alignment rather than deliverable-heavy work), and I will make up the deficit in Weeks 3 through 5 of the coding period. I will tell my mentors at least one week before exams start and will share a revised schedule (if need be).
+My end-semester exams run May 5th to May 26th, 2026, which overlaps with the community bonding period and the first two days of the official coding phase. During those three weeks, I can commit 8–10 hours per week rather than the full 16. I have structured the proposal to absorb this: community bonding is intentionally lighter (codebase reading, environment setup, mentor alignment rather than deliverable-heavy work); for the first two days of the coding period (May 25 and 26), I will focus on lightweight setup tasks and immediately ramp up to my full schedule on May 27th, making up the slight deficit during Weeks 3 through 5. I will tell my mentors at least one week before exams start and will share a revised schedule (if need be).
 
 Outside the exam window, I have no other competing commitments. No internship, no part-time work. This will be my primary summer project. I am in IST (UTC+5:30) and typically have focused coding blocks from 6:00 PM to 10:00 PM IST.
 
