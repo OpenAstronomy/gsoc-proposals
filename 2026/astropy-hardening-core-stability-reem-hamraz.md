@@ -103,23 +103,22 @@ The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `P
 
 # Project Timeline
 
-| Period | Description |
+|| Period | Description |
 | :--- | :--- |
-| **Community Bonding** (May 8 – Jun 1) | Attend the monthly Astropy Dev Telecons (aiming to join the calls on April 1st, May 6th, and the June 1st call marking the end of the bonding period). Re-read the draft APE in full. Finalize the list of extension modules to cover and the order of attack. Understand the existing test infrastructure well enough to build alongside it rather than against it. Spend time on `unit_list_proxy.c` specifically — prototype the stub approach and see if it holds. |
-| **Week 1** (Jun 2–8) | Write tests for `astropy/table/_np_utils.pyx` — this exposes utility functions for NumPy array operations used by `astropy.table`. Direct import of the `.so`, basic input/output checks, edge cases. |
-| **Week 2** (Jun 9–15) | Write tests for `astropy/table/_column_mixins.pyx`. This Cython extension provides the underlying array-like behavior and internal operations for `Column` objects. Tests here will directly cover the C-level slot implementations. |
-| **Week 3** (Jun 16–22) | Begin `astropy/time/src/parse_times.c`. This parses time strings into structured data. It's the largest of the simpler modules (~500 LOC) but the mentors noted it's heavily boilerplate. Map the public interface exposed by the compiled module and draft tests. |
-| **Week 4** (Jun 23–29) | Complete `parse_times.c` test coverage. Write the mid-project report: what's working, what the testing patterns look like, any issues/technical difficulties discovered. |
-| **Week 5** (Jun 30–Jul 6) | **First evaluation.** Address any feedback. Start on `astropy/utils/xml/src/iterparse.c` — this wraps libexpat for iterative XML parsing. |
-| **Week 6** (Jul 7–13) | Complete `iterparse.c` tests. The module has a defined C API surface; tests will cover the parser's behavior across well-formed XML, malformed input, and encoding edge cases. |
-| **Week 7** (Jul 14–20) | `astropy/timeseries/periodograms/bls/_impl.pyx` and `bls.c` — the Box Least Squares periodogram implementation. This is a numerically intensive module; tests will use known synthetic light curves with planted transit signals and check the output against expected period/depth/duration values. |
-| **Week 8** (Jul 21–27) | `astropy/timeseries/periodograms/lombscargle/
-implementations/cython_impl.pyx` — the Lomb-Scargle periodogram Cython implementation. Same approach: synthetic time series, known periods, verify the power spectrum output. |
-| **Week 9** (Jul 28–Aug 3) | Begin the `unit_list_proxy.c` work. Implement the stub approach developed during bonding (or document why it doesn't work and what the alternative is). |
-| **Week 10** (Aug 4–10) | **Buffer week.** Backfill any gaps in coverage from weeks 1–8, improve test quality, add documentation. |
-| **Week 11** (Aug 11–17) | Final evaluation prep. Review all tests, ensure they run cleanly in CI. Write the final report. |
-| **Week 12** (Aug 18–25) | **Submit final report.** Document what was covered, what wasn't, and what would be needed to finish the remaining modules (for future contributors). |
-
+| **Community Bonding** (May 1 – May 24) | Attend the monthly Astropy Dev Telecons (aiming to join the calls on April 1st, May 6th, and the June 1st call marking the end of the bonding period). Re-read the draft APE in full. Finalize the list of extension modules to cover and the order of attack. Understand the existing test infrastructure well enough to build alongside it rather than against it. Spend time on `unit_list_proxy.c` specifically — prototype the stub approach and see if it holds. |
+| **Week 1** (May 25 – May 31) | Write tests for `astropy/table/_np_utils.pyx` — this exposes utility functions for NumPy array operations used by `astropy.table`. Direct import of the `.so`, basic input/output checks, edge cases. |
+| **Week 2** (Jun 1 – Jun 7) | Write tests for `astropy/table/_column_mixins.pyx`. This Cython extension provides the underlying array-like behavior and internal operations for `Column` objects. Tests here will directly cover the C-level slot implementations. |
+| **Week 3** (Jun 8 – Jun 14) | Begin `astropy/time/src/parse_times.c`. This parses time strings into structured data. It's the largest of the simpler modules (~500 LOC) but the mentors noted it's heavily boilerplate. Map the public interface exposed by the compiled module and draft tests. |
+| **Week 4** (Jun 15 – Jun 21) | Complete `parse_times.c` test coverage. Write the mid-project report: what's working, what the testing patterns look like, any issues/technical difficulties discovered. |
+| **Week 5** (Jun 22 – Jun 28) | Start on `astropy/utils/xml/src/iterparse.c` — this wraps libexpat for iterative XML parsing. |
+| **Week 6** (Jun 29 – Jul 5) | Complete `iterparse.c` tests. The module has a defined C API surface; tests will cover the parser's behavior across well-formed XML, malformed input, and encoding edge cases. |
+| **Week 7** (Jul 6 – Jul 12) | **Midterm Evaluation (July 6–10).** Address any feedback. `astropy/timeseries/periodograms/bls/_impl.pyx` and `bls.c` — the Box Least Squares periodogram implementation. This is a numerically intensive module; tests will use known synthetic light curves with planted transit signals and check the output against expected period/depth/duration values. |
+| **Week 8** (Jul 13 – Jul 19) | `astropy/timeseries/periodograms/lombscargle/implementations/cython_impl.pyx` — the Lomb-Scargle periodogram Cython implementation. Same approach: synthetic time series, known periods, verify the power spectrum output. |
+| **Week 9** (Jul 20 – Jul 26) | Begin the `unit_list_proxy.c` work. Implement the stub approach developed during bonding (or document why it doesn't work and what the alternative is). |
+| **Week 10** (Jul 27 – Aug 2) | **Buffer week.** Backfill any gaps in coverage from weeks 1–8, improve test quality, add documentation. |
+| **Week 11** (Aug 3 – Aug 9) | Final evaluation prep. Review all tests, ensure they run cleanly in CI. Write the final report draft. |
+| **Week 12** (Aug 10 – Aug 16) | Finish documentation and ensure all remaining code is pushed and passing checks. |
+| **Final Evaluation** (Aug 17 – Aug 31) | **Submit final report.** Document what was covered, what wasn't, and what would be needed to finish the remaining modules (for future contributors). |
 
 
 ## GSoC
