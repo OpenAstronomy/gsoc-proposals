@@ -1,4 +1,4 @@
-# astropy: Hardening Astropy's Core Stability (Dhruv Yadav)
+﻿# astropy: Hardening Astropy's Core Stability (Dhruv Yadav)
 
 ## Contributor Information
 
@@ -66,17 +66,17 @@ The draft APE makes it clear that direct extension-level testing is a prerequisi
 
 ### Summary:
 
-Astropy relies on performance-critical compiled extensions for time parsing, cosmology, and statistics. These extensions are currently tested only indirectly through the high-level Python API, making it impossible to distinguish a regression in the compiled layer from one in the Python wrapper above it – and impossible to test extension boundaries in isolation.
+Astropy relies on performance-critical compiled extensions for time parsing, cosmology, and statistics. These extensions are currently tested only indirectly through the high-level Python API, making it impossible to distinguish a regression in the compiled layer from one in the Python wrapper above it -- and impossible to test extension boundaries in isolation.
 
-This project adds direct, low-level tests for these critical C and Cython modules. Two of the four core deliverables are already merged – `_parse_times.c` tests (#19410) and `scalar_inv_efuncs.pyx` tests (#19407) – both passing CI on Linux, macOS, and Windows. The remaining two (`fast_sigma_clip.c` and `_stats.pyx`) are in open PRs awaiting review.
+This project adds direct, low-level tests for these critical C and Cython modules. Two of the four core deliverables are already merged -- `_parse_times.c` tests (#19410) and `scalar_inv_efuncs.pyx` tests (#19407) -- both passing CI on Linux, macOS, and Windows. The remaining two (`fast_sigma_clip.c` and `_stats.pyx`) are in open PRs awaiting review.
 
-This is a stated requirement of the draft APE (`neutrinoceros/astropy-APEs#1`). The Meson build migration (#17760) and Limited API work (#19249) cannot move forward until the compiled layer is independently testable – this project removes that blocker.
+This is a stated requirement of the draft APE (`neutrinoceros/astropy-APEs#1`). The Meson build migration (#17760) and Limited API work (#19249) cannot move forward until the compiled layer is independently testable -- this project removes that blocker.
 
 Currently, a regression in `_parse_times.c` or `fast_sigma_clip.c` can remain undetected for months behind a passing Python API test. After this project, it cannot.
 
 **Success criteria:** At least one extension-path test and one error-path test per target module, all passing on Linux, macOS, and Windows CI. The current baseline of directly tested exported symbols across the four target modules is zero.
 
-**Key Constraint:** Tests must call the extension directly without touching the public Python API. Testing `_parse_times` required manually reconstructing the `dt_pars` and `dt_u1` structured dtypes from internal source – no documentation exists for this calling convention. That is what makes the work both hard and worth doing.
+**Key Constraint:** Tests must call the extension directly without touching the public Python API. Testing `_parse_times` required manually reconstructing the `dt_pars` and `dt_u1` structured dtypes from internal source -- no documentation exists for this calling convention. That is what makes the work both hard and worth doing.
 
 ---
 
@@ -85,9 +85,9 @@ Currently, a regression in `_parse_times.c` or `fast_sigma_clip.c` can remain un
 These aren't anticipated challenges - I've already hit them:
 
 - **Missing `goto fail` in `_parse_times.c` (#19368, MERGED):**  
-While reading the error paths in `parse_times.c`, I found that `create_parser` had an unhandled cleanup path after a `ValueError` – the parser object was not being released. I fixed this in #19368 before writing a single test. You cannot write a correct error-path test for a function that leaks memory on that path.
+While reading the error paths in `parse_times.c`, I found that `create_parser` had an unhandled cleanup path after a `ValueError` -- the parser object was not being released. I fixed this in #19368 before writing a single test. You cannot write a correct error-path test for a function that leaks memory on that path.
 
-- **Undocumented ufunc calling convention:** To test `_parse_times` directly without touching the public `Time()` constructor, I had to deduce the calling convention from internal usage of `TimeString.get_jds_fast` — no documentation exists for this. I manually reconstructed the `dt_pars` and `dt_u1` structured dtypes from the C source. The resulting test is now merged (#19410) and serves as the template for all future modules.
+- **Undocumented ufunc calling convention:** To test `_parse_times` directly without touching the public `Time()` constructor, I had to deduce the calling convention from internal usage of `TimeString.get_jds_fast` -- no documentation exists for this. I manually reconstructed the `dt_pars` and `dt_u1` structured dtypes from the C source. The resulting test is now merged (#19410) and serves as the template for all future modules.
 
 ```python
 pars = np.zeros(7, dtype=_parse_times.dt_pars)
@@ -106,17 +106,17 @@ Reading `fast_sigma_clip.c` directly (not through the API), I identified three p
 
 I also found and fixed a missing dereference in the `use_mad_std` allocation check in 19457 (MERGED).
 
-- **Fused Types in `_stats.pyx`:** The `ks_2samp` function uses a Cython fused type covering 11 numeric specializations (`uint8` through `longdouble`) – the same function dispatches to different compiled paths depending on input dtype. Tests verify the fused dispatch works correctly across type boundaries, not just the default `float64` path, using analytical expected values (identical arrays → 0.0; non-overlapping arrays → 1.0) with no SciPy dependency.
+- **Fused Types in `_stats.pyx`:** The `ks_2samp` function uses a Cython fused type covering 11 numeric specializations (`uint8` through `longdouble`) -- the same function dispatches to different compiled paths depending on input dtype. Tests verify the fused dispatch works correctly across type boundaries, not just the default `float64` path, using analytical expected values (identical arrays -> 0.0; non-overlapping arrays -> 1.0) with no SciPy dependency.
 
-- **`assert` vs `ValueError` convention:** A closed PR (#19359) taught me Astropy's distinction between internal invariants and user-facing errors – for example, the malloc failure path in `fast_sigma_clip.c` is guarded by an assert-style early return, so testing it as a `ValueError` would be testing the wrong boundary entirely. This directly shapes which paths belong in extension-level tests vs. API-level tests.
+- **`assert` vs `ValueError` convention:** A closed PR (#19359) taught me Astropy's distinction between internal invariants and user-facing errors -- for example, the malloc failure path in `fast_sigma_clip.c` is guarded by an assert-style early return, so testing it as a `ValueError` would be testing the wrong boundary entirely. This directly shapes which paths belong in extension-level tests vs. API-level tests.
 
-- **Cross-platform CI template:** The cosmology extension tests (#19407, already merged) cover all 6 scalar inverse E(z) functions with analytical values and pass CI on Linux, macOS, and Windows – this PR now serves as the template for the remaining modules.
+- **Cross-platform CI template:** The cosmology extension tests (#19407, already merged) cover all 6 scalar inverse E(z) functions with analytical values and pass CI on Linux, macOS, and Windows -- this PR now serves as the template for the remaining modules.
 
 ---
 
 ## Deliverables:
 
-**Deliverable 1: `astropy/time/_parse_times.c` – Already Merged (#19410):**
+**Deliverable 1: `astropy/time/_parse_times.c` -- Already Merged (#19410):**
 
 - `create_parser` ufunc with structured dtype inputs (`dt_pars`, `dt_u1`)
 - ISO, ISOT, and yday format parsing correctness
@@ -127,7 +127,7 @@ I also found and fixed a missing dereference in the `use_mad_std` allocation che
 
 The ufunc signature is `(n),(n),(),(),(),(),()->(),()`. Seven inputs, two outputs. Tests call the extension directly by importing `astropy.stats._fast_sigma_clip`, not through `SigmaClip()`.
 
-- Flag combinations: `use_median=True/False` × `use_mad_std=True/False` (4 combinations)
+- Flag combinations: `use_median=True/False` x `use_mad_std=True/False` (4 combinations)
 - Lazy `mad_buffer` allocation: batched input where only later rows trigger `use_mad_std`, verifying buffer is allocated once and reused
 - The `count=0` path: fully pre-masked input must return `(NaN, NaN)` for both bounds
 - Edge cases: `max_iter=0` (no iteration), single-element array, asymmetric sigma (`sigma_low != sigma_high`)
@@ -137,24 +137,24 @@ The ufunc signature is `(n),(n),(),(),(),(),()->(),()`. Seven inputs, two output
 
 `ks_2samp` uses a Cython fused type with 11 numeric specializations. Tests use analytical expected values with no SciPy dependency.
 
-- `float64`: identical arrays → 0.0; non-overlapping arrays → 1.0; partial overlap → known analytical value
+- `float64`: identical arrays -> 0.0; non-overlapping arrays -> 1.0; partial overlap -> known analytical value
 - `int64` and `float32`: fused type dispatch verification across type boundaries
-- Different array sizes (`n1 ≠ n2`): verifies the asymmetric step logic
+- Different array sizes (`n1 != n2`): verifies the asymmetric step logic
 - Empty-array edge case: `n=0` input
 
-**Deliverable 4: `astropy/cosmology/_src/flrw/scalar_inv_efuncs.pyx` – Already Merged (#19407)**
+**Deliverable 4: `astropy/cosmology/_src/flrw/scalar_inv_efuncs.pyx` -- Already Merged (#19407)**
 
 - All 6 scalar inverse E(z) functions: `lcdm_inv_efunc_norel`, `lcdm_inv_efunc_nomnu`, `flcdm_inv_efunc_norel`, `flcdm_inv_efunc_nomnu`, `wcdm_inv_efunc_norel`, `fwcdm_inv_efunc_norel`
 - Flat universe at z=0: E(0)=1, so `inv_efunc=1.0`
-- Matter-dominated limit: `inv_efunc(z) = (1+z)^{−1.5}` analytically
-- wCDM with `w0=−1` reduces to LambdaCDM
+- Matter-dominated limit: `inv_efunc(z) = (1+z)^{-1.5}` analytically
+- wCDM with `w0=-1` reduces to LambdaCDM
 - Passing CI on Linux, macOS, and Windows
 
 **Deliverable 5: Contributor Guide**
 
 This guide documents what does not currently exist anywhere in Astropy's codebase:
 
-- `dt_pars` / `dt_u1` reconstruction: How to reconstruct structured dtypes from `fast_parser_pars` without using the public `Time()` constructor — as demonstrated in `test_parse_times_extension.py`
+- `dt_pars` / `dt_u1` reconstruction: How to reconstruct structured dtypes from `fast_parser_pars` without using the public `Time()` constructor -- as demonstrated in `test_parse_times_extension.py`
 - ufunc calling convention: The gufunc signature `(n),(n),(),()->(),()` used in `_fast_sigma_clip`, with a worked example
 - `assert` vs `ValueError`: The PR #19359 distinction governing which paths belong in extension tests vs. API tests, with examples from `fast_sigma_clip.c`
 - Fused type dispatch testing: How to write tests that verify Cython fused types dispatch correctly across multiple numeric specializations
@@ -162,7 +162,7 @@ This guide documents what does not currently exist anywhere in Astropy's codebas
 
 ---
 
-## Stretch Goals – Tier A:
+## Stretch Goals -- Tier A:
 
 1. `astropy/table/_column_mixins.pyx`: `__getitem__` overrides, structured array field access, multi-dimensional slicing.
 2. `astropy/table/_np_utils.pyx`: `join_inner` covering inner, left, right, and outer joins; masks; empty tables; duplicate keys.
@@ -170,13 +170,13 @@ This guide documents what does not currently exist anywhere in Astropy's codebas
 4. `astropy/io/ascii/cparser.pyx`: Format correctness, malformed input, encoding errors.
 5. `astropy/timeseries/periodograms/lombscargle/cython_impl.pyx` and `bls/_impl.pyx`: Numerical accuracy, sparse data edge cases.
 
-## Stretch Goals – Tier B (begins after 80% of Tier A is merged)
+## Stretch Goals -- Tier B (begins after 80% of Tier A is merged)
 
-1. `astropy/wcs` C extensions (wcslib): direct tests for the wcslib C extension interface – specifically `wcsp2s`/`wcss2p` round-trip accuracy
-2. `astropy/coordinates` C/Cython extensions: coordinate transformation compiled extensions – specifically erfa ufunc round-trip accuracy for `s2p`/`p2s`
-3. `astropy/utils/xml/iterparse.c` and `astropy/io/votable/src/tablewriter.c`: XML iteration and VOTable writing at the C interface – specifically round-trip write/parse correctness for integer and float columns
+1. `astropy/wcs` C extensions (wcslib): direct tests for the wcslib C extension interface -- specifically `wcsp2s`/`wcss2p` round-trip accuracy
+2. `astropy/coordinates` C/Cython extensions: coordinate transformation compiled extensions -- specifically erfa ufunc round-trip accuracy for `s2p`/`p2s`
+3. `astropy/utils/xml/iterparse.c` and `astropy/io/votable/src/tablewriter.c`: XML iteration and VOTable writing at the C interface -- specifically round-trip write/parse correctness for integer and float columns
 
-Two infrastructure items – Meson build migration (#17760) and Limited API compatibility (#19249) – are related but out of scope. I've noted them only because they depend on this work being done first.
+Two infrastructure items -- Meson build migration (#17760) and Limited API compatibility (#19249) -- are related but out of scope. I've noted them only because they depend on this work being done first.
 
 ---
 
@@ -184,19 +184,19 @@ Two infrastructure items – Meson build migration (#17760) and Limited API comp
 
 | Period | Description |
 |---|---|
-| **Community Bonding (May 1 - May 25)** | ➢ Get CI green on all three platforms (Linux, macOS, Windows) before writing a single new test<br>➢ Map all untested exported symbols across target subpackages<br>➢ Walk through findings with mentors<br>➢ Leave with a shared written definition of "done" for each module – no ambiguity when coding starts |
-| **Week 1 (May 26 - Jun 1)** | ➢ `_parse_times.c` tests already merged (#19410) – start on stats immediately<br>➢ Draft PR for `fast_sigma_clip.c` opens on day one, following structure of #19407<br>➢ Initial tests cover finite bounds, `use_median` vs `use_mean`, and pre-masked input<br>➢ Ufunc signature `(n),(n),(),(),(),(),()->(),()` already understood from reading module init code |
-| **Week 2 (Jun 2 - Jun 8)** | ➢ Expand `fast_sigma_clip.c` coverage: `use_mad_std` flag and lazy `mad_buffer` allocation (batched-input path)<br>➢ Cover `max_iter=0`, single element, and all-masked input returning NaN<br>➢ Prioritize flag combinations most likely to regress silently |
-| **Week 3 (Jun 9 - Jun 15)** | ➢ Begin `_stats.pyx` – `ks_2samp` tests with analytical expected values: identical arrays (0.0), non-overlapping (1.0), partial overlap, different sizes<br>➢ Cover `float64`, `int64`, and `float32` for fused type dispatch verification<br>➢ No SciPy dependency<br>➢ Continue iterating on reviewer feedback for `fast_sigma_clip` PR in parallel |
-| **Week 4 (Jun 16 - Jun 22)** | ➢ Wrap up both stats PRs – goal is merged, not just open<br>➢ Write internal note on calling conventions and dtype patterns found across `_parse_times`, `fast_sigma_clip`, and `_stats`<br>➢ This note becomes the reference document for all remaining subpackages |
-| **Week 5 (Jun 23 - Jun 29)** | ➢ Begin contributor guide (Deliverable 5) while patterns are fresh<br>➢ Document `dt_pars` reconstruction, ufunc/gufunc calling convention, `assert` vs `ValueError` distinction, and fused type dispatch testing patterns |
-| **Week 6 (Midterm) (Jun 30 - Jul 6)** | ➢ Buffer week for stats PRs – both should be merged or in active review with passing CI<br>➢ Submit midterm report<br>➢ If anything is blocked, escalate with mentors this week – not later<br>➢ Deliverables 1–4 all merged or in active review = on track |
-| **Week 7 (Jul 7 - Jul 13)** | ➢ Survey remaining Cython in `astropy/cosmology` beyond `scalar_inv_efuncs`<br>➢ Write numerical accuracy tests against known analytic integrals<br>➢ Scope strictly limited to cosmology – coordinates is Tier B and will not bleed into this week |
-| **Week 8 (Jul 14 - Jul 20)** | ➢ Semester resumes ~July 26 – reduce to 15–18 hours/week from this point<br>➢ Focus entirely on getting open PRs reviewed and merged<br>➢ No new modules started unless all core deliverables are in active review<br>➢ Begin `astropy/table/_column_mixins.pyx`: `__getitem__` overrides, structured array field access, multi-dimensional slicing |
-| **Week 9 (Jul 21 - Jul 27)** | ➢ Complete `_np_utils.pyx`: `join_inner` for all 4 join types (0=inner, 1=outer, 2=left, 3=right), masking behavior, empty tables, duplicate key edge cases<br>➢ Begin `convolution/_convolve.pyx`: numerical accuracy against pure Python reference, boundary conditions, padding modes |
-| **Week 10 (Jul 28 - Aug 3)** | ➢ Complete `_convolve.pyx`<br>➢ Begin `io/ascii/cparser.pyx`: format correctness, malformed input, encoding error paths<br>➢ If Tier A is on track, open draft for `lombscargle/cython_impl.pyx` and `bls/_impl.pyx` – stretch only, will not come at cost of core deliverables |
-| **Week 11 (Aug 4 - Aug 10)** | ➢ Code freeze – no new features, no scope expansion<br>➢ Full CI audit on every open PR across Linux, macOS, and Windows<br>➢ Platform-specific failures fixed before anything else |
-| **Week 12 (Aug 11 - Aug 17)** | ➢ Final report: which extensions were tested, what worked, what remains uncovered, roadmap for whoever continues<br>➢ Final evaluation<br>➢ Real buffer – if Week 11 uncovered something broken, this is where it gets fixed |
+| **Community Bonding (May 1 - May 25)** | - Get CI green on all three platforms (Linux, macOS, Windows) before writing a single new test<br>- Map all untested exported symbols across target subpackages<br>- Walk through findings with mentors<br>- Leave with a shared written definition of "done" for each module -- no ambiguity when coding starts |
+| **Week 1 (May 26 - Jun 1)** | - `_parse_times.c` tests already merged (#19410) -- start on stats immediately<br>- Draft PR for `fast_sigma_clip.c` opens on day one, following structure of #19407<br>- Initial tests cover finite bounds, `use_median` vs `use_mean`, and pre-masked input<br>- Ufunc signature `(n),(n),(),(),(),(),()->(),()` already understood from reading module init code |
+| **Week 2 (Jun 2 - Jun 8)** | - Expand `fast_sigma_clip.c` coverage: `use_mad_std` flag and lazy `mad_buffer` allocation (batched-input path)<br>- Cover `max_iter=0`, single element, and all-masked input returning NaN<br>- Prioritize flag combinations most likely to regress silently |
+| **Week 3 (Jun 9 - Jun 15)** | - Begin `_stats.pyx` -- `ks_2samp` tests with analytical expected values: identical arrays (0.0), non-overlapping (1.0), partial overlap, different sizes<br>- Cover `float64`, `int64`, and `float32` for fused type dispatch verification<br>- No SciPy dependency<br>- Continue iterating on reviewer feedback for `fast_sigma_clip` PR in parallel |
+| **Week 4 (Jun 16 - Jun 22)** | - Wrap up both stats PRs -- goal is merged, not just open<br>- Write internal note on calling conventions and dtype patterns found across `_parse_times`, `fast_sigma_clip`, and `_stats`<br>- This note becomes the reference document for all remaining subpackages |
+| **Week 5 (Jun 23 - Jun 29)** | - Begin contributor guide (Deliverable 5) while patterns are fresh<br>- Document `dt_pars` reconstruction, ufunc/gufunc calling convention, `assert` vs `ValueError` distinction, and fused type dispatch testing patterns |
+| **Week 6 (Midterm) (Jun 30 - Jul 6)** | - Buffer week for stats PRs -- both should be merged or in active review with passing CI<br>- Submit midterm report<br>- If anything is blocked, escalate with mentors this week -- not later<br>- Deliverables 1--4 all merged or in active review = on track |
+| **Week 7 (Jul 7 - Jul 13)** | - Survey remaining Cython in `astropy/cosmology` beyond `scalar_inv_efuncs`<br>- Write numerical accuracy tests against known analytic integrals<br>- Scope strictly limited to cosmology -- coordinates is Tier B and will not bleed into this week |
+| **Week 8 (Jul 14 - Jul 20)** | - Semester resumes ~July 26 -- reduce to 15--18 hours/week from this point<br>- Focus entirely on getting open PRs reviewed and merged<br>- No new modules started unless all core deliverables are in active review<br>- Begin `astropy/table/_column_mixins.pyx`: `__getitem__` overrides, structured array field access, multi-dimensional slicing |
+| **Week 9 (Jul 21 - Jul 27)** | - Complete `_np_utils.pyx`: `join_inner` for all 4 join types (0=inner, 1=outer, 2=left, 3=right), masking behavior, empty tables, duplicate key edge cases<br>- Begin `convolution/_convolve.pyx`: numerical accuracy against pure Python reference, boundary conditions, padding modes |
+| **Week 10 (Jul 28 - Aug 3)** | - Complete `_convolve.pyx`<br>- Begin `io/ascii/cparser.pyx`: format correctness, malformed input, encoding error paths<br>- If Tier A is on track, open draft for `lombscargle/cython_impl.pyx` and `bls/_impl.pyx` -- stretch only, will not come at cost of core deliverables |
+| **Week 11 (Aug 4 - Aug 10)** | - Code freeze -- no new features, no scope expansion<br>- Full CI audit on every open PR across Linux, macOS, and Windows<br>- Platform-specific failures fixed before anything else |
+| **Week 12 (Aug 11 - Aug 17)** | - Final report: which extensions were tested, what worked, what remains uncovered, roadmap for whoever continues<br>- Final evaluation<br>- Real buffer -- if Week 11 uncovered something broken, this is where it gets fixed |
 
 **Weekly exit criteria:** Each week must include at least one extension-path test and one error-path test in the active PR. Linux CI must pass before the week ends. if macOS or Windows runs are delayed by queue issues, they must complete within 48 hours. I keep no more than 2 PRs active at any time - opening a third means something earlier is not getting the review attention it needs.
 
@@ -236,7 +236,7 @@ I placed All India Rank 128 in Engineers' Ring of Honor 2025. I also coordinate 
 
 ### Motivation: Why This Project?
 
-The last few months, I've been reading through the compiled layer of Astropy, not as a user, but as someone who wants to know what could go wrong and where. The `goto fail` I found in `parse_times.c` is a concrete example of what happens when error paths go unread – that is the kind of reading I want to keep doing. This kind of work, trying to find the difference between what code should do and what it actually does at the edges, is what I'd like to spend my time on.
+The last few months, I've been reading through the compiled layer of Astropy, not as a user, but as someone who wants to know what could go wrong and where. The `goto fail` I found in `parse_times.c` is a concrete example of what happens when error paths go unread -- that is the kind of reading I want to keep doing. This kind of work, trying to find the difference between what code should do and what it actually does at the edges, is what I'd like to spend my time on.
 
 The reason this project is important outside of GSoC is that the compiled layer will not be able to become independently modular until it is independently testable. This is made clear in the draft APE - the way to a cleaner build system and ultimately Limited API compatibility is through testing that does not depend on the Python API for the C layer. I understand this not only through the proposal, but because I've run into it myself - when I was trying to test `_parse_times` without relying on the Python API for the `Time` constructor, I had to reverse-engineer the call convention from internal usage. This is precisely what this project removes for every contributor that comes after.
 
@@ -246,7 +246,7 @@ I'm not applying because I'm a good fit for this. I'm applying because I've alre
 
 The quick summary is that I've already done this. I developed the `_parse_times` calling convention from internal usage of `TimeString.get_jds_fast` with no documentation available to me, fixed an actual error path bug in doing so (#19368), and got the cosmology extension tests merged and passing for all three platforms (#19407). That PR is now live as a working example for all future modules.
 
-I've also worked directly with the mentors through PR review, not just seen their name on the project page. I'm familiar with what they push back on (the difference between `assert` and `ValueError`, for example, from #19359), and I've adjusted my approach to writing tests accordingly. This process is already underway. The groundwork that typically consumes the first month – understanding calling conventions, fixing latent bugs, getting CI green – is already done.
+I've also worked directly with the mentors through PR review, not just seen their name on the project page. I'm familiar with what they push back on (the difference between `assert` and `ValueError`, for example, from #19359), and I've adjusted my approach to writing tests accordingly. This process is already underway. The groundwork that typically consumes the first month -- understanding calling conventions, fixing latent bugs, getting CI green -- is already done.
 
 So what I'm proposing is not a plan for doing something, it is a plan for finishing something that has already been started, and I have proof that this approach works.
 
@@ -270,3 +270,4 @@ My semester ends before May 10, and after that, I have a complete summer break u
 
 - I will post weekly progress updates on my blog throughout the GSoC coding period.
 - I am comfortable communicating on Zulip and GitHub and can adjust my working hours to overlap with mentor availability if needed.
+
