@@ -22,7 +22,7 @@
 
 ### Background
 I love coding. And the fact that my dad bought me my first laptop when I was 10 didn't quite help with this either. 
-Hi! My name is Reem Hamraz and I'm a 3rd year CS major at Integral University, specializing in Data Science and AI. My new year's resolution was to contribute to open source. While looking for organizations that used Python and C — which is squarely where my experience sits (mainly because of experience with an internship and my relevant coursework) — I found Astropy. It was specifically [issue #19093](https://github.com/astropy/astropy/issues/19093) that pulled me into the codebase. What started as a quick look turned into a proper deep-dive, and here I am, writing my GSoC proposal for this very organization. I've already contributed to Astropy and my first ever merged PR was with this organization, as well. I am fully intent on keeping my streak of meaningful contributions going.
+Hi! My name is Reem Hamraz and I'm a 3rd year CS major at Integral University, specializing in Data Science and AI. My new year's resolution was to contribute to open source. While looking for organizations that used Python and C — which is squarely where my experience sits (mainly because of experience with an internship and my relevant coursework) — I found Astropy. It was specifically [issue #19093](https://github.com/astropy/astropy/issues/19093) that pulled me into the codebase. What started as a quick look turned into a proper deep-dive, and here I am, writing my GSoC proposal for this very organization. I've already contributed to Astropy and my first ever merged PR was with this organization as well. I am fully intent on keeping my streak of meaningful contributions going.
 
 ---
 
@@ -53,7 +53,7 @@ Hence, this project aims to build a dedicated, de novo test suite that exercises
 * **Python 3.15 Limited API:** Safely testing the internal C-extension refactors required for upcoming free-threaded builds ([astropy#19249](https://github.com/astropy/astropy/issues/19249)).
 
 Personally, I think that the hardest part of this project is not writing the tests, it's figuring out *how* to write them and *how* to probe these modules in isolation, which all the more drives me to strive harder, so that I can bridge this gap.
-And, I think I can do this because I've already started. I've made some contributions, traced the extension module inventory, studied the `astropy/table` subpackage (which the mentor flagged as a good starting point), and looked at the `unit_list_proxy.c` problem in detail. 
+And, I think I can do this because I've already started. I've made some contributions, traced the extension module inventory, studied the `astropy/table` subpackage (which the mentors flagged as a good starting point), and looked at the `unit_list_proxy.c` problem in detail. 
 
 ---
 
@@ -95,10 +95,10 @@ The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `P
 
 | Period | Description |
 | :--- | :--- |
-| **Community Bonding** (May 8 – Jun 1) | Set up the dev environment with the Meson build system. Re-read the draft APE in full. Finalize the list of extension modules to cover and the order of attack. Understand the existing test infrastructure well enough to build alongside it rather than against it. Spend time on `unit_list_proxy.c` specifically — prototype the stub approach and see if it holds. |
+| **Community Bonding** (May 8 – Jun 1) | Attend the monthly Astropy Dev Telecons (aiming to join the calls on April 1st, May 6th, and the June 1st call marking the end of the bonding period). Re-read the draft APE in full. Finalize the list of extension modules to cover and the order of attack. Understand the existing test infrastructure well enough to build alongside it rather than against it. Spend time on `unit_list_proxy.c` specifically — prototype the stub approach and see if it holds. |
 | **Week 1** (Jun 2–8) | Write tests for `astropy/table/_np_utils.pyx` — this exposes utility functions for NumPy array operations used by `astropy.table`. Direct import of the `.so`, basic input/output checks, edge cases. |
-| **Week 2** (Jun 9–15) | Write tests for `astropy/table/_column_mixins.pyx`. This is the mixin that provides the array-like interface on Column objects. Tests here will cover the C-level slot implementations. |
-| **Week 3** (Jun 16–22) | Begin `astropy/time/src/parse_times.c`. This parses time strings into structured data. It's the largest of the simpler modules (~500 LOC) but the mentor noted it's heavily boilerplate. Map the public interface exposed by the compiled module and draft tests. |
+| **Week 2** (Jun 9–15) | Write tests for `astropy/table/_column_mixins.pyx`. This Cython extension provides the underlying array-like behavior and internal operations for Column objects. Tests here will directly cover the C-level slot implementations. |
+| **Week 3** (Jun 16–22) | Begin `astropy/time/src/parse_times.c`. This parses time strings into structured data. It's the largest of the simpler modules (~500 LOC) but the mentors noted it's heavily boilerplate. Map the public interface exposed by the compiled module and draft tests. |
 | **Week 4** (Jun 23–29) | Complete `parse_times.c` test coverage. Write the mid-project report: what's working, what the testing patterns look like, any issues discovered. |
 | **Week 5** (Jun 30–Jul 6) | **First evaluation.** Address any feedback. Start on `astropy/utils/xml/src/iterparse.c` — this wraps libexpat for iterative XML parsing. |
 | **Week 6** (Jul 7–13) | Complete `iterparse.c` tests. The module has a defined C API surface; tests will cover the parser's behavior across well-formed XML, malformed input, and encoding edge cases. |
@@ -120,17 +120,17 @@ No, this is my first time participating in GSoC.
 Yes, I'd mailed my proposal to Data for the Common Good and a mentor advised me to submit it on the official GSoC site.
 
 ### Schedule availability
-My end-semester exams run May 5th to May 26th, 2026, which overlaps with the community bonding period. During those three weeks, I can commit 8–10 hours per week rather than the full 16. I have structured the proposal to absorb this: community bonding is intentionally lighter (codebase reading, environment setup, mentor alignment rather than deliverable-heavy work), and I will make up the deficit in Weeks 3 through 5 of the coding period. I will tell my mentor at least one week before exams start and share a revised week-by-week schedule.
+My end-semester exams run May 5th to May 26th, 2026, which overlaps with the community bonding period. During those three weeks, I can commit 8–10 hours per week rather than the full 16. I have structured the proposal to absorb this: community bonding is intentionally lighter (codebase reading, environment setup, mentor alignment rather than deliverable-heavy work), and I will make up the deficit in Weeks 3 through 5 of the coding period. I will tell my mentors at least one week before exams start and share a revised week-by-week schedule.
 Outside the exam window, I have no other competing commitments. No internship, no part-time work. This is my primary summer project. I am in IST (UTC+5:30) and typically have focused coding blocks from 6:00 PM to 10:00 PM IST.
 
 ### Weekly Schedule
 * Monday–Friday: 2–3 focused hours per day on coding and testing.
-* Saturday: documentation, PR cleanup, and written mentor update.
+* Saturday: documentation, PR cleanup, and written updates to the mentors.
 * Sunday: buffer for anything that ran over during the week.
 
 ### Progress Reporting
 * Weekly: a short written update (Slack Huddles or direct email) covering what was done, what is blocked, and what is next.
-* Biweekly: a 30-minute video call with the mentor for code review and direction-setting.
+* Biweekly: a 30-minute video call with the mentors for code review and direction-setting.
 * Per milestone: a short post with a demo or output example.
 * Continuous: all work in a public fork with a draft PR open from Day 1.
 
@@ -187,15 +187,17 @@ Eight PRs, six in active review, two merged. The pattern across them: I read the
 ## Comments
 
 ### Why This Proposal Is Stronger Than "Just Adding More Tests"
-It would be super easy to just propose adding more Python-level tests to Astropy. What makes this project different is that it operates one layer below the public API, at the very boundary between Python and compiled code, which is technically harder and more consequential for the project's long-term architecture. 
+While Astropy's public API is already extensively tested, its underlying compiled building blocks currently lack isolated testing. What makes this project different is that it operates one layer below the public API, at the very boundary between Python and compiled code, which is technically harder and more consequential for the project's long-term architecture. 
 
 ### Connection to the Broader Astropy Roadmap
-This proposal is a direct prerequisite for the draft APE (astropy-APEs#1) that proposes splitting the compiled layer into a separate package. You cannot safely split a layer that has no standalone tests, because you would have no way to verify it still works independently. The test coverage built during GSoC is not incidental to that APE; it is the evidence base that makes the split feasible.
+While establishing direct testing for Cython extensions significantly improves the codebase, this project aligns most powerfully with the Astropy Project’s roadmap goals for Community Building and Sustainability.
+The official roadmap explicitly prioritizes initiatives to "increase the learning and mentoring opportunities for people interested in becoming contributors and helping to develop existing contributors into maintainers," as well as to "increase inclusion, diversity, and empowerment efforts within the Astropy Project and NumFOCUS communities."    
+My participation in this GSoC project is a direct realization of these core objectives. As a woman in tech from an underrepresented region in the global open-source community, this internship will provide me a vital, hands-on mentoring environment. By tackling the C-extension testing framework, I am not only filling a critical technical gap, but I am also actively developing the deep architectural knowledge required to transition from a first-time contributor into a long-term maintainer. Ultimately, this opportunity empowers me to bring a diverse perspective to the Astropy ecosystem and helps pave the way for broader inclusion within the NumFOCUS community. That's the real valuable aspect for me, and I think it's worth saying plainly rather than dressing it up in roadmap language.
 
 ### Stretch Goals: Meson and Limited API
 If time permits, two stretch goals are available: 
 * 1. an exploratory PR for the Meson build system migration (issue #17760), following patterns from SciPy's completed migration (scipy/scipy#14480); and 
-* 2. exploring PEP 809 / Limited API compatibility (issue #19249), which would allow a single compiled binary to run across multiple Python versions without recompilation. 
+* 2. exploring PEP 803/809 / Limited API compatibility (issue #19249), which would allow a single compiled binary to run across multiple Python versions without recompilation. 
 Both are downstream opportunities that the test-suite work directly enables.
 
 ### Post-GSoC Plans
