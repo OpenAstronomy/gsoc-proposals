@@ -4,7 +4,7 @@
 ## Contributor Information
 * **Name:** Reem Hamraz
 * **Time-zone:** IST (UTC +5:30)
-* **Slack Handle:** _reem_
+* **Slack Handle:** `_reem_`
 * **Github username:** [ReemHamraz](https://github.com/ReemHamraz) 
 * **Blog:** https://dev.to/reemhamraz
 
