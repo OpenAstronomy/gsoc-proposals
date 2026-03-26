@@ -13,15 +13,15 @@
 ### PR link(s): Pre-GSoC Contributions
 
 **Open (4)-** 
-    1. [#19458 — TST: Add direct tests for join_inner in table/_np_utils](https://github.com/astropy/astropy/pull/19458)
-    2. [#19106 — Fix unit extraction in structured_to_unstructured for StructuredQuantity](https://github.com/astropy/astropy/pull/19106)
-    3. [#19107 — Align Masked Helpers with NumPy 2.4 signatures; fix in1d namespace crash](https://github.com/astropy/astropy/pull/19107)
-    4. [#19096 — Update masked function signatures for NumPy 2.4](https://github.com/astropy/astropy/pull/19096)
+    * 1. [#19458 — TST: Add direct tests for join_inner in table/_np_utils](https://github.com/astropy/astropy/pull/19458)
+    * 2. [#19106 — Fix unit extraction in structured_to_unstructured for StructuredQuantity](https://github.com/astropy/astropy/pull/19106)
+    * 3. [#19107 — Align Masked Helpers with NumPy 2.4 signatures; fix in1d namespace crash](https://github.com/astropy/astropy/pull/19107)
+    * 4. [#19096 — Update masked function signatures for NumPy 2.4](https://github.com/astropy/astropy/pull/19096)
 
 **Merged (3)-**
-    1. [#19103 — Fix redundant as_array helpers for NumPy 2.0+ signatures](https://github.com/astropy/astropy/pull/19103)
-    2. [#19104 — Update matrix_rank helper for NumPy 2.0+ tolerance parameters](https://github.com/astropy/astropy/pull/19104)
-    3. [#19468 — Add docstring explaining jointype integer mapping in _np_utils.pyx](https://github.com/astropy/astropy/pull/19468)
+    * 1. [#19103 — Fix redundant as_array helpers for NumPy 2.0+ signatures](https://github.com/astropy/astropy/pull/19103)
+    * 2. [#19104 — Update matrix_rank helper for NumPy 2.0+ tolerance parameters](https://github.com/astropy/astropy/pull/19104)
+    * 3. [#19468 — Add docstring explaining jointype integer mapping in _np_utils.pyx](https://github.com/astropy/astropy/pull/19468)
 
 ---
 
@@ -100,6 +100,7 @@ The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `P
 
 ---
 
+
 # Project Timeline
 
 | Period | Description |
@@ -112,13 +113,14 @@ The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `P
 | **Week 5** (Jun 30–Jul 6) | **First evaluation.** Address any feedback. Start on `astropy/utils/xml/src/iterparse.c` — this wraps libexpat for iterative XML parsing. |
 | **Week 6** (Jul 7–13) | Complete `iterparse.c` tests. The module has a defined C API surface; tests will cover the parser's behavior across well-formed XML, malformed input, and encoding edge cases. |
 | **Week 7** (Jul 14–20) | `astropy/timeseries/periodograms/bls/_impl.pyx` and `bls.c` — the Box Least Squares periodogram implementation. This is a numerically intensive module; tests will use known synthetic light curves with planted transit signals and check the output against expected period/depth/duration values. |
-| **Week 8** (Jul 21–27) | `astropy/timeseries/periodograms/lombscargle/implementations/cython_impl.pyx` — the Lomb-Scargle periodogram Cython implementation. Same approach: synthetic time series, known periods, verify the power spectrum output. |
+| **Week 8** (Jul 21–27) | `astropy/timeseries/periodograms/lombscargle/
+implementations/cython_impl.pyx` — the Lomb-Scargle periodogram Cython implementation. Same approach: synthetic time series, known periods, verify the power spectrum output. |
 | **Week 9** (Jul 28–Aug 3) | Begin the `unit_list_proxy.c` work. Implement the stub approach developed during bonding (or document why it doesn't work and what the alternative is). |
 | **Week 10** (Aug 4–10) | **Buffer week.** Backfill any gaps in coverage from weeks 1–8, improve test quality, add documentation. |
 | **Week 11** (Aug 11–17) | Final evaluation prep. Review all tests, ensure they run cleanly in CI. Write the final report. |
 | **Week 12** (Aug 18–25) | **Submit final report.** Document what was covered, what wasn't, and what would be needed to finish the remaining modules (for future contributors). |
 
----
+
 
 ## GSoC
 
