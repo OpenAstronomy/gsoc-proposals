@@ -7,6 +7,7 @@
 * **Slack Handle:** `_reem_`
 * **Github username:** [ReemHamraz](https://github.com/ReemHamraz) 
 * **Blog:** https://dev.to/reemhamraz
+* **Proposal Discussion Link:** https://github.com/OpenAstronomy/gsoc-proposals/pull/24 
 
 ### PR link(s): Pre-GSoC Contributions
 
@@ -50,7 +51,7 @@ I am motivated to work on an infrastructure that makes the rest of the project m
 
 ---
 
-### **Summary:**
+### Summary
 Astropy’s performance relies on a complex, mixed-language architecture. While the Python-facing API is robust and well-tested, the underlying compiled layer (C, C++, and Cython), which handles the library's most performance-critical "hot-paths" remains a significant testing blind spot, and it accounts for a disproportionate share of build complexity and CI time. Before anyone can responsibly split the low-level layer into a separate package (as outlined in the draft APE), that layer needs its own tests and right now, it doesn't have nearly enough to stand on its own. Worse, currently, the compiled extensions that handle performance-critical operations are only validated indirectly through high-level Python calls. This creates a risky abstraction: a regression deep within the compiled code can be masked by the Python layer sitting above it, often remaining invisible; you wouldn't know something broke until it was already downstream.
 
 Hence, this project aims to build a dedicated, de novo test suite that exercises each compiled extension module directly, bypassing the public API. While this is an essential prerequisite for the proposed APE split, it also significantly de-risks the other major Astropy milestones:
@@ -104,7 +105,7 @@ The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `P
 | :--- | :--- |
 | **Community Bonding** (May 8 – Jun 1) | Attend the monthly Astropy Dev Telecons (aiming to join the calls on April 1st, May 6th, and the June 1st call marking the end of the bonding period). Re-read the draft APE in full. Finalize the list of extension modules to cover and the order of attack. Understand the existing test infrastructure well enough to build alongside it rather than against it. Spend time on `unit_list_proxy.c` specifically — prototype the stub approach and see if it holds. |
 | **Week 1** (Jun 2–8) | Write tests for `astropy/table/_np_utils.pyx` — this exposes utility functions for NumPy array operations used by `astropy.table`. Direct import of the `.so`, basic input/output checks, edge cases. |
-| **Week 2** (Jun 9–15) | Write tests for `astropy/table/_column_mixins.pyx`. This Cython extension provides the underlying array-like behavior and internal operations for Column objects. Tests here will directly cover the C-level slot implementations. |
+| **Week 2** (Jun 9–15) | Write tests for `astropy/table/_column_mixins.pyx`. This Cython extension provides the underlying array-like behavior and internal operations for `Column` objects. Tests here will directly cover the C-level slot implementations. |
 | **Week 3** (Jun 16–22) | Begin `astropy/time/src/parse_times.c`. This parses time strings into structured data. It's the largest of the simpler modules (~500 LOC) but the mentors noted it's heavily boilerplate. Map the public interface exposed by the compiled module and draft tests. |
 | **Week 4** (Jun 23–29) | Complete `parse_times.c` test coverage. Write the mid-project report: what's working, what the testing patterns look like, any issues/technical difficulties discovered. |
 | **Week 5** (Jun 30–Jul 6) | **First evaluation.** Address any feedback. Start on `astropy/utils/xml/src/iterparse.c` — this wraps libexpat for iterative XML parsing. |
@@ -205,7 +206,7 @@ While establishing direct testing for Cython extensions significantly improves t
 
 The official roadmap explicitly prioritizes initiatives to "increase the learning and mentoring opportunities for people interested in becoming contributors and helping to develop existing contributors into maintainers," as well as to "increase inclusion, diversity, and empowerment efforts within the Astropy Project and NumFOCUS communities."    
 
-My participation in this GSoC project is a direct realization of these core objectives. As a woman in tech from an underrepresented region in the global open-source community, this internship will provide me a vital, hands-on mentoring environment. By tackling the C-extension testing framework, I am not only filling a critical technical gap, but I am also actively developing the deep architectural knowledge required to transition from a first-time contributor into a long-term maintainer. Ultimately, this opportunity empowers me to bring a diverse perspective to the Astropy ecosystem and helps pave the way for broader inclusion within the NumFOCUS community. That's the real valuable aspect for me, and I think it's worth saying plainly rather than dressing it up in roadmap language.
+My participation in this GSoC project is a direct realization of these core objectives. As a woman in tech from an under-represented region in the global open-source community, this internship will provide me a vital, hands-on mentoring environment. By tackling the C-extension testing framework, I am not only filling a critical technical gap, but I am also actively developing the deep architectural knowledge required to transition from a first-time contributor into a long-term maintainer. Ultimately, this opportunity empowers me to bring a diverse perspective to the Astropy ecosystem and helps pave the way for broader inclusion within the NumFOCUS community. That's the real valuable aspect for me, and I think it's worth saying plainly rather than dressing it up in roadmap language.
 
 
 ### Post-GSoC Plans
