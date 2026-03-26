@@ -113,7 +113,8 @@ The harder case is `astropy/wcs/src/unit_list_proxy.c`. This C extension uses `P
 | **Week 5** (Jun 22 – Jun 28) | Start on `astropy/utils/xml/src/iterparse.c` — this wraps libexpat for iterative XML parsing. |
 | **Week 6** (Jun 29 – Jul 5) | Complete `iterparse.c` tests. The module has a defined C API surface; tests will cover the parser's behavior across well-formed XML, malformed input, and encoding edge cases. |
 | **Week 7** (Jul 6 – Jul 12) | **Midterm Evaluation (July 6–10).** Address any feedback. `astropy/timeseries/periodograms/bls/_impl.pyx` and `bls.c` — the Box Least Squares periodogram implementation. This is a numerically intensive module; tests will use known synthetic light curves with planted transit signals and check the output against expected period/depth/duration values. |
-| **Week 8** (Jul 13 – Jul 19) | `astropy/timeseries/periodograms/lombscargle/implementations/cython_impl.pyx` — the Lomb-Scargle periodogram Cython implementation. Same approach: synthetic time series, known periods, verify the power spectrum output. |
+| **Week 8** (Jul 13 – Jul 19) | `astropy/timeseries/periodograms/lombscargle/
+implementations/cython_impl.pyx` — the Lomb-Scargle periodogram Cython implementation. Same approach: synthetic time series, known periods, verify the power spectrum output. |
 | **Week 9** (Jul 20 – Jul 26) | Begin the `unit_list_proxy.c` work. Implement the stub approach developed during bonding (or document why it doesn't work and what the alternative is). |
 | **Week 10** (Jul 27 – Aug 2) | **Buffer week.** Backfill any gaps in coverage from weeks 1–8, improve test quality, add documentation. |
 | **Week 11** (Aug 3 – Aug 9) | Final evaluation prep. Review all tests, ensure they run cleanly in CI. Write the final report draft. |
