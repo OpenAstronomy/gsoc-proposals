@@ -7,6 +7,7 @@
 * **Slack Handle:** `_reem_`
 * **Github username:** [ReemHamraz](https://github.com/ReemHamraz) 
 * **Blog:** https://dev.to/reemhamraz
+* **Blog RSS Feed:** https://dev.to/feed/reemhamraz
 * **Proposal Discussion Link:** https://github.com/OpenAstronomy/gsoc-proposals/pull/24 
 
 ### PR link(s): Pre-GSoC Contributions
