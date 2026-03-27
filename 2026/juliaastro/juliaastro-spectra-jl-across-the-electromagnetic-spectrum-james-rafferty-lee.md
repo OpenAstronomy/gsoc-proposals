@@ -25,7 +25,7 @@ I have always been deeply curious about the clever ways astronomers gather and d
 **Organisation:** JuliaAstro
 
 ### **Summary:**
-`Spectra.jl` already handles UV/optical/IR spectra through its `Spectrum{S,F,M,N} <: AbstractSpectrum{S,F}` type hierarchy, but has no capability for loading spectra like X-ray and gamma-ray, as they are different from UV/optical/IR spectra. X-ray astronomy (and other high energy fields) typically operate on spectra that are binned into channels by the measurement device. An instrument response matrix (RMF) is required to map detector channels to physical energies, and an ancillary response file (ARF) provides the telescope's effective collecting area — both are needed to correctly convert raw channel counts into physical flux.
+`Spectra.jl` already handles UV/optical/IR spectra through its `Spectrum{S,F,M,N} <: AbstractSpectrum{S,F}` type hierarchy, but has no capability for loading spectra like X-ray and gamma-ray, as they are different from UV/optical/IR spectra. X-ray astronomy (and other high energy fields) typically operate on spectra that are binned into channels by the measurement device. An instrument response matrix (RMF) is required to map detector channels to physical energies, and an ancillary response file (ARF) provides the telescope's effective collecting area. We need both to correctly convert raw channel counts into physical flux.
 
 `SpectralFitting.jl` already contains an OGIP parser that handles these formats. It has been agreed upon in the JuliaAstro discussions that the correct long-term architecture is for the spectral *types* to live in `Spectra.jl`, with `SpectralFitting.jl` eventually depending on `Spectra.jl` rather than duplicating data structures. Beyond data loading, observers also need a standard set of tools before any science can be done, such as rebinning according to different heuristics, adjusting the wavelength or energy shifts, or converting between common units. This project implements those tools in `Spectra.jl` as well, making it easier for users of `Spectra.jl`.
 
@@ -51,7 +51,7 @@ Together, these deliverables produce a revamped Spectra.jl that can load at leas
 
 X-ray data follows the OGIP standard, which often splits a single observation into multiple files. We already have a working draft of this in SpectralFitting.jl. I will port this over to Spectra.jl.
 
-- Port the `OGIP` module from `SpectralFitting.jl/src/datasets/ogip.jl`, adapting `read_spectrum`, `read_rmf`, `read_ancillary_response`, and `build_response_matrix` to return Spectra.jl types. The response matrix is intentionally kept separate from the spectrum, so that SpectralFitting.jl can wrap them in its own `SpectralData` type.
+- Port the `OGIP` module from `SpectralFitting.jl`, adapting `read_spectrum`, `read_rmf`, `read_ancillary_response`, and `build_response_matrix` to return Spectra.jl types. The response matrix is intentionally kept separate from the spectrum, so that SpectralFitting.jl can wrap them in its own `SpectralData` type.
   
 - Test and document loading for the OGIP data.
 
@@ -59,7 +59,7 @@ The `BinnedSpectrum = Spectrum{S, F, 2, 1}` type alias extends the existing type
 
 - Define `BinnedSpectrum` with `Base.show`, `getindex`, arithmetic operators, and uncertainty support via `Measurements.jl` arrays (for error propagation, with error statistics tracked in `meta`).
   
-- Port `ResponseMatrix` and `AncillaryResponse` from `SpectralFitting.jl/src/datasets/response.jl` into Spectra.jl, along with their operations.
+- Port `ResponseMatrix` and `AncillaryResponse` from `SpectralFitting.jl` into Spectra.jl, along with their operations.
   
 - Integrate `Measurements.jl` into the `flux_axis`, replacing manual error tracking with native support for error propagation.
   
