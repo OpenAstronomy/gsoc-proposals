@@ -1,4 +1,4 @@
-exoplanet_ai_transit-system
+[Lightkurve] Exoplanet AI Transit System
 
 Contributor Information
 
