@@ -28,6 +28,7 @@ Summary:
 In this project I want to build AI tool that finds exoplanet transits automatically using Lightkurve. I will use CNN specifically, because transit signals have unique dip shapes that CNN can recognize like image patterns. This will help astronomers check K2/TESS/Kepler data much faster.
 
 Explain why this project is attractive to you and why you think you can do it.
+
 I love working with different space datasets and learning more from them. I have worked with Space Track[ TLE, satcat, decay, conjuction] and ESA DISCOS APIs for my space debris detection project, training RandomForest models for risk and decay prediction. I am familier with Lightkurve too from working with Kepler dataset in Space Apps Challenge. So I will be perfect fit for this project. So I'm pretty confident I can do this well.
 
 Deliverables
