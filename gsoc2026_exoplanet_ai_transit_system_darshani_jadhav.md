@@ -4,11 +4,11 @@ Contributor Information
 
 Name: Darshani Jadhav
 Time-zone: IST (UTC+5:30)
-Matrix/slack/IRC Handle: -
+Matrix/slack/IRC Handle:
 Github/forge username: darshanijadhav29
-Blog: -
-Blog RSS feed: -
-PR link(s): -
+Blog:
+Blog RSS feed:
+PR link(s):
 
 Background
 
