@@ -44,7 +44,7 @@ I am motivated to work on an infrastructure that makes the rest of the project m
 ## Project Proposal Application
 **Proposal Title: Hardening Astropy's Core Stability**
 
-**Organisation: Open Astronomy (Astropy)**
+**Organisation: OpenAstronomy (Astropy)**
 
 **Project Size: 175 hours (Medium)**
 
