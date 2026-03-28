@@ -8,8 +8,9 @@
 * **Blog:** [hermanlrx.github.io](https://hermanlrx.github.io/)
 * **Blog RSS feed:** [RSS feed](https://hermanlrx.github.io/index.xml)
 * **PR link(s):**
-  * PR Add support for SOLO L3 [#148](https://github.com/sunpy/radiospectra/pull/148) (merged)
-  * PR Updates SOLO RPW examples [#173](https://github.com/sunpy/radiospectra/pull/173) (review required)
+  * PR Add support for SOLO L3 [#148](https://github.com/sunpy/radiospectra/pull/148) 
+  * PR Updates SOLO RPW examples [#173](https://github.com/sunpy/radiospectra/pull/173) 
+  * PR Adds LASCO C2 Image for #48 [#49](https://github.com/sunpy/data/pull/49)
 
 ### Background
 I am currently a 2nd-year PhD student affiliated with the Dublin Institute for Advanced Studies in the Solar Physics and Space Weather research group and the Technological University of the Shannon: Midlands. My current research focuses on creating tools for tracking and classifying low-frequency solar radio emissions using I-LOFAR data. 
@@ -18,7 +19,7 @@ Prior to my PhD program, I completed a M\.Sc\. in Computer Science at the North-
 
 Throughout the course of my research projects and undergraduate studies, I have gained experience with libraries such as `numpy/scipy/pandas/matplotlib/astropy` and scalable object-orientated design patterns for software development.
 
-Since the start of my PhD I have made use of some of the functionality included in `SunPy/radiospectra`. There are, however, several generic radio spectrogram operations that would simplify my workflow (e.g. Issue [#129](https://github.com/sunpy/radiospectra/issues/129)). I recently contributed to the `SunPy/radiospectra` package through pull requests ([#148](https://github.com/sunpy/radiospectra/pull/148) and [#173](https://github.com/sunpy/radiospectra/pull/173)) implementing data ingesting code for new Level 3 SOLO data products. I hope to contribute to the package throughout my PhD and thereafter.
+Since the start of my PhD I have made use of some of the functionality included in `SunPy/radiospectra`. There are, however, several generic radio spectrogram operations that would simplify my workflow (e.g. Issue [#129](https://github.com/sunpy/radiospectra/issues/129)). I recently contributed to the `SunPy/radiospectra` package through pull requests ([#148](https://github.com/sunpy/radiospectra/pull/148) and [#173](https://github.com/sunpy/radiospectra/pull/173)) implementing data ingesting code for new Level 3 SOLO data products. I hope to contribute to radiospectra and sunpy ([#49](https://github.com/sunpy/data/pull/49)) throughout my PhD and thereafter.
 
 
 
