@@ -56,11 +56,11 @@ spec.crop(freq_range=(20*u.MHz, 80*u.MHz))
  * update docstrings and test coverage,
  * expand example gallery.
   
-**4.** Stretch goal: Add type hints incrementally
-Considering the extent of the refactoring required I would like to suggest type hinting as a stretch goal throughout the project.
-```python
-def crop(...) -> Spectra:
-```
+**4.** Stretch goals: 
+- Add type hints incrementally
+  - Considering the extent of the refactoring required I would like to suggest type hinting as a stretch goal throughout the project.
+- Add Dask array or similar structure for large data files (e.g. I-LOFAR millisecond data)
+
 
 
 ### Description/Timeline
