@@ -12,8 +12,7 @@
   * https://github.com/astropy/astropy/pull/19110 (open)
 
 ### Background
-
-Programming and Astronomy have been my deep interests since I was 14 (pre GPT era). Building things yourself was the only way. That same instinct - understanding things at the lowest level - eventually led me to Astropy.
+I am a 19 year old student pursuing Bachelors in Computer Science. I am currently in my 2nd year. Programming and Astronomy have been my deep interests since I was 14 (pre GPT era). Building things yourself was the only way. That same instinct - understanding things at the lowest level - eventually led me to Astropy.
 
 I started studying Astropy code around last year's November with the aim of Adding a [LaTeX reader](https://github.com/astropy/astropy/issues/14837). It took me around a month to guide myself through the complexity of Astropy codebase, understand it, and ultimately make my first [PR](https://github.com/astropy/astropy/pull/19110) for it. While working on it I repeatedly encountered modules functioning at very low level. These modules sit behind almost every functionality making visible changes. Seeing these functions again and again gave me a sense of what low level looks like.
 
