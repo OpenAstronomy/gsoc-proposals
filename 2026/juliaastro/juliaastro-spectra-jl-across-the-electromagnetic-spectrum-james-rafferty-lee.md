@@ -20,7 +20,7 @@ While my professional background is in software development and backend engineer
 I have always been deeply curious about the clever ways astronomers gather and decode information from the universe. Furthermore, I strongly believe in the power of open-source software to accelerate scientific discovery, and I am incredibly excited about the work being done here!
 
 ## Project Proposal Application
-**Proposal Title:** Spectra.jl: A Uniform Interface for the Electromagnetic Spectrum
+**Proposal Title:** Spectra.jl Across the Electromagnetic Spectrum
 
 **Organisation:** JuliaAstro
 
