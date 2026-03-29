@@ -116,22 +116,3 @@ Every function and type will have a Julia docstring. A blog will be maintained w
 
 **Final Evaluation**
 ```
-
----
-
-## Step 5 — Commit the file
-- Scroll down
-- Write commit message:
-```
-Add GSoC 2026 proposal for JuliaAstro Spectra.jl
-```
-- Click **"Commit new file"**
-
----
-
-## Step 6 — Open the PR
-- Go back to your fork homepage
-- Click **"Contribute"** → **"Open pull request"**
-- Title:
-```
-JuliaAstro: Spectra.jl across the electromagnetic spectrum (Mahmoud Fathy)
