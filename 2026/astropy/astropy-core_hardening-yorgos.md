@@ -22,20 +22,24 @@ Coming from a physics background I've worked with free and open-source programs 
 **Organisation:** Astropy
 
 ### **Summary:**
-I am drawn to this project because it sits exactly at the intersection of my skill sets. My primary programming focus is in C, making Astropy's C core an ideal environment for me to contribute. I am also very interested in analyzing performance-critical C code in a real world codebase. 
+I am drawn to this project because it sits exactly at the intersection of my skill sets. My primary programming focus is in C, making Astropy's C core an ideal environment for me to contribute. I am also very interested in analyzing performance-critical C code in a real world codebase.
+
+Astropy’s low-level C code is currently tightly coupled with NumPy and the Python runtime. Because the existing test suite evaluates the codebase through pytest, the core mathematical algorithms cannot be tested in isolation. This architectural coupling makes it extremely difficult to verify the memory safety and precision of the native code on its own, and currently prevents the low-level layer from being extracted into a separate, independent package. 
+
+My approach to this project will be to start writing standalone C tests for the core of Astropy, as well as refactoring the C core header files in order to decouple them from Python libraries and make them able to be compiled in isolation. This will both enable the core packages to be tested without any link to the rest of astropy, and also serve as a first step towards the decoupling of the C core into a separate package, enabling astropy itself to become a pure Python package.
 
 ### Deliverables
-* **1.** Direct tests for astropy/convolution/src/_convolve.c
-* **2.** Direct tests for astropy/timeseries/periodograms/bls/bls.c
-* **3.** Direct tests for astropy/wcs/src/ files
-* **4.** CI/CD pipeline and documentation
+* **1.** Standalone C Tests: A dedicated testing package that verifies the C files independently of Astropy's existing Python test suite.
+* **2.** Refactoring of C core headers, to structurally decouple them from NumPy/Python.
+* **3.** CI Integration: Automated GitHub Actions workflows that compile and execute the standalone native tests in an isolated environment.
+* **4.** Detailed documentation of the test package, and assessment of next steps required for decoupling.
 
 ### Description/timeline
 
 |Period|Description|
 |------|-----------|
 |Community Bonding period| Map all C-functions to be tested in the project, set up the dev environment, assign priorities and testing implementation strategy with mentors.|
-| week 1-2 | convolution: Expand the current prototype tests into a full testing package for convolve.c. Focus on edge cases (NaNs, empty arrays, infinity).|
+| week 1-2 | convolution: Expand the current prototype tests into a full testing package for convolve.c. Focus on edge cases (NaNs, empty arrays, infinity). Decouple C files from Python libraries.|
 | week 3-4 | bls: Create a full c test package to validate the mathematical accuracy of the bls.c periodogram core.|
 | week 5-10 | wcs: Work to create tests for the c files in the world coordinate system folder.|
 | week 11-12 | Handle final bug fixes, CI/CD test integration, write documentation. |
