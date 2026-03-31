@@ -15,16 +15,18 @@
 ### Background
 I am currently a 2nd-year PhD student affiliated with the Dublin Institute for Advanced Studies in the Solar Physics and Space Weather research group and the Technological University of the Shannon: Midlands. My current research focuses on creating tools for tracking and classifying low-frequency solar radio emissions using I-LOFAR data. 
 
-Prior to my PhD program, I completed a M\.Sc\. in Computer Science at the North-West University in South Africa. The focus of my master's research project was creating machine learning models to classify spectrograms containing solar radio bursts in e-CALLISTO data. During the course of my project, a previous version of `SunPy/radiospectra` was partly used to create the final dataset. 
+Prior to my PhD program, I completed an M\.Sc\. in Computer Science at the North-West University in South Africa. The focus of my master's research project was to create machine learning models for classifying spectrograms containing solar radio bursts in e-CALLISTO data. During the course of my project, a previous version of `SunPy/radiospectra` was partly used to create the final dataset. 
 
 Throughout the course of my research projects and undergraduate studies, I have gained experience with libraries such as `numpy/scipy/pandas/matplotlib/astropy` and scalable object-orientated design patterns for software development.
 
-Since the start of my PhD I have made use of some of the functionality included in `SunPy/radiospectra`. There are, however, several generic radio spectrogram operations that would simplify my workflow (e.g. Issue [#129](https://github.com/sunpy/radiospectra/issues/129)). I recently contributed to the `SunPy/radiospectra` package through pull requests ([#148](https://github.com/sunpy/radiospectra/pull/148) and [#173](https://github.com/sunpy/radiospectra/pull/173)) implementing data ingesting code for new Level 3 SOLO data products. I hope to contribute to radiospectra and sunpy ([#49](https://github.com/sunpy/data/pull/49)) throughout my PhD and thereafter.
+Since the start of my PhD, I have made use of some of the functionality included in `SunPy/radiospectra`. There are, however, several generic radio spectrogram operations that would simplify my workflow (e.g.  Issue [#129](https://github.com/sunpy/radiospectra/issues/129)). Having access to a data point in frequency space and array space could be valuable for interpreting machine learning models, as well as the analysis of predictions made by these models. Other functionalities such as background subtraction are also a common methods used in radio data analysis. Implementing standard methods for any radio source while allowing users to apply tailored methods would be a leap forward in terms of radio data analysis for the wider community. 
+
+I recently contributed to the `SunPy/radiospectra` package through pull requests ([#148](https://github.com/sunpy/radiospectra/pull/148) and [#173](https://github.com/sunpy/radiospectra/pull/173)), implementing data ingesting code for new Level 3 solar orbiter data products. I hope to contribute to radiospectra and sunpy ([#49](https://github.com/sunpy/data/pull/49)) throughout my PhD and thereafter.
 
 
 
 ### Interest in OpenAstronomy
-OpenAstronomy has endeavoured to create a community where not only open source software is prioritised, but also the sharing of resources and ideas. This aligns with what I believe researchers in academia should be aiming to achieve. Moreover, the opportunity to learn from the mentors at SunPy and the OpenAstronomy community is exciting and invaluable for as a prospective researcher and software developer. It also creates an ideal platform for me to start contributing to open-source projects in solar physics. 
+OpenAstronomy has endeavoured to create a community where not only open source software is prioritised, but also the sharing of resources and ideas. This aligns with what I believe researchers in academia should be aiming to achieve. Moreover, the opportunity to learn from the mentors at SunPy and the OpenAstronomy community is exciting and invaluable for me as a prospective researcher and software developer. It also creates an ideal platform for me to start contributing to open-source projects in solar physics. 
 
 
 ## Project Proposal Application
@@ -33,19 +35,23 @@ OpenAstronomy has endeavoured to create a community where not only open source s
 **Organisation:** SunPy
 
 ### **Summary:**
-Radiospectra currently enables users to plot radio spectra from several solar radio telescopes and receivers. Expanding its functionality would significantly enhance researchers' ability to collect and analyse available solar radio data. During my PhD, I will need to implement functionalities similar to those proposed for the improved radiospectra package that could benefit the broader community. Along with my undergraduate degrees in Information Technology and Computer Science and my hands-on experience working with e-CALLISTO, I-LOFAR, and SOLO data, I am well-suited and eager to contribute to a package the solar radio community will benefit from.
+Radiospectra currently enables users to plot radio spectra from several solar radio telescopes and receivers. Expanding its functionality would significantly enhance researchers' ability to centralise the collection and analysis of available solar radio data. 
+
+During my PhD, I will need to implement functionalities similar to those proposed for the improved radiospectra package that could benefit the broader community. For example, being able to bi-directionally index between array space and frequency space would allow a user to analyses predictions made by models on a pixel level. Frequently I have wanted to crop radio spectra on time or frequency axis as well. Considering the shared commonalities of solar radio data, it would make even more sense to ensure that this package can seamlessly process data from any source.
+
+Considering my undergraduate degrees in Information Technology and Computer Science and my hands-on experience working with e-CALLISTO, I-LOFAR, and SOLO data, I am well-suited and eager to contribute to a package the solar radio community will benefit from.
 
 
 ### Deliverables
-**1.** A redesigned Spectra object that:
+**1.** Create a redesigned Spectra object using NDCube, Xarray, Scipp or similar data structure that:
  *  integrates cleanly with existing SunPy and Astropy data structures (`u.Quantities`), 
+ *  enables operations such as cropping along the frequency or time axis using array indices or physical coordinates (frequency bands or time ranges),
 ```python
 spec.crop(freq_range=(20*u.MHz, 80*u.MHz))
 ```
- *  enables operations such as cropping along the frequency or time axis using array indices or physical coordinates (frequency bands or time ranges),
  *  preserves metadata through operations.
 
-**2.** Background subtraction methods:
+**2.** Implementing background subtraction methods:
  *  built-in support for common background subtraction techniques,
  ```python
  spec.subtract_background(method="median")
