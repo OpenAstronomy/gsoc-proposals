@@ -12,16 +12,16 @@
 
 ### PR link(s): Pre-GSoC Contributions
 
-**Open (4)-** 
-    1. [#19458 — TST: Add direct tests for join_inner in table/_np_utils](https://github.com/astropy/astropy/pull/19458)
-    2. [#19106 — Fix unit extraction in structured_to_unstructured for StructuredQuantity](https://github.com/astropy/astropy/pull/19106)
-    3. [#19107 — Align Masked Helpers with NumPy 2.4 signatures; fix in1d namespace crash](https://github.com/astropy/astropy/pull/19107)
-    4. [#19096 — Update masked function signatures for NumPy 2.4](https://github.com/astropy/astropy/pull/19096)
+**Open (3)-** 
+    1. [#19106 — Fix unit extraction in structured_to_unstructured for StructuredQuantity](https://github.com/astropy/astropy/pull/19106)
+    2. [#19107 — Align Masked Helpers with NumPy 2.4 signatures; fix in1d namespace crash](https://github.com/astropy/astropy/pull/19107)
+    3. [#19096 — Update masked function signatures for NumPy 2.4](https://github.com/astropy/astropy/pull/19096)
 
-**Merged (3)-**
+**Merged (4)-**
     1. [#19103 — Fix redundant as_array helpers for NumPy 2.0+ signatures](https://github.com/astropy/astropy/pull/19103)
     2. [#19104 — Update matrix_rank helper for NumPy 2.0+ tolerance parameters](https://github.com/astropy/astropy/pull/19104)
     3. [#19468 — Add docstring explaining jointype integer mapping in _np_utils.pyx](https://github.com/astropy/astropy/pull/19468)
+    4. [#19458 — TST: Add direct tests for join_inner in table/_np_utils](https://github.com/astropy/astropy/pull/19458)
 
 ---
 
@@ -180,12 +180,12 @@ ML system on a 70,000-record clinical dataset. Full preprocessing, feature engin
 | PR #19104 — Update matrix_rank helper for NumPy 2.0+ tolerance parameters | Astropy — Merged |
 | PR #19106 — Fix unit extraction in structured_to_unstructured for StructuredQuantity | Astropy — In Review |
 | PR #19107 — Align Masked Helpers with NumPy 2.4 signatures; fix in1d namespace crash | Astropy — In Review |
-| PR #19458 — Add direct tests for join_inner in table/_np_utils Cython extension | Astropy — In Review |
+| PR #19458 — Add direct tests for join_inner in table/_np_utils Cython extension | Astropy — Merged |
 | PR #19468 — Add docstring explaining jointype integer mapping in _np_utils.pyx | Astropy — Merged |
 | PR #12454 — Archive migrations by year and enforce 6-month safety gap | Submitty — In Review |
 | PR #12 — Build document ingestion pipeline for GA4GH policy compliance checks | GA4GH — In Review |
 
-Getting involved with Astropy has been an incredible learning experience (I started contributing back in December 2025). So far, I've submitted nine pull requests — three are already merged, and six are currently in active review. Each of these PRs represents the countless hours spent reading the codebase to truly understand its inner workings before writing a single line of code. My goal is to always deliver thoughtful, production-ready work , and I am fully committed to channeling that same dedication into this summer's project. While my code goes through rigorous review and iterative corrections, I genuinely thrive on that feedback. It has been the absolute best way for me to deeply learn the codebase, align with the community standards, and grow as a contributor.
+Getting involved with Astropy has been an incredible learning experience (I started contributing back in December 2025). So far, I've submitted nine pull requests (altogether) — four are already merged, and five are currently in active review. Each of these PRs represents the countless hours spent reading the codebase to truly understand its inner workings before writing a single line of code. My goal is to always deliver thoughtful, production-ready work , and I am fully committed to channeling that same dedication into this summer's project. While my code goes through rigorous review and iterative corrections, I genuinely thrive on that feedback. It has been the absolute best way for me to deeply learn the codebase, align with the community standards, and grow as a contributor.
 
 ---
 
