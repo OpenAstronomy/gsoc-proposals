@@ -52,7 +52,7 @@ The new `Spectra` class naturally supports Python slicing (e.g., `spec[1:5, :-4]
    High-performance C-level vectorized rolling minimums (`scipy.ndimage.minimum_filter1d`) and polynomial fitting for instrument thermal drift removal.
 
 3. **Gap-Aware Visualization:**  
-   Deterministic gap detection algorithm (\(\Delta t > C(1+\epsilon)\)) with arrays padded using `numpy.ma.masked_invalid()` to prevent misleading visual stretching, integrated with `@peek_show`.
+   Deterministic gap detection algorithm (Δt > C \* (1+ε)) with arrays padded using `numpy.ma.masked_invalid()` to prevent misleading visual stretching, integrated with `@peek_show`.
 
 4. **Documentation & Tutorial Gallery:**  
    Narrative-style docs (`spectrogram.rst`) following `sunpy.map` conventions, legacy support with deprecation warnings, and beginner-to-advanced Jupyter notebook tutorials.
@@ -73,7 +73,7 @@ The new `Spectra` class naturally supports Python slicing (e.g., `spec[1:5, :-4]
 | Week 5            | Build Background Subtraction API; implement vectorized `rolling_min` and polynomial fits.                                 |
 | Week 6            | Finalize custom `_custom_bg(data, meta)` interface; complete NumpyDoc math documentation.                                 |
 | Week 7            | Implement physical rebinning, `.flatten()`, and intensity normalization.                                                  |
-| Week 8            | Develop deterministic gap detection (\(\Delta t_i > C \cdot (1 + \epsilon)\)) as standalone function.                     |
+| Week 8            | Develop deterministic gap detection (Δt > C \* (1+ε)) as standalone function.                                             |
 | Week 9            | Overhaul Plotting Mixin with `masked_invalid()` edge handling; apply native `@peek_show` parity.                          |
 | Week 10           | Apply `AstropyDeprecationWarning` to legacy `GenericSpectrogram`; draft migration guides.                                 |
 | Week 11           | Build rich Jupyter notebook gallery with 3+ complex workflows.                                                            |
