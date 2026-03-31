@@ -8,6 +8,7 @@
 - **Matrix/slack:** https://stingraysoftware.slack.com/team/U0A9D0CE12M (Slack)
 - **Github:** Omiii-215
 - **linkedin:** https://www.linkedin.com/in/om-s-habib-609a81381/
+- **Blog:** https://medium.com/@omhabib311/spectral-timing-in-julia-extending-stingray-jl-for-x-ray-astronomy-66f4b40f5531?postPublishedType=initial
 
 
 * **PR link(s):**
