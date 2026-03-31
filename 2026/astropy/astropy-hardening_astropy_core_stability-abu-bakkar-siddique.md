@@ -46,8 +46,8 @@ Astropy's current test suites primarily validate behavior through the public Pyt
 
 This matters for two ongoing directions in the project:
 
-1. the proposed decoupling of compiled extension modules into a standalone package, as discussed in the draft APE ([neutrinoceros/astropy-APEs#1](https://github.com/neutrinoceros/astropy-APEs/pull/1));
-2. the continued Meson build migration effort ([astropy#17760](https://github.com/astropy/astropy/issues/17760)).
+1. the proposed decoupling of compiled extension modules into a standalone package, as discussed in the draft APE.
+2. the continued Meson build migration effort.
 
 If extension modules are ever to be built, packaged, or evolved more independently, they need direct tests that verify their behavior at the extension boundary. Without such tests, it is difficult to determine whether a failure belongs to the compiled implementation itself, the Python wrapper layer, or the build system. Direct extension tests also create a stable behavioral baseline that makes it possible to verify correctness across build system changes or packaging separations, which is precisely the kind of confidence the APE work and Meson migration will require.
 
@@ -105,7 +105,7 @@ This is a proposed 12-week coding schedule, with community bonding beforehand.
 
 | Period | Description |
 |--------|-------------|
-| **Community Bonding Period** | Set up development context, discuss project scope with mentor, review the compiled extensions in scope, and agree on testing priorities and expectations. |
+| **Community Bonding Period** | Set up development context, further discuss project with mentors, review the compiled extensions in scope, and agree on testing priorities and expectations. |
 | **Weeks 1–3** | Exploration and planning phase. Study all 16 extension modules carefully, document their behavior , interfaces, and likely edge cases, and review findings with my mentor. The output of this phase is a finalized, mentor-reviewed test plan that sequences the remaining work by complexity and dependency. I deliberately keep the per-week coding schedule flexible until this phase is complete, as the 16 extensions vary significantly in complexity, and I would rather let that study inform the schedule than impose an artificial structure before I have seen the code. |
 | **Weeks 4–10** | Test writing phase, sequenced according to the plan produced in weeks 1–3. I will work through the extensions in an order agreed upon with my mentor, opening PRs incrementally and incorporating review feedback as I go. |
 | **Week 11** | Address accumulated review feedback, revisit any extensions where initial tests were incomplete, and handle edge cases that emerged during review. |
@@ -137,6 +137,3 @@ Outside of those periods, I will be fully committed to the programme.
 
 ---
 
-## Other Comments
-
-I see this project not only as a chance to contribute tests, but as a chance to help strengthen Astropy's internal reliability in a way that supports future architectural work. I would be excited to work closely with my mentor on understanding these extensions properly and building direct tests that remain useful beyond the summer itself.
