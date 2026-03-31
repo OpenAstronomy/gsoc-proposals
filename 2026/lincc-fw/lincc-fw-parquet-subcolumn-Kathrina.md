@@ -36,11 +36,11 @@ Modern astronomical datasets rely heavily on nested data structures—such as li
 
 ## Understanding the Problem
 
-![alt text](image.png)
+![current pipeline](image.png)
 
 ## Proposed Approach
 
-![alt text](image-1.png)
+![proposed pipeline](image-1.png)
 
 ### Deliverables
 **1. Sub-column selection support for list-struct types in the Parquet reader**
