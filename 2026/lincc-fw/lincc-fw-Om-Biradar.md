@@ -1,6 +1,3 @@
-> If you wish to add images, create a directory under this year directory named: `your-name/` and add any extra images required.
-> You should delete this warning box.
-
 # Application Title
 
 PyArrow Improvemnets for Astronomy
