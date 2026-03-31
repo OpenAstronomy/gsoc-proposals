@@ -50,68 +50,68 @@ Community Bonding May 8 – 26 (Pre-coding)	Goal: enter Day 1 of coding with zer
 –	Set up the development environment on the machine I will use for the full summer. Confirm that the Fortran compiler, f2py, and all Python dependencies install cleanly.
 –	Draft outlines for all six tutorials — one paragraph per notebook describing scope, inputs, and expected outputs — and share with mentor for early feedback before any code is written.
 –	Write the GitHub Actions YAML skeleton: an empty workflow file that triggers on pull requests and runs a placeholder test. Getting CI green with a placeholder is faster than building it mid-project.
-✓ Milestone: PR #120 resolved. CI skeleton live. All six notebook outlines approved by mentor. Zero surprises on Day 1.
+- Milestone: PR #120 resolved. CI skeleton live. All six notebook outlines approved by mentor. Zero surprises on Day 1.
 Week 1 May 27 – Jun 2	Tutorial 01 — Installation & Environment Verification
 –	Write the notebook section by section: Fortran compiler installation (gfortran), f2py compilation steps, Python package installation via pip/conda, and a smoke-test cell that imports the compiled extension and prints a version string.
 –	Test the notebook on a clean virtual environment to confirm it runs end-to-end without pre-existing setup.
 –	Write the first two unit tests: one that imports reltransPL and checks its callable signature, one that calls it with a minimal valid input and asserts the output is a numpy array of the correct shape and dtype.
 –	Open a draft PR for Tutorial 01 and the two tests so the mentor can see direction before the week ends.
-✓ Milestone: Tutorial 01 notebook passes nbmake in CI. Two unit tests pass. Draft PR open.
-▶ If delayed: If environment setup is more complex than expected, Tutorial 01 carries into Week 2 and Tutorial 02 shifts by one week. The total project scope does not change — only the week 2 scope narrows.
+-Milestone: Tutorial 01 notebook passes nbmake in CI. Two unit tests pass. Draft PR open.
+- If delayed: If environment setup is more complex than expected, Tutorial 01 carries into Week 2 and Tutorial 02 shifts by one week. The total project scope does not change — only the week 2 scope narrows.
 Week 2 Jun 3 – 9	Tutorial 02 — Python Interface Basics & reltransPL Tests
 –	Write Tutorial 02: loading the f2py extension, understanding the call signature of reltransPL, running a power-law continuum spectrum, visualising and interpreting the output array.
 –	Expand unit tests for reltransPL: (a) output shape check, (b) output dtype check, (c) reference numerical value for a specific input — assert_allclose against a value computed from the known-good build during community bonding.
 –	Add the reltransPL tests to the GitHub Actions workflow so they run on every PR push.
 –	Write conftest.py with a shared fixture that compiles and loads the Fortran extension once per test session, avoiding repeated compilation overhead in CI.
-✓ Milestone: Tutorial 02 complete. reltransPL has 3 passing tests covering shape, dtype, and numerical reference. CI runs tests on every push.
-▶ If delayed: If the reference value comparison fails due to platform-dependent Fortran behaviour, consult with mentor and set a looser tolerance or skip the numerical test on platforms where it is not reproducible.
+- Milestone: Tutorial 02 complete. reltransPL has 3 passing tests covering shape, dtype, and numerical reference. CI runs tests on every push.
+- If delayed: If the reference value comparison fails due to platform-dependent Fortran behaviour, consult with mentor and set a looser tolerance or skip the numerical test on platforms where it is not reproducible.
 Week 3 Jun 10 – 14	reltransDCp Tests & CI Coverage Reporting
 –	Write unit tests for reltransDCp: output shape, dtype, and one reference value check for a known Fourier-domain cross spectrum input.
 –	Add pytest-cov to the CI workflow. Generate the first coverage report and commit it as a CI artefact. Record the baseline coverage percentage.
 –	Review and polish Tutorials 01 and 02 based on any mentor feedback received. Clear all notebook outputs before final commit.
-✓ Milestone: reltransDCp has 3 passing tests. Coverage report live in CI. pytest markers configured. Tutorials 01 and 02 polished and merged.
+- Milestone: reltransDCp has 3 passing tests. Coverage report live in CI. pytest markers configured. Tutorials 01 and 02 polished and merged.
 Weeks 4 – 5 Jun 15 – 28	Tutorials 03 & 04 — Spectra and Fourier Analysis
 –	Week 4: Tutorial 03 — Time-averaged spectra: setting up a full spectral model call, exploring iron line energy and disk ionisation sensitivity, comparing output against a reference spectrum plot. This notebook explicitly shows what happens when parameters are at their physical limits — a common source of confusion for new users.
 –	Week 4: Write the regression golden-output file for reltransPL and reltransDCp. Run both functions with a fixed seed input on the known-good build and commit the output arrays as .npy files. Write the regression tests that load these files and use assert_allclose with the agreed tolerance.
 –	Week 5: Tutorial 04 — Fourier-domain cross spectra: introducing reverberation lags, running reltransDCp and reltransDbl, producing energy-dependent lag-frequency plots with matplotlib. This notebook builds directly on Tutorial 03 without requiring Tutorial 03 to have been run first.
 –	Week 5: Write unit tests for reltransDbl: shape, dtype, and reference value. Add the corresponding regression golden-output file.
-✓ Milestone: Tutorials 03 and 04 complete. Regression golden-output files committed for reltransPL, reltransDCp, and reltransDbl. Coverage at or above 60%.
-▶ If delayed: If Tutorial 04 runs long, the reltransDbl regression golden-output file moves to Week 6. The Week 6 scope is already the lightest in the project, so it absorbs this without affecting the 1st Evaluation deliverable.
+- Milestone: Tutorials 03 and 04 complete. Regression golden-output files committed for reltransPL, reltransDCp, and reltransDbl. Coverage at or above 60%.
+- If delayed: If Tutorial 04 runs long, the reltransDbl regression golden-output file moves to Week 6. The Week 6 scope is already the lightest in the project, so it absorbs this without affecting the 1st Evaluation deliverable.
 Week 6 Jun 29 – Jul 5 ★ 1st Evaluation	First Evaluation Submission — All Phase 1 Work Reviewed and Merged
 –	Consolidate all open PRs from Weeks 1–5 into a clean, reviewed state. Every PR must have passed CI and received at least one mentor comment before being merged.
 –	Write the mid-project blog post: what was built, what was harder than expected, what was easier, what the coverage number is, and what comes next.
 –	Write unit tests for reltransx: shape, dtype, and one reference value. Add the reltransx golden-output regression file. This completes test coverage of all four public wrapper functions.
 –	Run a full coverage report across all tests. Document the number in the PR description. Target: more than 60%.
 –	Prepare the 1st Evaluation submission: a written summary of completed work with links to all merged PRs, coverage report screenshot, and a one-paragraph reflection on the project.
-✓ Milestone: All four wrapper functions have unit tests and regression golden-output files. Coverage above 60%. Two tutorials merged. 1st Evaluation submitted.
+- Milestone: All four wrapper functions have unit tests and regression golden-output files. Coverage above 60%. Two tutorials merged. 1st Evaluation submitted.
 Weeks 7 – 8 Jul 6 – 19	Tutorial 05 — Advanced Workflows & Edge-Case Tests
 –	Week 7: Tutorial 05 — Advanced workflows: parameter grid search over spin and inclination using numpy meshgrid, output caching strategy using joblib.Memory or a simple .npy cache, and a worked example showing how to load Reltrans model outputs into PyXspec/Xspec for spectral fitting. This is the notebook most requested by graduate student users and the one most likely to be referenced in papers.
 –	Week 7: Write edge-case tests for reltransPL: zero photon flux input, maximum spin parameter (a* = 0.998), minimum and maximum energy array bounds. Document the expected behaviour (error, warning, or graceful fallback) for each case.
 –	Week 8: Write edge-case tests for reltransDCp, reltransDbl, and reltransx following the same pattern. For any case where the Fortran core behaves unexpectedly, open an issue flagging it for the maintainers rather than silently suppressing it in the test.
 –	Week 8: Tag all edge-case tests with @pytest.mark.regression so they can be run separately from the fast unit suite.
-✓ Milestone: Tutorial 05 complete. Edge-case tests written for all four wrapper functions. Any unexpected Fortran behaviour logged as open issues with maintainer notification.
+- Milestone: Tutorial 05 complete. Edge-case tests written for all four wrapper functions. Any unexpected Fortran behaviour logged as open issues with maintainer notification.
 Week 9 Jul 20 – 26	Integration Smoke Test & Internal Documentation
 –	Write the end-to-end integration smoke test: starting from source, compile the Fortran extension with f2py, import the result in a fresh Python process, call all four wrapper functions with minimal inputs, and assert that each returns a result of the correct type. Tag with @pytest.mark.slow and configure CI to run this test nightly rather than on every PR.
 –	Write docstrings for every test fixture in conftest.py and every helper function in the test directory. A future contributor should be able to understand the test design by reading the fixture documentation alone.
 –	Review all open issues flagged during edge-case testing. For each: either fix it (if within project scope), link it to the relevant golden-output test, or write a comment explaining why the behaviour is expected.
 –	Run the full test suite locally — unit, regression, edge-case, smoke — and record the wall-clock time. This is the number that will go into the nightly CI timeout setting.
-✓ Milestone: Integration smoke test live and running in nightly CI. All fixtures documented. Open issues triaged.
-▶ If delayed: If the smoke test reveals a build reproducibility issue on the CI runner, work with mentor to add the Fortran build artefact to the CI cache and rerun. This is the most likely Week 9 blocker and has a known solution.
+- Milestone: Integration smoke test live and running in nightly CI. All fixtures documented. Open issues triaged.
+- If delayed: If the smoke test reveals a build reproducibility issue on the CI runner, work with mentor to add the Fortran build artefact to the CI cache and rerun. This is the most likely Week 9 blocker and has a known solution.
 Week 10 Jul 27 – Aug 2 (4-day break Aug 1–4)	Tutorial 06 — Contributor Guide
 This is the most important tutorial for the long-term health of the project. It does not teach users how to use Reltrans; it teaches contributors how to extend the work done in this project.
 –	Section 1 — How to add a tutorial notebook: naming convention, parameter standards, how to run nbmake locally, how to clear outputs before committing.
 –	Section 2 — How to write a unit test: fixture usage, naming conventions, how to generate a new golden-output file, how to set tolerance thresholds.
 –	Section 3 — How to read the CI report: what each badge means, how to interpret coverage gaps, what to do if a regression test fails after a Fortran core change.
 –	Section 4 — Project architecture overview: a written map of how f2py_interface.py connects to the Fortran core, which functions are tested, and which tutorials cover each function.
-✓ Milestone: Tutorial 06 complete and merged. The 4-day break (Aug 1–4) is absorbed by the reduced scope of this week — Tutorial 06 is writing-heavy and can be drafted in 3 focused days.
+- Milestone: Tutorial 06 complete and merged. The 4-day break (Aug 1–4) is absorbed by the reduced scope of this week — Tutorial 06 is writing-heavy and can be drafted in 3 focused days.
 Week 11 Aug 5 – 11	Full Test Suite Audit — Target 80% Coverage
 –	Run coverage analysis on the complete test suite. Identify every uncovered branch in the Python wrapper code. For each gap: write a test if the gap represents real user behaviour, or add a comment explaining why the branch is intentionally untested.
 –	Fix any flaky tests identified during Weeks 7–10. A flaky test is worse than no test — it trains contributors to ignore CI failures.
 –	Enforce notebook output clearing via pre-commit hook. Test that the hook fires correctly on a deliberate violation before committing it.
 –	Run the full pre-commit hook suite (Black, flake8, notebook output clearing) across all files touched during the project and fix any remaining violations.
 –	Update CONTRIBUTING.md with the final coverage number and a note on how to run the hooks locally.
-✓ Milestone: Coverage above 80% confirmed by CI report. No flaky tests. Pre-commit hooks passing on all project files.
-▶ If delayed: If coverage is stuck below 80% because a Fortran-level code path is not reachable through the Python wrappers, document the gap explicitly and explain why it is a Fortran-layer responsibility rather than a wrapper-layer responsibility.
+- Milestone: Coverage above 80% confirmed by CI report. No flaky tests. Pre-commit hooks passing on all project files.
+- If delayed: If coverage is stuck below 80% because a Fortran-level code path is not reachable through the Python wrappers, document the gap explicitly and explain why it is a Fortran-layer responsibility rather than a wrapper-layer responsibility.
 Week 12 Aug 12 – 16 ★ Final Evaluation	Final Polish, Report & Evaluation Submission
 –	Final pass through all six tutorial notebooks: fix any broken links, ensure all output cells are cleared, verify that each notebook runs to completion in a clean virtual environment.
 –	Write the changelog entry for the repository covering all work done during the project.
