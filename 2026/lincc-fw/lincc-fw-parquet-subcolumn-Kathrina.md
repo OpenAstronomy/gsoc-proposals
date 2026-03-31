@@ -102,7 +102,7 @@ While this does not solve the underlying issue, it helped me better understand w
 
 ## Nested Astronomy Data Visualizer
 
-Project Link: https://kathrina-dev.github.io/nested-astronomy-data-visualizer/
+Project Link: https://kathrina-dev.github.io/nested-astronomy-data-visualizer/ (it may take some time to load for the first time)
 
 Project Repo: https://github.com/Kathrina-dev/nested-astronomy-data-visualizer
 
