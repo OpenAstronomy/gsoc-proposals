@@ -56,7 +56,6 @@ I'm choosing this project because I enjoy the process of deconstructing existing
 
 |Period|Description|
 |---|---|
-|Community Bonding period| Introduced myself in the OpenAstronomy community |
 | Week 1 (May 20th - 26th) | Audit dependencies in modules (like astropy.convolution or astropy.stats to establish a standalone local build |
 | Week 2 (May 27th - June 2nd) | Develop a pytest framework for direct C/Cython testing without a full library import |
 | Week 3 (June 4th - 10th) | Scale the isolation template to other subpackages and integrate GitHub actions for CI |
