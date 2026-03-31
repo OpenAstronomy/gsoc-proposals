@@ -52,27 +52,29 @@ An Example of How I would Map out these files during the community bonding phase
 
 io/ascii/cparser.pyx (Untested)
 
-    - FileString
-        - __cinit__ (non-trivial logic, should probably test assignments and file status) *I think this function might not ever raise the OSError*
-        - splitlines
+*Map of cparser.pyx*
 
-    - CParser
-        - __cinit__ (errors should be tested, assignments could be skipped probably)
-        - setup_tokenizer (test with 4 different input types: filename/data, file-like object, iterable lines, error)
-        - read_header
-        - read
+- FileString
+    - __cinit__ (non-trivial logic, should probably test assignments and file status) *I think this function might not ever raise the OSError*
+    - splitlines
 
-    - _copy_cparser
+- CParser
+    - __cinit__ (errors should be tested, assignments could be skipped probably)
+    - setup_tokenizer (test with 4 different input types: filename/data, file-like object, iterable lines, error)
+    - read_header
+    - read
 
-    - read_chunk
+- _copy_cparser
 
-    - FastWriter
-        - __cinit__
-        - write
+- read_chunk
 
-    - get_fill_values
+- FastWriter
+    - __cinit__
+    - write
 
-(Other untested directly .pyx files)
+- get_fill_values
+
+**Other untested directly low-level packages**
 
 timeseries/periodograms/lombscargle/implementations/cython_impl.pyx (Untested)
 
@@ -101,7 +103,6 @@ wcs - biggest low level package, multiple files
 | **Final Evaluation** | Aug 24 – Aug 31 | Submit final work product. Write up a summary of all tests added, coverage improvements, and notes for the APE moving forward. |
 
 **Hours per week:** 30+ hours
-## GSoC
 
 ### Have you participated previously in GSoC? When? With which project?
 No this is my first time
