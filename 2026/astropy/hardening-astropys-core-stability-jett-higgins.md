@@ -33,38 +33,55 @@ Should I have time after the all the tests are written, I would like to experime
 
 ### Implemented Or Open PRs
 time/src/parse_times.c - _parse_times (Merged)
+
 cosmology/_src/flrw/scalar_inv_efuncs.pyx (Merged)
 
 io/fits/_utils.pyx - parse_header (Open PR) *My PR*
+
 stats/_stats.pyx (Open PR)
+
 table/_np_utils (Open PR)
+
 stats/src/fast_sigma_clip.c (Open PR)
+
 table/_column_mixins.pyx (Open PR)
+
 convolution/_convolve.pyx (Open PR)
 
 An Example of How I would Map out these files during the community bonding phase
 
 io/ascii/cparser.pyx (Untested)
+
     - FileString
         - __cinit__ (non-trivial logic, should probably test assignments and file status) *I think this function might not ever raise the OSError*
         - splitlines
+
     - CParser
         - __cinit__ (errors should be tested, assignments could be skipped probably)
         - setup_tokenizer (test with 4 different input types: filename/data, file-like object, iterable lines, error)
         - read_header
         - read
+
     - _copy_cparser
+
     - read_chunk
+
     - FastWriter
         - __cinit__
         - write
+
     - get_fill_values
 
 (Other untested directly .pyx files)
+
 timeseries/periodograms/lombscargle/implementations/cython_impl.pyx (Untested)
+
 timeseries/periodograms/bls/_impl.pyx (Untested)
+
 utils/xml/src/iterparse.c (escape_xml is tested but escape_xml_cdata is untested)
+
 cosmology/_src/signature_deprecations.c
+
 wcs - biggest low level package, multiple files
 
 ### Timeline
