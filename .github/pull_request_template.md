@@ -9,7 +9,7 @@ Make sure that you Pull Request is not removing the `template.md` file
 -->
 # Requirements
 
-- [ ] I've read [OA contributor application guide](https://openastronomy.org/gsoc/student_guidelines.html);
+- [ ] I've read [OA contributor application guide](https://openastronomy.org/gsoc/contributor_guidelines.html);
 - [ ] I confirm that this is my work and not made by LLMs;
 - [ ] I've introduced myself to the sub-organisation I'm applying for;
 - [ ] I've created a blog post and wrote something about the project I'm interested;
