@@ -32,21 +32,22 @@ Due to the nature of the GSoC process I see that there are a lot of PRs currentl
 Should I have time after all the tests are written, I would like to experiment with Meson to reduce recompilation of the packages.
 
 ### Implemented Or Open PRs
-time/src/parse_times.c - _parse_times (Merged)
+time/src/parse_times.c - _parse_times (Merged) [Link](https://github.com/astropy/astropy/pull/19410)
 
-cosmology/_src/flrw/scalar_inv_efuncs.pyx (Merged)
+cosmology/_src/flrw/scalar_inv_efuncs.pyx (Merged) [Link](https://github.com/astropy/astropy/pull/19407)
 
-io/fits/_utils.pyx - parse_header (Open PR) *My PR*
+table/_np_utils (Merged) [Link](https://github.com/astropy/astropy/pull/19458)
 
-stats/_stats.pyx (Open PR)
+io/fits/_utils.pyx - parse_header (Open PR) [My PR](https://github.com/astropy/astropy/pull/19449)
 
-table/_np_utils (Open PR)
+stats/_stats.pyx (Open PR) [Link](https://github.com/astropy/astropy/pull/19378)
 
-stats/src/fast_sigma_clip.c (Open PR)
 
-table/_column_mixins.pyx (Open PR)
+stats/src/fast_sigma_clip.c (Open PR) [Link](https://github.com/astropy/astropy/pull/19377)
 
-convolution/_convolve.pyx (Open PR)
+table/_column_mixins.pyx (Open PR) [Link](https://github.com/astropy/astropy/pull/19492)
+
+convolution/_convolve.pyx (Open PR) [Link](https://github.com/astropy/astropy/pull/19470)
 
 An Example of How I would Map out these files during the community bonding phase
 
