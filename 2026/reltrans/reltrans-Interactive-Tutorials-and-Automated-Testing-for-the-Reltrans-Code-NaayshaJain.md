@@ -119,7 +119,7 @@ Week 12 Aug 12 – 16 ★ Final Evaluation	Final Polish, Report & Evaluation Sub
 –	Write the GSoC final report: a summary of completed work, coverage metrics, design decisions, lessons learned, and a specific list of follow-on work for future contributors.
 –	Post the final blog entry summarising the project for the broader OpenAstronomy community.
 –	Submit the final evaluation.
-✓ Milestone: All six tutorials merged. Test suite at 80%+ coverage. GitHub Actions CI running on every PR and nightly. Final report and blog post published. Final evaluation submitted on time.
+Milestone: All six tutorials merged. Test suite at 80%+ coverage. GitHub Actions CI running on every PR and nightly. Final report and blog post published. Final evaluation submitted on time.
 
 Timeline Risk Summary
 The three most plausible project risks and their mitigations are listed below. Identifying risks in the proposal is not a sign of weakness — it is evidence that the timeline was designed by someone who has thought past the optimistic case.
