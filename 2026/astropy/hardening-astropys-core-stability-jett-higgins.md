@@ -82,7 +82,6 @@ timeseries/periodograms/bls/_impl.pyx (Untested)
 
 utils/xml/src/iterparse.c (escape_xml is tested but escape_xml_cdata is untested)
 
-cosmology/_src/signature_deprecations.c
 
 wcs - biggest low level package, multiple files
 
