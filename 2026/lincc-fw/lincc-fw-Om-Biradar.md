@@ -11,8 +11,8 @@ PyArrow Improvemnets for Astronomy
 * **Time-zone:** UTC+5:30 India
 * **Matrix/slack/IRC Handle:**
 * **Github/forge username:** OmBiradar
-* **Blog:**
-* **Blog RSS feed:**
+* **Blog:** <https://imporving-pyarrow-for-nested-structures.hashnode.dev/proposal-for-improving-pyarrow-for-astronomy>
+* **Blog RSS feed:** <https://imporving-pyarrow-for-nested-structures.hashnode.dev/rss.xml>
 * **PR link(s):**
   * Qualification task : <https://github.com/lincc-frameworks/nested-pandas/pull/454>
   * <https://github.com/lincc-frameworks/nested-pandas/pull/468>
