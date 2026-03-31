@@ -8,7 +8,7 @@
 * **Blog:**
 * **Blog RSS feed:**
 * **PR link(s):**
-  * [Proposal PR](https://github.com/OpenAstronomy/gsoc-proposals/pull/36)
+  * Proposal PR: https://github.com/OpenAstronomy/gsoc-proposals/pull/36
 
 
 ### Background
@@ -34,9 +34,13 @@ Modern astronomical datasets rely heavily on nested data structures—such as li
 
 - Improving multi-threaded read performance for struct-list columns
 
-I am particularly interested in this project because it sits at the intersection of systems programming and real-world data challenges. Through my recent work exploring nested Parquet data, I’ve seen firsthand how these limitations affect performance and usability. I believe I can contribute effectively by combining hands-on experimentation with a structured approach to understanding and extending Arrow’s internals.
+## Understanding the Problem
 
+![alt text](image.png)
 
+## Proposed Approach
+
+![alt text](image-1.png)
 
 ### Deliverables
 **1. Sub-column selection support for list-struct types in the Parquet reader**
@@ -98,14 +102,14 @@ While this does not solve the underlying issue, it helped me better understand w
 
 ## Nested Astronomy Data Visualizer
 
-[Project Link](https://kathrina-dev.github.io/nested-astronomy-data-visualizer/)
+Project Link: https://kathrina-dev.github.io/nested-astronomy-data-visualizer/
 
-[Project Repo](https://github.com/Kathrina-dev/nested-astronomy-data-visualizer)
+Project Repo: https://github.com/Kathrina-dev/nested-astronomy-data-visualizer
 
 ## Open Source Contributions
 I have also contributed to open-source projects such as Plone, where I became familiar with how to work with huge codebases, how to make PRs and how to test and document code.
 
-  * [Fix Moderate Comments control panel visibility based on Discussion Support addon installation #7878 in plone/volto ](https://github.com/plone/volto/pull/7878)
-  * [Add Vitest test for .well-known handling in production build #7868 in plone/volto](https://github.com/plone/volto/pull/7868)
-  * [Fix copying of .well-known directory from public/ in production builds #7839 in plone/volto](https://github.com/plone/volto/pull/7839)
-  * [Fix grammar in Volto development overview #7802 in plone/volto](https://github.com/plone/volto/pull/7802)
+  * Fix Moderate Comments control panel visibility based on Discussion Support addon installation #7878 in plone/volto: https://github.com/plone/volto/pull/7878
+  * Add Vitest test for .well-known handling in production build #7868 in plone/volto: https://github.com/plone/volto/pull/7868
+  * Fix copying of .well-known directory from public/ in production builds #7839 in plone/volto: https://github.com/plone/volto/pull/7839
+  * Fix grammar in Volto development overview #7802 in plone/volto: https://github.com/plone/volto/pull/7802
