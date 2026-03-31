@@ -17,7 +17,7 @@
 
 ### Background
 
-I am a 2nd-year undergraduate Software Engineering student at INSAT, Tunisia, with a deep passion for mathematics, physics, and artificial intelligence. Combining these interests with software engineering, I work with OpenAstronomy to bridge the gap between legacy radio astronomy data formats and modern Python ecosystems. My focus is on developing robust, test-driven, and mathematically sound architectures.
+I am a 2nd-year undergraduate Software Engineering student at INSAT, Tunisia, with a deep passion for mathematics, physics, and intelligence. Combining these interests with software engineering, I work with OpenAstronomy to bridge the gap between legacy radio astronomy data formats and modern Python ecosystems. My focus is on developing robust, test-driven, and mathematically sound architectures.
 
 ### Interest in OpenAstronomy
 
@@ -45,17 +45,13 @@ The new `Spectra` class naturally supports Python slicing (e.g., `spec[1:5, :-4]
 
 ### Key Deliverables
 
-1. **Coordinate-Aware Spectra:**  
-   A modernized `Spectra` class inheriting from `NDCube` with full WCS mapping, `ExtraCoords` integration, and axis-aware physical slicing.
+1. **Coordinate-Aware Spectra:** A modernized `Spectra` class inheriting from `NDCube` with full WCS mapping, `ExtraCoords` integration, and axis-aware physical slicing.
 
-2. **Background Subtraction Framework:**  
-   High-performance C-level vectorized rolling minimums (`scipy.ndimage.minimum_filter1d`) and polynomial fitting for instrument thermal drift removal.
+2. **Background Subtraction Framework:** High-performance C-level vectorized rolling minimums (`scipy.ndimage.minimum_filter1d`) and polynomial fitting for instrument thermal drift removal.
 
-3. **Gap-Aware Visualization:**  
-   Deterministic gap detection algorithm (Δt > C \* (1+ε)) with arrays padded using `numpy.ma.masked_invalid()` to prevent misleading visual stretching, integrated with `@peek_show`.
+3. **Gap-Aware Visualization:** Deterministic gap detection algorithm ($\Delta t > C \cdot (1+\epsilon)$) with arrays padded using `numpy.ma.masked_invalid()` to prevent misleading visual stretching, integrated with `@peek_show`.
 
-4. **Documentation & Tutorial Gallery:**  
-   Narrative-style docs (`spectrogram.rst`) following `sunpy.map` conventions, legacy support with deprecation warnings, and beginner-to-advanced Jupyter notebook tutorials.
+4. **Documentation & Tutorial Gallery:** Narrative-style docs (`spectrogram.rst`) following `sunpy.map` conventions, legacy support with deprecation warnings, and beginner-to-advanced Jupyter notebook tutorials.
 
 > _Note:_ Data extraction scrapers (e.g., eCALLISTO) will remain in `radiospectra` to avoid scope creep and external dependencies, as per mentor guidance.
 
@@ -64,7 +60,7 @@ The new `Spectra` class naturally supports Python slicing (e.g., `spec[1:5, :-4]
 ### Implementation Timeline (350 Hours)
 
 | Period            | Task & Deliverables                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------ |
 | Community Bonding | Map WCS requirements, establish PR strategies, and define API design constraints with mentors.                            |
 | Week 1            | **Core Architecture:** Create `Spectra` class, constructor, and initial `pytest` suites.                                  |
 | Week 2            | Integrate `ExtraCoords` for frequency sweeps; implement `freq_at_index()` and `time_at_index()` using Astropy `Quantity`. |
@@ -73,7 +69,7 @@ The new `Spectra` class naturally supports Python slicing (e.g., `spec[1:5, :-4]
 | Week 5            | Build Background Subtraction API; implement vectorized `rolling_min` and polynomial fits.                                 |
 | Week 6            | Finalize custom `_custom_bg(data, meta)` interface; complete NumpyDoc math documentation.                                 |
 | Week 7            | Implement physical rebinning, `.flatten()`, and intensity normalization.                                                  |
-| Week 8            | Develop deterministic gap detection (Δt > C \* (1+ε)) as standalone function.                                             |
+| Week 8            | Develop deterministic gap detection ($\Delta t > C \cdot (1+\epsilon)$) as standalone function.                           |
 | Week 9            | Overhaul Plotting Mixin with `masked_invalid()` edge handling; apply native `@peek_show` parity.                          |
 | Week 10           | Apply `AstropyDeprecationWarning` to legacy `GenericSpectrogram`; draft migration guides.                                 |
 | Week 11           | Build rich Jupyter notebook gallery with 3+ complex workflows.                                                            |
@@ -91,7 +87,7 @@ The new `Spectra` class naturally supports Python slicing (e.g., `spec[1:5, :-4]
 
 - **Previous Participation:** None, this is my first GSoC.
 - **Applying to Other Projects:** No, fully dedicated to this OpenAstronomy project.
-- **Availability:** 350-hour project (~25–30 hours/week). University semester concludes before coding period, ensuring uninterrupted full-time focus. Eid al-Adha holiday (May 27–28) is the only planned exception.
+- **Availability:** 350-hour project (~25–30 hours/week). University semester concludes before coding period, ensuring uninterrupted full-time focus. Eid al-Adha holiday (May 27--28) is the only planned exception.
 
 ---
 
