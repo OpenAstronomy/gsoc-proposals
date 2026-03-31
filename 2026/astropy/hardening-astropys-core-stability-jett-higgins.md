@@ -3,7 +3,7 @@
 ## Contributor Information
 * **Name:** Jett Higgins
 * **Time-zone:** Eastern Standard Time
-* **Matrix/slack/IRC Handle:** JettHiggins
+* **Matrix/slack/IRC Handle:** Jett Higgins
 * **Github/forge username:** Jett Higgins
 * **Blog:** jetthiggins.github.io/Jblog/
 * **PR link(s):**
@@ -12,10 +12,10 @@
   * https://github.com/astropy/astropy/pull/19449/
 
 ### Background
-My name is Jett Higgins, I am a second year student currently studying Computer Science at Stevens Institute of Technology. I have enjoyed programming and working on projects since I started highschool. I just enjoy learning new things and working on and endlessly growing list of projects that continute to challenge me. I have picked up C, C++ and Assembly through school courses and some personal projects that have popped into my head. I have created my own 8 bit CPU, recreated printf in Assembly, and learned core concepts in my classes. I am super open to working with other people, I try to learn as much as I can from people smarter than me and try to teach people that ask for it. I have had a great time working with people in Hackathons and Game Jams. I am super excited for this oppourtunity to work on this project!
-                                                                                                                                                                                                
+My name is Jett Higgins, I am a second year student currently studying Computer Science at Stevens Institute of Technology. Before this project was announced I contributed a small documentation fix to get familiar with the codebase. I did this because I knew I wanted to do a GSoC project related to astronomy. Once I saw the project was a combination of low-level and high-level programming I thought that this project is perfect for my interests. I have learned C, C++, and Assembly through school courses and some personal projects, like building an 8 Bit CPU in Logisim, based off the CPU concepts I covered in class, and when building it I had to eventually split up my components of the CPU into modules to reduce the complexity of managing all the logic gates, which is very similar to the APE linked with this proposal. Another project I really liked from school was recreating a simple version of printf in assembly, it taught me how to manage stack frames, labels, and taught me how to debug low level code with gdb. Recently I did a hackathon where my team ended up winning one of the project tracks. I was able to work with a graduate student who took my initial ideas refined the database schemas into the winning project.
+
 ### Interest in OpenAstronomy
-I my intrests in Astronomy came from watching and reading a ton of sci-fi content as a kid like Star Wars, Interstellar, the Martian. I most recently read the books Project Hail Mary and Dark Matter, consuming that kind of content really motivates me to work on projects like astropy, and I am always looking for more books to read. OpenAstronomy allows me to take my personal interests and apply it to what I have been learning throughout my life, which is programming, more specifically in Python and C.
+My interests in Astronomy came from watching and reading sci-fi content like Star Wars, Interstellar, the Martian. I most recently read the book Project Hail Mary. So when I started initial work on tests for the FITS subpackage I started thinking about how the data recorders in Project Hail Mary could have stored data in FITS files. Stories like that and seeing the creativity of how they are used makes me feel connected to astronomy.
 
 ## Project Proposal Application
 **Proposal Title:** Hardening astropy’s core stability
@@ -23,49 +23,67 @@ I my intrests in Astronomy came from watching and reading a ton of sci-fi conten
 **Organisation:** Astropy
 
 ### **Summary:**
-I have really liked to deep dive into things and always have questions on how things work. Thats why I am so interested in C and other low level languages, because they are the reasons that we can do more abstract things in high level languages like python. Astropy (like C) is a core bedrock of the astronomy ecosystem. It needs to be reliable, well documented, and remain highly performant. That is why contributing to astropy and this project is so important to me. These low-level packages in astropy are rarely updated but can take up to 50% of the CI time just recompiling all this low level code. The APE https://github.com/neutrinoceros/astropy-APEs/pull/1 suggests we split the low level parts of astropy into a seperate package. Allowing for signifigantly reduced build times, a more modular approach to the codebase and even allows for a more modern build system using meson or maturin. This combination of low level code that supports higher level function really interests me, and I believe I can do it and learn a lot at the same time.
-
-
+Astropy is a core building block of the astronomy ecosystem. It needs to be reliable and performant. Astropy gets its performance from low level source functions written in Cython and C. These low-level packages in astropy are rarely updated but take up to 50% of CI time recompiling. The [APE](https://github.com/neutrinoceros/astropy-APEs/pull/1) proposes the idea of splitting the low-level functions into a separate package. This will give astropy significantly reduced build times, a clearer separation of the low-level and high-level layer and allows for more modern build systems (meson suggested which would avoid recompiling unchanged code). The goal of this GSoC project is a step toward completing the APE. Currently the low-level layer of astropy has minimal tests, if astropy were to split now, the low-level functions would be untested. This project is to write tests for the core low-level sub-packages in astropy. I developed an approach for implementing these tests when I was writing tests for the FITS parse_header function. First I spent time fully understanding how the current function works and FITS files actually work. Then I started thinking about edge cases specific to the function and then began writing code. A well tested low-level layer will allow the APE to move forward.
 
 ### Deliverables
 
-**During GSoC:**
-1. Direct tests for `astropy/table/_np_utils.pyx` - join_inner function
-2. Direct tests for `astropy/table/_column_mixins.pyx` - __getitem__ overrides
-3. Direct tests for `astropy/convolution/_convolve.pyx` - convolution operations
-4. Direct tests for `astropy/io/ascii/cparser.pyx` - fast ASCII parser
-5. Direct tests for `astropy/timeseries/periodograms/lombscargle/cython_impl.pyx`
-6. Direct tests for `astropy/timeseries/periodograms/bls/_impl.pyx`
-7. Written guide: "Testing Cython Extensions in Astropy" for future contributors
-8. Final report with roadmap for remaining extensions (votable, compressed, xml)
+Due to the nature of the GSoC process I see that there are a lot of PRs currently being created for tests for low level functions (me included). I believe that there should be some time allocated to making sure that these tests do cover all the edge cases necesary and cleaned up if needed. Here is a list of low level functions that I can see that do have or have tests pending from open PRs right now.
 
-**Reach goals:**
-9. Direct tests for `astropy/io/votable/src/tablewriter.c`
-10. Direct tests for `astropy/io/fits/hdu/compressed/src/compression.c`
-11. Exploratory Meson build setup for isolated extension testing
+Should I have time after the all the tests are written, I would like to experiment with Meson to reduce recompilation of the packages.
 
----
+### Implemented Or Open PRs
+time/src/parse_times.c - _parse_times (Merged)
+cosmology/_src/flrw/scalar_inv_efuncs.pyx (Merged)
+
+io/fits/_utils.pyx - parse_header (Open PR) *My PR*
+stats/_stats.pyx (Open PR)
+table/_np_utils (Open PR)
+stats/src/fast_sigma_clip.c (Open PR)
+table/_column_mixins.pyx (Open PR)
+convolution/_convolve.pyx (Open PR)
+
+An Example of How I would Map out these files during the community bonding phase
+
+io/ascii/cparser.pyx (Untested)
+    - FileString
+        - __cinit__ (non-trivial logic, should probably test assignments and file status) *I think this function might not ever raise the OSError*
+        - splitlines
+    - CParser
+        - __cinit__ (errors should be tested, assignments could be skipped probably)
+        - setup_tokenizer (test with 4 different input types: filename/data, file-like object, iterable lines, error)
+        - read_header
+        - read
+    - _copy_cparser
+    - read_chunk
+    - FastWriter
+        - __cinit__
+        - write
+    - get_fill_values
+
+(Other untested directly .pyx files)
+timeseries/periodograms/lombscargle/implementations/cython_impl.pyx (Untested)
+timeseries/periodograms/bls/_impl.pyx (Untested)
+utils/xml/src/iterparse.c (escape_xml is tested but escape_xml_cdata is untested)
+cosmology/_src/signature_deprecations.c
+wcs - biggest low level package, multiple files
 
 ### Timeline
 
-| Period | Description |
-|--------|-------------|
-| Community Bonding (2 weeks) | Map all untested C/Cython extensions with mentors. Study the patterns from `time/_parse_times` direct tests. Discuss implementation strategy with mentors. |
-| Week 1 (May 26 - June 1) | astropy/table/_np_utils.pyx - Start direct tests for `join_inner` function. Test all 4 join types (inner, outer, left, right). Test masking behavior with masked arrays. Open draft PR early for mentor feedback. |
-| Week 2 (June 2 - 8) | Finish table/_np_utils - Edge cases: empty tables, single rows, duplicate keys. Memory safety tests (boundscheck disabled code). Ensure CI passes on all platforms. |
-| Week 3 (June 9 - 15) | astropy/table/_column_mixins.pyx - Direct tests for __getitem__ overrides. Test structured array field access. Test multi-dimensional column slicing. Verify behavior matches Python fallback. |
-| Week 4 (June 16 - 22) | Finish table extensions - Finalize table PRs. Write internal guide documenting testing patterns: How to call Cython functions directly, Structured dtype construction, Memory safety testing strategies. This guide helps future contributors. |
-| Week 5 (June 23 - 29) | astropy/convolution/_convolve.pyx - Start direct tests for convolution functions. Numerical accuracy: compare C vs Python results. Test boundary conditions and padding modes. |
-| Week 6 (June 30 - July 6) | Finish convolution -  Midterm report due. |
-| Week 7 (July 7 - 13) | astropy/io/ascii/cparser.pyx - Direct tests for the fast C ASCII parser. Test parsing correctness for various file formats. Error path coverage: malformed input, encoding issues. |
-| Week 8 (July 14 - 20) | astropy/timeseries/periodograms/lombscargle/cython_impl.pyx - Test periodogram computation directly. Numerical accuracy against known test cases. Performance comparisons. |
-| Week 9 (July 21 - 27) | astropy/timeseries/periodograms/bls/_impl.pyx - Direct tests for BLS implementation. Test light curve fitting. Edge cases: sparse data, periodicity detection. |
-| Week 10 (July 28 - Aug 3) | Buffer + stretch goals - Buffer time for any PR review iterations. If ahead of schedule: start `io/votable` or `fits/compressed` tests. Begin exploratory Meson build setup. |
-| Week 11 (Aug 4 - 10) | No new features. Fix any platform-specific CI issues. Ensure all PRs passing on Linux, macOS, Windows. Performance benchmark documentation. |
-| Week 12 (Aug 11 - 17) | Final report - Document which extensions tested. What strategies worked. What was difficult. Roadmap for remaining extensions (votable, compressed, xml). Submit final evaluation. |
+| Period | Dates | Description |
+|--------|-------|-------------|
+| **Community Bonding** | Apr 28 – May 25 | Meet with mentors to finalize the test plan. Map out all untested low-level subpackages. Agree on priority ordering and milestone targets with mentors. |
+| **Week 1–2** | May 26 – Jun 8 | Go through all currently implemented or open-PR low-level tests. Identify missing edge cases, inconsistencies, or gaps. Submit fixes/improvements to existing test PRs as needed. |
+| **Week 3** | Jun 9 – Jun 15 | Begin and complete tests for `io/ascii/cparser.pyx`. Open PR and iterate on review feedback. |
+| **Week 4** | Jun 16 – Jun 22 | Tests for `timeseries/periodograms/lombscargle/implementations/cython_impl.pyx` and `timeseries/periodograms/bls/_impl.pyx`. |
+| **Week 5** | Jun 23 – Jun 29 | Tests for `utils/xml/src/iterparse.c` and `cosmology/_src/signature_deprecations.c`. |
+| **Week 6–7** | Jun 30 – Jul 13 | Tests for any unmapped low-level packages discovered during community bonding. |
+| **Midterm Evaluation** | Jul 14 – Jul 18 | Midterm evaluation period. Review progress with mentor, adjust remaining schedule if needed. |
+| **Week 8–9** | Jul 19 – Aug 1 | Begin tests for the `wcs` subpackage, should take time to fully understand what each exposed low level function/object is doing. |
+| **Week 10–11** | Aug 2 – Aug 15 | Continue and complete `wcs` tests. Cover edge cases, error handling, and boundary conditions. Open PR and work through mentor review feedback. |
+| **Week 12** | Aug 16 – Aug 22 | Buffer week: address any remaining untested functions identified during the project, finalize all open PRs, write/update documentation for new tests, and ensure CI passes cleanly. |
+| **Final Evaluation** | Aug 24 – Aug 31 | Submit final work product. Write up a summary of all tests added, coverage improvements, and notes for the APE moving forward. |
 
 **Hours per week:** 30+ hours
-
 ## GSoC
 
 ### Have you participated previously in GSoC? When? With which project?
