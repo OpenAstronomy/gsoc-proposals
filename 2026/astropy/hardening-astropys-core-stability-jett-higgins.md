@@ -29,7 +29,7 @@ Astropy is a core building block of the astronomy ecosystem. It needs to be reli
 
 Due to the nature of the GSoC process I see that there are a lot of PRs currently being created for tests for low level functions (me included). I believe that there should be some time allocated to making sure that these tests do cover all the edge cases necesary and cleaned up if needed. Here is a list of low level functions that I can see that do have or have tests pending from open PRs right now.
 
-Should I have time after the all the tests are written, I would like to experiment with Meson to reduce recompilation of the packages.
+Should I have time after all the tests are written, I would like to experiment with Meson to reduce recompilation of the packages.
 
 ### Implemented Or Open PRs
 time/src/parse_times.c - _parse_times (Merged)
