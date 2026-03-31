@@ -15,7 +15,7 @@ Welcome to the repository to submit your applications and discuss them with the 
    - Fork the repository,
    - Clone your fork to your local machine,
    - Create a new branch for your proposal,
-   - Copy the template into this year directory and name the file as: `<suborg>-<project>-<your-name>.md` (pay attention of not creating a file name with spaces),
+   - Copy the template into this year directory and the specific project directory, and name the file as: `<suborg>-<project>-<your-name>.md` (pay attention of not creating a file name with spaces),
    - Add content to your proposal and commit regularly,
    - Open a **draft** pull request to this repository and continue editing your proposal,
    - When you think it's ready, mark the PR as "Ready for review".
