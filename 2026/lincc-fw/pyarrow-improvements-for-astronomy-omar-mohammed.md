@@ -5,11 +5,12 @@
 * **Time-zone:** GMT +2:00 (Cairo)
 * **Matrix:** @s9npai:matrix.org
 * **Slack:** s9npai
-* **Github:** S9npai
+* **Github username:** S9npai
 * **Blog:** https://s9npai.hashnode.dev/
+* **Blog RSS Feed:** https://s9npai.hashnode.dev/rss.xml
 * **PR link(s):**
-  * **Drafted (1)-**
-    1. [#1298: Added __repr_html__() method for catalog](https://github.com/astronomy-commons/lsdb/pull/1298)
+  * **Drafted (1):** <br>
+     [#1298: Added __repr_html__() method for catalog](https://github.com/astronomy-commons/lsdb/pull/1298)
 
 ### Background
 
@@ -102,7 +103,7 @@ compute kernels for List and Struct arrays
 ## GSoC
 
 ### Have you participated previously in GSoC? When? With which project?
-No, this is my first time applying to GSoC.
+No, this is my first time applying to GSoC.<br>
 ### Are you also applying to other projects?
 No, I am focusing exclusively on OpenAstronomy this year
 
@@ -110,7 +111,7 @@ No, I am focusing exclusively on OpenAstronomy this year
 My practical and final exams run from May 17th to June 23rd, 2026, which overlaps with the community bonding period. During that time I can commit 6–8 hours per week rather than the full **20-26hrs** capacity.
 Community bonding is intentionally lighter (Deeper codebase and architecture study, drafting initial design docs and mentor alignment, rather than major implementation work)
 
-I will tell my mentors at least one week before exams start and share a revised schedule if needed, with regular weekly updates to ensure transparency, and I'll be available for meetings with mentors and project maintainers between **2PM-7PM GMT**
+I will tell my mentors at least one week before exams start and share a revised schedule if needed, with regular weekly updates to ensure transparency, and I'll be available for meetings with mentors and project maintainers between **2PM - 7PM UTC**
 
 This will be my primary summer project, so I have no other competing commitments. No other internships or part-time work
 
