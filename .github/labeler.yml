@@ -3,7 +3,7 @@ astropy:
   - any-glob-to-any-file: '**/astropy/**'
 juliaastro:
 - changed-files:
-  - any-glob-to-any-file: '**juliaastro/**'
+  - any-glob-to-any-file: '**/juliaastro/**'
 lincc-fw:
 - changed-files:
   - any-glob-to-any-file: '**/lincc-fw/**'
