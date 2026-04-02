@@ -11,7 +11,7 @@ Welcome to the repository to submit your applications and discuss them with the 
 
 1. Read [our GSoC page](https://openastronomy.org/gsoc/) and the various guides linked there.
 2. Find which project you'd like to work on from the [list of proposed projects](https://openastronomy.org/gsoc/gsoc2026/)
-3. Create a draft of your proposal (the earlier, the better) on this repository
+3. Create a draft of your proposal (the earlier, the better) on this repository (keep **one PR per proposal**)
    - Fork the repository,
    - Clone your fork to your local machine,
    - Create a new branch for your proposal,
