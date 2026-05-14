@@ -2,7 +2,7 @@
 
 Welcome to the repository to submit your applications and discuss them with the mentors before the GSoC deadline.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > - Proposals that have not been submitted and discussed in this repository won't be considered
 > - The official submission is through GSoC platform, if it's not there too it won't be considered either.
 > - Any suspicious of LLMs used without disclosing it will be considered spam, and therefore ignored.
@@ -25,4 +25,3 @@ Welcome to the repository to submit your applications and discuss them with the 
 ## Acknowledgements
 
 After years trying to use an open review process using the wiki and different platforms, we've followed the [Neuroinformatics Unit approach and copied their process](https://github.com/neuroinformatics-unit/gsoc).
-
